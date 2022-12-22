@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ADD_USER } from '../graphql/users';
 
@@ -9,8 +9,6 @@ type FormValues = {
   password: String;
 };
 
-//const { register } = useForm<FormInputs>();
-
 function Register() {
   const {
     register,
@@ -18,11 +16,12 @@ function Register() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const [addUser, { data, loading, error }] = useMutation(ADD_USER);
+  const [addUser, { loading, error }] = useMutation(ADD_USER);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     addUser({ variables: data });
   };
+console.log(error);
 
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;

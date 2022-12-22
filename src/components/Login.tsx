@@ -1,6 +1,9 @@
-import { gql, useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ADD_USER, LOGIN } from '../graphql/users';
+import { useNavigate } from 'react-router-dom';
+import { useLogin } from '../context/LoginProvider';
+import { LOGIN } from '../graphql/users';
 
 type FormValues = {
   email: String;
@@ -8,18 +11,30 @@ type FormValues = {
 };
 
 function Login() {
+  const navigator = useNavigate();
+  const [err, setErr] = useState<String | null>(null);
+  const { setUser } = useLogin();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-   const { loading, error, data } = useQuery(LOGIN);
+  const [login, { loading }] = useLazyQuery(LOGIN, {
+    onCompleted(data) {
+      setUser(data);
+      navigator('/userconnect');
+    },
+    onError(error) {
+      setErr(error.message);
+    },
+  });
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    // addUser({ variables: data });
+  const onSubmit: SubmitHandler<FormValues> = async (response) => {
+    await login({ variables: { ...response } });
   };
-
+  if (loading) return <div>Chargement en cours</div>;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -52,10 +67,9 @@ function Login() {
           )}
         </label>
       </div>
+      <h4> {err} </h4>
       <input type="submit" value="Connection" />
     </form>
-
-    
   );
 }
 
