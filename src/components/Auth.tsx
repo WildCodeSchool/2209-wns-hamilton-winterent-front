@@ -1,11 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useLogin } from "../context/LoginProvider";
+
 function Auth() {
-  return (
-    <div>
-      <h1>Authentification</h1>
-      <Outlet />
-    </div>
-  );
+  const { user } = useLogin()
+  return user ? <Outlet/> : <Navigate to='/login'/>;
 }
 
 export default Auth;

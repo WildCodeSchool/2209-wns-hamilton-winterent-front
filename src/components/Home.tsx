@@ -2,13 +2,12 @@ import { useQuery } from '@apollo/client';
 
 import { LIST_USERS } from '../graphql/users';
 
-interface  User {
-    id: number;
-    firstname:  string;
-    lastname:  string;
-    email:  string;
+interface User {
+  id: number;
+  firstname: string;
+  lastname: string;
+  email: string;
 }
-
 
 function Home() {
   const { loading, error, data } = useQuery(LIST_USERS);
@@ -20,12 +19,12 @@ function Home() {
     <div>
       commenter map
       <ul>
-                {data.users.map((users: User) => (
-                    <li key={users.id}>
-                    {users.firstname} | {users.lastname}
-                    </li>
-                ))}
-                </ul>
+        {data.users.map((users: User) => (
+          <li key={users.id}>
+            {users.firstname} | {users.lastname}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
