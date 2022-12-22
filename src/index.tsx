@@ -11,6 +11,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import UserConnect from './components/UserConnect';
 import LoginProvider from './context/LoginProvider';
 import Header from './components/header/Header';
+import Home from './components/Home';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
@@ -32,6 +33,7 @@ root.render(
           <Header />
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route element={<Auth />}>

@@ -11,7 +11,6 @@ interface User {
 
 function Home() {
   const { loading, error, data } = useQuery(LIST_USERS);
-  //console.log(error);
 
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;

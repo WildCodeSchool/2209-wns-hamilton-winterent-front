@@ -21,6 +21,7 @@ function Register() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     addUser({ variables: data });
   };
+console.log(error);
 
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;

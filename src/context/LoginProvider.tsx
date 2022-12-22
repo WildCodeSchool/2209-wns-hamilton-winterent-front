@@ -2,9 +2,12 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 interface UserContextInterface {
   user: Object | null;
-  setUser: React.Dispatch<React.SetStateAction<String | null>>
+  setUser: React.Dispatch<React.SetStateAction<String | null>>;
 }
-const LoginContext = createContext<UserContextInterface>({user: {}, setUser: () => {}});
+const LoginContext = createContext<UserContextInterface>({
+  user: {},
+  setUser: () => {},
+});
 
 const LoginProvider = ({ children }: any) => {
   const [user, setUser] = useState<String | null>(

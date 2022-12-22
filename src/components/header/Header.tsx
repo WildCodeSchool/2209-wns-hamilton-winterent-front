@@ -7,6 +7,9 @@ const Header = () => {
         <a href="/register">
           <button>Créer un compte</button>
         </a>
+        <a href="/home">
+          <button>home</button>
+        </a>
         <a href="/login">
           <button>Se connecter</button>
         </a>
