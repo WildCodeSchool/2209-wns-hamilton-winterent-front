@@ -1,0 +1,17 @@
+.header {
+    background-color: blue;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+
+    .align-text {
+        display:  flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+
+        button {
+            height: 50px;
+        }
+    }
+}
