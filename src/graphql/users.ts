@@ -11,6 +11,18 @@ export const LIST_USERS = gql`
     }
 `
 
+export const ONE_USER = gql`
+  query Query($userId: ID!) {
+    user(id: $userId) {
+      email
+      firstname
+      id
+      lastname
+      password
+    }
+  }
+`;
+
 export const ADD_USER = gql`
   mutation Mutation(
     $email: String!
@@ -39,6 +51,7 @@ export const LOGIN = gql`
       token
       user {
         email
+        firstname
         id
       }
     }
