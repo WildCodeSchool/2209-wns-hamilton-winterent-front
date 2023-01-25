@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { ADD_USER } from '../graphql/users';
 
 type FormValues = {
@@ -16,11 +17,14 @@ function Register() {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const navigate = useNavigate()
   const [addUser, { loading, error }] = useMutation(ADD_USER);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    addUser({ variables: data });
+    await addUser({ variables: data });
+    navigate('/login')
   };
+  
 console.log(error);
 
   if (loading) return <div>Chargement en cours</div>;
@@ -73,6 +77,7 @@ console.log(error);
           <label htmlFor="">
             Mot de passe
             <input
+            type='password'
               id="password"
               {...register('password', {
                 required: true,

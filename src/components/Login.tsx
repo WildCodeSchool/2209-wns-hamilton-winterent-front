@@ -13,7 +13,7 @@ type FormValues = {
 function Login() {
   const navigator = useNavigate();
   const [err, setErr] = useState<String | null>(null);
-  const { setUser } = useLogin();
+  const { setUserLog } = useLogin();
 
   const {
     register,
@@ -23,7 +23,7 @@ function Login() {
 
   const [login, { loading }] = useLazyQuery(LOGIN, {
     onCompleted(data) {
-      setUser(data);
+      setUserLog(data.login);
       navigator('/userconnect');
     },
     onError(error) {
@@ -55,6 +55,7 @@ function Login() {
         <label htmlFor="">
           Mot de passe
           <input
+          type='password'
             id="password"
             {...register('password', {
               required: true,

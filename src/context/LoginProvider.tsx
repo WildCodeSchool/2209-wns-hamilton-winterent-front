@@ -1,31 +1,41 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
+interface LoginInterface {
+  token: String;
+  user: UserInfoInterface;
+}
+interface UserInfoInterface {
+  email: String;
+  firstname: String;
+  id: Number;
+}
+
 interface UserContextInterface {
-  user: Object | null;
-  setUser: React.Dispatch<React.SetStateAction<String | null>>;
+  userLog: LoginInterface | null;
+  setUserLog: React.Dispatch<React.SetStateAction<LoginInterface | null>>;
 }
 const LoginContext = createContext<UserContextInterface>({
-  user: {},
-  setUser: () => {},
+  userLog: null,
+  setUserLog: () => {},
 });
 
 const LoginProvider = ({ children }: any) => {
-  const [user, setUser] = useState<String | null>(
-    localStorage.getItem('user')
-      ? JSON.parse(localStorage.getItem('user') || '')
+  const [userLog, setUserLog] = useState<LoginInterface | null>(
+    localStorage.getItem('userLog')
+      ? JSON.parse(localStorage.getItem('userLog') || '')
       : null
   );
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
+    if (userLog) {
+      localStorage.setItem('userLog', JSON.stringify(userLog));
     } else {
-      localStorage.removeItem('user');
+      localStorage.removeItem('userLog');
     }
-  }, [user]);
+  }, [userLog]);
 
   return (
-    <LoginContext.Provider value={{ user, setUser }}>
+    <LoginContext.Provider value={{ userLog, setUserLog }}>
       {children}
     </LoginContext.Provider>
   );
