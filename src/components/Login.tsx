@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../context/LoginProvider';
-import { LOGIN } from '../graphql/users';
+import { LOGIN } from '../graphql/queries/usersQueries';
 
 type FormValues = {
   email: String;
@@ -55,7 +55,7 @@ function Login() {
         <label htmlFor="">
           Mot de passe
           <input
-          type='password'
+            type="password"
             id="password"
             {...register('password', {
               required: true,
