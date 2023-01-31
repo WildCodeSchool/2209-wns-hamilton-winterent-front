@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { ADD_USER } from '../graphql/users';
+import { ADD_USER } from '../graphql/mutations/usersMutations';
 
 type FormValues = {
   firstname: string;
