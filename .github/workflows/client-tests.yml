@@ -1,0 +1,20 @@
+name: client-tests
+
+on: 
+  push:
+    branches: main
+
+jobs: 
+  build-and-test: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout/code
+        uses: actions/checkout@v2
+      - name: install
+        run: npm install
+#  docker: 
+#     needs: test-front
+#     if: github.ref == 'refs/heads/main'
+#     runs-on: ubuntu-latest
+
+
