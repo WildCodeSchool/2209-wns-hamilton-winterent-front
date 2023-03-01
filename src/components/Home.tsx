@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
-
-import { LIST_USERS } from '../graphql/users';
+import { LIST_USERS } from '../graphql/queries/usersQueries';
 
 interface User {
   id: number;

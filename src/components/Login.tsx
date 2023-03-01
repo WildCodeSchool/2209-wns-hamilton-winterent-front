@@ -1,19 +1,17 @@
-import { useLazyQuery } from '@apollo/client';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useLogin } from '../context/LoginProvider';
-import { LOGIN } from '../graphql/users';
+import { useLazyQuery } from "@apollo/client";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../context/LoginProvider";
+import { QueryLoginArgs } from "../generated/graphql";
+import { LOGIN } from "../graphql/queries/usersQueries";
 
-type FormValues = {
-  email: String;
-  password: String;
-};
+interface FormValues extends QueryLoginArgs {}
 
 function Login() {
   const navigator = useNavigate();
   const [err, setErr] = useState<String | null>(null);
-  const { setUser } = useLogin();
+  const { setUserLog } = useLogin();
 
   const {
     register,
@@ -23,8 +21,9 @@ function Login() {
 
   const [login, { loading }] = useLazyQuery(LOGIN, {
     onCompleted(data) {
-      setUser(data);
-      navigator('/userconnect');
+      console.log(data.login);
+      setUserLog(data.login);
+      navigator("/userconnect");
     },
     onError(error) {
       setErr(error.message);
@@ -42,29 +41,31 @@ function Login() {
           Mail
           <input
             id="email"
-            {...register('email', {
+            {...register("user.email", {
               required: true,
               minLength: 3,
               maxLength: 30,
             })}
           />
-          {errors.email && errors.email.type === 'required' && (
+          {errors.user?.email && errors.user?.email.type === "required" && (
             <span>Le mail est required</span>
           )}
         </label>
         <label htmlFor="">
           Mot de passe
           <input
+            type="password"
             id="password"
-            {...register('password', {
+            {...register("user.password", {
               required: true,
               minLength: 3,
               maxLength: 30,
             })}
           />
-          {errors.password && errors.password.type === 'required' && (
-            <span>Le mot de passe est required</span>
-          )}
+          {errors.user?.password &&
+            errors.user?.password.type === "required" && (
+              <span>Le mot de passe est required</span>
+            )}
         </label>
       </div>
       <h4> {err} </h4>

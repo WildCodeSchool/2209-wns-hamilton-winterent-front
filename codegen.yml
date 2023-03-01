@@ -1,0 +1,10 @@
+overwrite: true
+schema: "http://api:8000/graphql"
+documents: ["src/graphql/queries/*.tsx", "src/graphql/mutations/*.tsx"]
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-resolvers"
+      - "typescript-react-apollo"
