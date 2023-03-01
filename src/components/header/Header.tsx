@@ -15,7 +15,7 @@ const Header = () => {
             deconnexion
           </button>
         </a>
-        <a href="/home">
+        <a href="/category">
           <button>home</button>
         </a>
         <a href="/login">{userLog.user.firstname}</a>
@@ -29,6 +29,9 @@ const Header = () => {
         </a>
         <a href="/home">
           <button>home</button>
+        </a>
+        <a href="/category">
+          <button>category</button>
         </a>
         <a href="/login">
           <button>Se connecter</button>
