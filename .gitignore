@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# Ignorer le dossier généré par Codegen et son contenu (fichier graphql.ts)
+generated
+
 # production
 /build
 
