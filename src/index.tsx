@@ -12,7 +12,7 @@ import UserConnect from './components/UserConnect';
 import LoginProvider from './context/LoginProvider';
 import Header from './components/header/Header';
 import Home from './components/Home';
-import Category from './components/category/Category';
+// import Category from './components/category/Category';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
@@ -36,7 +36,7 @@ root.render(
             <Route path="/" element={<App />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/category" element={<Category />} />
+            {/* <Route path="/category" element={<Category />} /> */}
             <Route path="/register" element={<Register />} />
             <Route element={<Auth />}>
               <Route path="/userconnect" element={<UserConnect />} />
