@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
 import ListCategory from './ListCategory';
 
+interface Category {
+  id: string;
+  category: string;
+}
+
 const Category = () => {
   const [listCategory, setListCategory] = useState([]);
   const { loading } = useQuery(LIST_CATEGORY, {
@@ -20,7 +25,7 @@ const Category = () => {
         cupiditate explicabo quis.
       </div>
       <div>
-        {listCategory.map((el) => (
+        {listCategory.map((el: Category) => (
           <div>
             <ListCategory category={el.category} />
           </div>
