@@ -1,0 +1,29 @@
+.title {
+    display: flex;
+    gap: 4rem;
+    margin-top: 4rem;
+    justify-content: space-around;
+    background-color: rgb(15, 38, 65);
+    height: 20rem;
+    color: aliceblue;
+    &__img1 {
+        margin-top: 2rem;
+        &__logo {
+            display: flex;
+            margin-top: 2rem;
+            gap: 2rem;
+        }
+    }
+    
+    p {
+        font-size: 12px;
+        color: rgb(154, 230, 240);
+        margin-top: 1rem;
+    }
+    a {
+        font-size: 2rem;
+        color: white;
+    }
+ 
+
+}

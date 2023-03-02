@@ -12,6 +12,7 @@ import UserConnect from './components/UserConnect';
 import LoginProvider from './context/LoginProvider';
 import Header from './components/header/Header';
 import Home from './components/Home';
+import Footer from "./components/Footer"
 // import Category from './components/category/Category';
 
 const client = new ApolloClient({
@@ -42,6 +43,7 @@ root.render(
               <Route path="/userconnect" element={<UserConnect />} />
             </Route>
           </Routes>
+          <Footer />
         </BrowserRouter>
       </LoginProvider>
     </ApolloProvider>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../context/LoginProvider";
 import { QueryLoginArgs } from "../generated/graphql";
 import { LOGIN } from "../graphql/queries/usersQueries";
+import imgLogin from "../../src/assets/imgLogin.png"
 interface FormValues extends QueryLoginArgs {}
 
 function Login() {
@@ -37,9 +38,10 @@ function Login() {
     <div>
 
    
-    {/* <div>
-        <img src={imageLogin} alt="" />
-    </div> */}
+    <div >
+      <img src={imgLogin} alt="" />
+    </div>
+    
     <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex flex-column align-items-center text-center">
         <label className="d-flex flex-column" htmlFor="">
@@ -74,8 +76,8 @@ function Login() {
         </label>
       </div>
       <h4> {err} </h4>
-      <div className="d-flex  justify-content-center">
-        <button className="btn btn-secondary btn-sm" type="submit" >Connection</button>
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-light btn-sm mt-4" type="submit" >Connexion</button>
       </div>
     </form>
     </div>
