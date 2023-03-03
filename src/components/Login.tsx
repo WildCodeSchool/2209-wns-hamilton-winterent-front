@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../context/LoginProvider";
 import { QueryLoginArgs } from "../generated/graphql";
 import { LOGIN } from "../graphql/queries/usersQueries";
-
+import imgLogin from "../../src/assets/imgLogin.png"
 interface FormValues extends QueryLoginArgs {}
 
 function Login() {
@@ -35,11 +35,18 @@ function Login() {
   };
   if (loading) return <div>Chargement en cours</div>;
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="">
+    <div>
+
+   
+    <div >
+      <img className="w-100" src={imgLogin} alt="" />
+    </div>
+    
+    <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
+      <div className="d-flex flex-column align-items-center text-center">
+        <label className="d-flex flex-column" htmlFor="">
           Mail
-          <input
+          <input style={{ width: '30rem'}} className="form-control" placeholder="john@example.com" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
             id="email"
             {...register("user.email", {
               required: true,
@@ -48,12 +55,12 @@ function Login() {
             })}
           />
           {errors.user?.email && errors.user?.email.type === "required" && (
-            <span>Le mail est required</span>
+            <span className="alert alert-danger">Le mail est required</span>
           )}
         </label>
-        <label htmlFor="">
+        <label className="mt-5" htmlFor="">
           Mot de passe
-          <input
+          <input style={{ width: '30rem'}} className="form-control" placeholder="***********" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
             type="password"
             id="password"
             {...register("user.password", {
@@ -64,14 +71,18 @@ function Login() {
           />
           {errors.user?.password &&
             errors.user?.password.type === "required" && (
-              <span>Le mot de passe est required</span>
+              <span className="alert alert-danger">Le mot de passe est required</span>
             )}
         </label>
       </div>
       <h4> {err} </h4>
-      <input type="submit" value="Connection" />
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-light btn-sm mt-4" type="submit" >Connexion</button>
+      </div>
     </form>
+    </div>
   );
 }
 
 export default Login;
+
