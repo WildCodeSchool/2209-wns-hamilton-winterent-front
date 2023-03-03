@@ -1,10 +1,10 @@
-import { useLogin } from '../../context/LoginProvider';
-import './Header.scss';
+import { useLogin } from "../../context/LoginProvider";
+import "./Header.scss";
 
 const Header = () => {
   const { userLog } = useLogin();
   const handleDeleteLocalStorage = () => {
-    localStorage.removeItem('userLog');
+    localStorage.removeItem("userLog");
   };
 
   return userLog ? (
@@ -33,6 +33,7 @@ const Header = () => {
         <a href="/login">
           <button>Se connecter</button>
         </a>
+        <a href="/profile">Mon profil</a>
       </div>
     </div>
   );
