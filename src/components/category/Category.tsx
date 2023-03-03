@@ -5,7 +5,7 @@ import ListCategory from './ListCategory';
 import logowinterent from '../../assets/Logo_winterent-light.png';
 import './Category.scss';
 
-interface Category {
+interface CategoryName {
   id: string;
   category: string;
 }
@@ -42,7 +42,7 @@ const Category = () => {
             magni cupiditate explicabo quis.
           </div>
           <div className="d-flex flex-row">
-            {listCategory.map((el: Category) => (
+            {listCategory.map((el: CategoryName) => (
               <div className={`m-2 bg-image-${el.category} d-flex flex-column justify-content-end`}>
                 <ListCategory category={el.category} />
               </div>
@@ -54,4 +54,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+ export default Category;
