@@ -33,10 +33,9 @@ root.render(
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Category />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/category" element={<Category />} />
             <Route path="/register" element={<Register />} />
             <Route element={<Auth />}>
               <Route path="/userconnect" element={<UserConnect />} />
