@@ -39,7 +39,7 @@ function Login() {
 
    
     <div >
-      <img src={imgLogin} alt="" />
+      <img className="w-100" src={imgLogin} alt="" />
     </div>
     
     <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>

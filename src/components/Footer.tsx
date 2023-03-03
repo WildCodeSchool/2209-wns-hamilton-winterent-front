@@ -24,8 +24,6 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                   
-                   
                 </div>
                 <div className='mt-4'>
                     <h6>CATALOG</h6>
@@ -51,10 +49,12 @@ const Footer = () => {
                     <p>Bock An Appointment</p>
                     <p>Shipping & Returns</p>
                 </div>
-          
             </div>
-      
+            <div>
+                <img className='w-100' src={botomFooter} alt="" />
+            </div>
         </div>
+        
     );
 };
 
