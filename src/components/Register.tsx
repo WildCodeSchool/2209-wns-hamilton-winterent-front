@@ -40,10 +40,11 @@ function Register() {
         </div>
       <div className="d-flex justify-content-center mt-3">
         <h3>Créer un compte</h3>
+        <br className="line"/>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-            <div className="d-flex justify-content-center gap-5">
+            <div className="d-flex justify-content-center gap-5 mt-4">
             <label htmlFor="">
             Nom
             <input style={{ width: '20rem'}} className="form-control" placeholder="Doe" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
@@ -79,12 +80,12 @@ function Register() {
 
 
 
-            <div className="d-flex justify-content-center gap-5 align-items-center">
+            <div style={{gap: '4rem'}} className="d-flex justify-content-center align-items-center mt-4">
             <label htmlFor="">
             Date de Naissance
             <input style={{ width: '20rem'}} className="form-control" placeholder="20/10/2000" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-              id="lastname"
-              {...register("user.lastname", {
+              id="birthdate"
+              {...register("user.birthdate", {
                 required: true,
                 minLength: 3,
                 maxLength: 30,
@@ -92,7 +93,7 @@ function Register() {
             />
             {errors.user?.lastname &&
               errors.user?.lastname.type === "required" && (
-                <span>Le nom est required</span>
+                <span>Le date de naissance est required</span>
               )}
           </label>
           <div className="custom-control custom-radio custom-control-inline">
@@ -109,7 +110,7 @@ function Register() {
           </div>
             </div>
 
-            <div className="d-flex justify-content-center gap-5">
+            <div className="d-flex justify-content-center gap-5 mt-4">
             <label htmlFor="">
             Téléphone
             <input style={{ width: '20rem'}} className="form-control" placeholder="0623456712" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
@@ -122,7 +123,7 @@ function Register() {
             />
             {errors.user?.lastname &&
               errors.user?.lastname.type === "required" && (
-                <span>Le nom est required</span>
+                <span>Le numéro de téléphone est required</span>
               )}
           </label>
           <label htmlFor="">
@@ -136,11 +137,11 @@ function Register() {
              />
             {errors.user?.firstname &&
               errors.user?.firstname.type === "required" && (
-                <span>Le prénom est required</span>
+                <span>Le mot de passe est required</span>
               )}
           </label>
             </div>
-            <div className="d-flex justify-content-center gap-5">
+            <div className="d-flex justify-content-center gap-5 mt-4">
             <label htmlFor="">
             Email
             <input style={{ width: '20rem'}} className="form-control" placeholder="0623456712" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
@@ -153,7 +154,7 @@ function Register() {
             
             {errors.user?.lastname &&
               errors.user?.lastname.type === "required" && (
-                <span>Le nom est required</span>
+                <span>L'email est required</span>
               )}
           </label>
           <label htmlFor="">
@@ -168,7 +169,7 @@ function Register() {
             />
             {errors.user?.firstname &&
               errors.user?.firstname.type === "required" && (
-                <span>Le prénom est required</span>
+                <span>La confirmation du mot de passe est required</span>
               )}
           </label>
             </div>
@@ -176,7 +177,9 @@ function Register() {
 
 
         </div>
-        <input type="submit" value="inscription" />
+        <div className="d-flex justify-content-center mt-5">
+            <button className="btn btn-primary">Inscription</button>        
+        </div>
       </form>
     </div>
   );
