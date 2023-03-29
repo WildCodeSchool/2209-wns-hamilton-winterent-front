@@ -80,7 +80,7 @@ function Register() {
 
 
 
-            <div style={{gap: '4rem'}} className="d-flex justify-content-center align-items-center mt-4">
+            <div style={{gap: '3.8rem'}} className="d-flex justify-content-center align-items-center mt-4">
             <label htmlFor="">
             Date de Naissance
             <input style={{ width: '20rem'}} className="form-control" placeholder="20/10/2000" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
