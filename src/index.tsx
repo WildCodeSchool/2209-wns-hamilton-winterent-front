@@ -11,8 +11,9 @@ import UserConnect from './components/UserConnect';
 import LoginProvider from './context/LoginProvider';
 import Header from './components/header/Header';
 import Home from './components/Home';
-import Footer from "./components/Footer";
+import Footer from './components/Footer';
 import Category from './components/category/Category';
+import Destination from './components/destination/Destination';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
@@ -37,6 +38,7 @@ root.render(
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/destination" element={<Destination />} />
             <Route element={<Auth />}>
               <Route path="/userconnect" element={<UserConnect />} />
             </Route>
