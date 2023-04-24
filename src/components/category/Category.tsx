@@ -17,6 +17,9 @@ const Category = () => {
       setListCategory(data.listCategory);
     },
   });
+  if (loading) {
+    return <h2>Chargement en cours</h2>;
+  }
   return (
     <div>
       <div className="home-page-image d-flex justify-content-center flex-column align-items-center">
@@ -24,12 +27,18 @@ const Category = () => {
 
         <h1 className="text-white display-1">On loue du rêve</h1>
 
-        <div className="text-white d-flex flex-column justify-content-center">
-          <div className='d-flex justify-content-center'>Professional partner for ski & snowboard</div>
-          <div className='d-flex justify-content-center'>rental in Europe and Canada</div>
+        <div className="text-black d-flex flex-column justify-content-center">
+          <div className="d-flex justify-content-center">
+            Professional partner for ski & snowboard
+          </div>
+          <div className="d-flex justify-content-center">
+            rental in Europe and Canada
+          </div>
         </div>
       </div>
-      <div>liste input</div>
+      <div className='d-flex'>
+        coucou
+      </div>
       <div className="d-flex justify-content-center">
         <div className="w-50">
           <h3 className="text-primary">
@@ -43,7 +52,9 @@ const Category = () => {
           </div>
           <div className="d-flex flex-row">
             {listCategory.map((el: CategoryName) => (
-              <div className={`m-2 bg-image-${el.category} d-flex flex-column justify-content-end`}>
+              <div
+                className={`m-2 bg-image-${el.category} d-flex flex-column justify-content-end`}
+              >
                 <ListCategory category={el.category} />
               </div>
             ))}
@@ -54,4 +65,4 @@ const Category = () => {
   );
 };
 
- export default Category;
+export default Category;
