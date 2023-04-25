@@ -14,6 +14,7 @@ import Home from './components/Home';
 import Footer from './components/Footer';
 import Category from './components/category/Category';
 import Destination from './components/destination/Destination';
+import Shop from './components/shop/Shop';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
@@ -36,6 +37,7 @@ root.render(
           <Routes>
             <Route path="/" element={<Category />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />
