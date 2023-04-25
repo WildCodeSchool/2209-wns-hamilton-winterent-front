@@ -3,6 +3,8 @@ interface Category {
 }
 
 const ListCategory = ({ category }: Category) => {
+  console.log(category);
+  
   return (
     <div className="">
       <div className="well">

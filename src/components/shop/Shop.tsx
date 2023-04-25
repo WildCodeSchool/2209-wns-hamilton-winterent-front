@@ -1,8 +1,21 @@
-import { useLazyQuery, useQuery } from '@apollo/client';
-import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { useState } from 'react';
 import { LIST_SHOP } from '../../graphql/queries/shopQuery';
 import ListShop from './ListShop';
 import './Shop.scss';
+
+interface ListShops {
+  id: string;
+  name: string;
+  address: {
+    id: string;
+    roadNumber: number;
+    streetName: string;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
+}
 
 function Shop() {
   const [shopList, setShopList] = useState([]);
@@ -13,7 +26,7 @@ function Shop() {
       setShopList(data.listShop);
     },
   });
-
+console.log(shopList, 'shoploiste')
   return (
     <div className="shop">
       <div className="shop-page-image d-flex justify-content-center flex-column align-items-center">
@@ -32,12 +45,12 @@ function Shop() {
             autem, soluta magni cupiditate explicabo quis.
           </div>
           <div className="d-flex flex-row">
-            {shopList.map((el) => (
+            {shopList.map((el: ListShops) => (
               <div
                 key={el.id}
                 className={`m-2 image-width d-flex flex-column justify-content-end`}
               >
-                <ListShop listShop={el} />
+                <ListShop nameShop={el.name} addressShop={el.address} />
               </div>
             ))}
           </div>
