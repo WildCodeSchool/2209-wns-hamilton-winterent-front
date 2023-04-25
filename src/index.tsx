@@ -13,7 +13,7 @@ import Header from "./components/header/Header";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Category from "./components/category/Category";
-import UserProfile from "./components/UserProfile";
+import UserProfile from "./pages/UserProfile";
 
 const client = new ApolloClient({
   uri: "http://localhost:8000/graphql",
