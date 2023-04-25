@@ -24,7 +24,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node ./setup && react-scripts start",
     "dev": "concurrently \"npm run codegen\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
