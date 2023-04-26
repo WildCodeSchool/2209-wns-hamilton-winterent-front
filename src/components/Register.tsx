@@ -1,19 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { MutationAddUserArgs } from "../generated/graphql";
+import { CreateUser } from "../generated/graphql";
 import { ADD_USER } from "../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import imgLogin from "../../src/assets/imgLogin.png";
 
-interface FormValues extends MutationAddUserArgs {}
-// type FormValues = {
-//   firstname: string;
-//   lastname: string;
-//   email: String;
-//   password: String;
-// };
+interface FormValues extends CreateUser {}
 
 const schema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
@@ -49,8 +43,6 @@ function Register() {
     navigate("/login");
   };
 
-  console.log(error);
-
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;
   return (
@@ -75,23 +67,18 @@ function Register() {
                 aria-describedby="inputGroup-sizing-sm"
                 id="lastname"
                 {...register(
-                  "user.lastname"
+                  "lastname"
                   // {
                   //   required: true,
                   //   minLength: 3,
                   //   maxLength: 30,
                   // }
                 )}
-                // error={!!errors.user?.lastname}
-                // helperText={errors.user?.lastname?.message}
               />
-              <p>{!!errors.user?.lastname}</p>
-              <p>{errors.user?.lastname?.message}</p>
-              {/* {errors.user?.lastname &&
-                errors.user?.lastname.type === "required" && (
-                  <span>Le nom est required</span>
-                )} */}
+              <p>{!!errors.lastname}</p>
+              <p>{errors.lastname?.message}</p>
             </label>
+
             <label htmlFor="">
               Prenom
               <input
@@ -101,22 +88,23 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="firstname"
-                {...register("user.firstname", {
+                {...register("firstname", {
                   required: true,
                   minLength: 3,
                   maxLength: 30,
                 })}
               />
-              {errors.user?.firstname &&
+              {/* {errors.user?.firstname &&
                 errors.user?.firstname.type === "required" && (
                   <span>Le prénom est required</span>
-                )}
+                )} */}
             </label>
           </div>
 
           <div
             style={{ gap: "3.8rem" }}
-            className="mt-4 d-flex justify-content-center align-items-center">
+            className="mt-4 d-flex justify-content-center align-items-center"
+          >
             <label htmlFor="">
               Date de Naissance
               <input
@@ -126,16 +114,16 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="birthdate"
-                {...register("user.birthdate", {
+                {...register("birthdate", {
                   required: true,
                   minLength: 3,
                   maxLength: 30,
                 })}
               />
-              {errors.user?.lastname &&
+              {/* {errors.user?.lastname &&
                 errors.user?.lastname.type === "required" && (
                   <span>Le date de naissance est required</span>
-                )}
+                )} */}
             </label>
             <div className="custom-control custom-radio custom-control-inline">
               <input
@@ -176,16 +164,16 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="lastname"
-                {...register("user.lastname", {
+                {...register("lastname", {
                   required: true,
                   minLength: 3,
                   maxLength: 30,
                 })}
               />
-              {errors.user?.lastname &&
+              {/* {errors.user?.lastname &&
                 errors.user?.lastname.type === "required" && (
                   <span>Le numéro de téléphone est required</span>
-                )}
+                )} */}
             </label>
             <label htmlFor="">
               Mot de passe
@@ -197,14 +185,14 @@ function Register() {
                 aria-describedby="inputGroup-sizing-sm"
                 type="password"
                 id="password"
-                {...register("user.password", {
+                {...register("password", {
                   required: true,
                 })}
               />
-              {errors.user?.firstname &&
+              {/* {errors.user?.firstname &&
                 errors.user?.firstname.type === "required" && (
                   <span>Le mot de passe est required</span>
-                )}
+                )} */}
             </label>
           </div>
           <div className="gap-5 mt-4 d-flex justify-content-center">
@@ -217,15 +205,15 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="email"
-                {...register("user.email", {
+                {...register("email", {
                   pattern: /[A-Za-z]{3}/,
                   required: true,
                 })}
               />
-              {errors.user?.lastname &&
+              {/* {errors.user?.lastname &&
                 errors.user?.lastname.type === "required" && (
                   <span>L'email est required</span>
-                )}
+                )} */}
             </label>
             <label htmlFor="">
               Confiramtion de Mot de passe
@@ -236,16 +224,16 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="firstname"
-                {...register("user.firstname", {
+                {...register("firstname", {
                   required: true,
                   minLength: 3,
                   maxLength: 30,
                 })}
               />
-              {errors.user?.firstname &&
+              {/* {errors.user?.firstname &&
                 errors.user?.firstname.type === "required" && (
                   <span>La confirmation du mot de passe est required</span>
-                )}
+                )} */}
             </label>
           </div>
         </div>
