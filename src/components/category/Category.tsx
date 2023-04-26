@@ -17,6 +17,7 @@ const Category = () => {
       setListCategory(data.listCategory);
     },
   });
+  console.log(listCategory, "categori")
   return (
     <div>
       <div className="home-page-image d-flex justify-content-center flex-column align-items-center">
