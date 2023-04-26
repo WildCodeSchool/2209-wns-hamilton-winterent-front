@@ -4,26 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { CreateUser } from "../generated/graphql";
 import { ADD_USER } from "../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { registerSchema } from "../validations/userFormValidations";
 import imgLogin from "../../src/assets/imgLogin.png";
 
 interface FormValues extends CreateUser {}
-
-const schema = yup.object().shape({
-  firstName: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  phoneNumber: yup.string().required("Phone is required"),
-  birthdate: yup.string().required("Birthdate is required"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(6, "Password must be at least 6 characters"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
-    .required("Confirm password is required"),
-});
 
 function Register() {
   const {
@@ -32,8 +16,9 @@ function Register() {
     formState: { errors },
   } = useForm<FormValues>({
     mode: "onChange",
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerSchema),
   });
+  console.log(errors);
 
   const navigate = useNavigate();
   const [addUser, { loading, error }] = useMutation(ADD_USER);
@@ -58,7 +43,7 @@ function Register() {
         <div>
           <div className="gap-5 mt-4 d-flex justify-content-center">
             <label htmlFor="">
-              Nom
+              Nom <em className="text-danger">*</em>
               <input
                 style={{ width: "20rem" }}
                 className="form-control"
@@ -66,21 +51,13 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="lastname"
-                {...register(
-                  "lastname"
-                  // {
-                  //   required: true,
-                  //   minLength: 3,
-                  //   maxLength: 30,
-                  // }
-                )}
+                {...register("lastname")}
               />
-              <p>{!!errors.lastname}</p>
-              <p>{errors.lastname?.message}</p>
+              <div className="text-danger">{errors.lastname?.message}</div>
             </label>
 
             <label htmlFor="">
-              Prenom
+              Prenom <em className="text-danger">*</em>
               <input
                 style={{ width: "20rem" }}
                 className="form-control"
@@ -88,23 +65,15 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="firstname"
-                {...register("firstname", {
-                  required: true,
-                  minLength: 3,
-                  maxLength: 30,
-                })}
+                {...register("firstname")}
               />
-              {/* {errors.user?.firstname &&
-                errors.user?.firstname.type === "required" && (
-                  <span>Le prénom est required</span>
-                )} */}
+              <div className="text-danger">{errors.firstname?.message}</div>
             </label>
           </div>
 
           <div
             style={{ gap: "3.8rem" }}
-            className="mt-4 d-flex justify-content-center align-items-center"
-          >
+            className="mt-4 d-flex justify-content-center align-items-center">
             <label htmlFor="">
               Date de Naissance
               <input
@@ -114,16 +83,8 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="birthdate"
-                {...register("birthdate", {
-                  required: true,
-                  minLength: 3,
-                  maxLength: 30,
-                })}
+                {...register("birthdate")}
               />
-              {/* {errors.user?.lastname &&
-                errors.user?.lastname.type === "required" && (
-                  <span>Le date de naissance est required</span>
-                )} */}
             </label>
             <div className="custom-control custom-radio custom-control-inline">
               <input
@@ -164,19 +125,11 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="lastname"
-                {...register("lastname", {
-                  required: true,
-                  minLength: 3,
-                  maxLength: 30,
-                })}
+                {...register("lastname")}
               />
-              {/* {errors.user?.lastname &&
-                errors.user?.lastname.type === "required" && (
-                  <span>Le numéro de téléphone est required</span>
-                )} */}
             </label>
             <label htmlFor="">
-              Mot de passe
+              Mot de passe <em className="text-danger">*</em>
               <input
                 style={{ width: "20rem" }}
                 className="form-control"
@@ -189,19 +142,16 @@ function Register() {
                   required: true,
                 })}
               />
-              {/* {errors.user?.firstname &&
-                errors.user?.firstname.type === "required" && (
-                  <span>Le mot de passe est required</span>
-                )} */}
+              <div className="text-danger">{errors.password?.message}</div>
             </label>
           </div>
           <div className="gap-5 mt-4 d-flex justify-content-center">
             <label htmlFor="">
-              Email
+              Email <em className="text-danger">*</em>
               <input
                 style={{ width: "20rem" }}
                 className="form-control"
-                placeholder="0623456712"
+                placeholder="doe@gmail.com"
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="email"
@@ -210,13 +160,10 @@ function Register() {
                   required: true,
                 })}
               />
-              {/* {errors.user?.lastname &&
-                errors.user?.lastname.type === "required" && (
-                  <span>L'email est required</span>
-                )} */}
+              {/* <div className="text-danger">{errors.email?.message}</div> */}
             </label>
             <label htmlFor="">
-              Confiramtion de Mot de passe
+              Confiramtion de Mot de passe <em className="text-danger">*</em>
               <input
                 style={{ width: "20rem" }}
                 className="form-control"
@@ -224,16 +171,8 @@ function Register() {
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
                 id="firstname"
-                {...register("firstname", {
-                  required: true,
-                  minLength: 3,
-                  maxLength: 30,
-                })}
+                {...register("firstname")}
               />
-              {/* {errors.user?.firstname &&
-                errors.user?.firstname.type === "required" && (
-                  <span>La confirmation du mot de passe est required</span>
-                )} */}
             </label>
           </div>
         </div>
