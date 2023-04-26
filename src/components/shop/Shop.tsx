@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { LIST_SHOP } from '../../graphql/queries/shopQuery';
 import ListShop from './ListShop';
 import './Shop.scss';
@@ -18,15 +19,16 @@ interface ListShops {
 }
 
 function Shop() {
+  let { id } = useParams();
   const [shopList, setShopList] = useState([]);
-  const test = 'Chico';
-  const { loading } = useQuery(LIST_SHOP, {
-    variables: { city: test },
+  const { loading, error } = useQuery(LIST_SHOP, {
+    variables: { city: id },
     onCompleted(data) {
       setShopList(data.listShop);
     },
   });
-console.log(shopList, 'shoploiste')
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
   return (
     <div className="shop">
       <div className="shop-page-image d-flex justify-content-center flex-column align-items-center">

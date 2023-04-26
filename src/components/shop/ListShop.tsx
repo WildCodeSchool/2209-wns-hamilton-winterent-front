@@ -1,6 +1,6 @@
 import shopImage from '../../assets/0d195a5e-b30b-4b8e-8fec-90db57366dfe.jpg';
 
-interface ListShops2 {
+interface ShopAddress {
   nameShop: string;
   addressShop: {
     id: string;
@@ -12,8 +12,7 @@ interface ListShops2 {
   };
 }
 
-const ListShop = ({ nameShop, addressShop }: ListShops2) => {
- // console.log(listShop)
+const ListShop = ({ nameShop, addressShop }: ShopAddress) => {
   return (
     <div>
       <img src={shopImage} alt="" />

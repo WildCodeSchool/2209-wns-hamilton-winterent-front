@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const LIST_SHOP = gql`
-  query Query($city: String!) {
+  query Shop($city: String!) {
     listShop(city: $city) {
       id
       name

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { LIST_ADDRESS_SHOP } from '../../graphql/queries/destinationQuery';
 import ListDestination from './ListDestination';
 import googleMap from '../../assets/exemple-google-map.png';
@@ -7,21 +7,23 @@ import './Destination.scss';
 
 interface DestinationShop {
   address: {
-    id: string
+    id: string;
     city: string;
   };
 }
 
 function Destination() {
   const [destination, setDestination] = useState([]);
-  const { loading } = useQuery(LIST_ADDRESS_SHOP, {
+  const { loading, error } = useQuery(LIST_ADDRESS_SHOP, {
     onCompleted(data) {
       setDestination(data.shops);
     },
   });
-  console.log(destination);
+
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
   return (
-    <div className='destination'>
+    <div className="destination">
       <div className="destination-page-image d-flex justify-content-center flex-column align-items-center">
         <div className="text-white d-flex flex-column justify-content-center"></div>
       </div>

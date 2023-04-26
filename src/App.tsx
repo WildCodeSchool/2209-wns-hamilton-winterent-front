@@ -15,7 +15,6 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [nameCountry, setNameCountry] = useState('chico')
   return (
     <div className="App">
       <LoginProvider>
@@ -24,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Category />} />
             <Route path="/home" element={<Home />} />
-            <Route path={`/shop/${nameCountry}`} element={<Shop />} />
+            <Route path={`/shop/:id`} element={<Shop />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />
