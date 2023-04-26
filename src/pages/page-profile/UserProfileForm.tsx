@@ -1,10 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CreateAddress, CreateUser } from "../generated/graphql";
+import { CreateAddress, CreateUser } from "../../generated/graphql";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   registerSchema,
   addressSchema,
-} from "../validations/userFormValidations";
+} from "../../validations/userFormValidations";
 
 interface User extends CreateUser {
   address: CreateAddress;

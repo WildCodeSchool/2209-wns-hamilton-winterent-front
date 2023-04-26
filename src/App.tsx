@@ -1,18 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
-import Auth from './components/Auth';
-import Login from './components/Login';
-import Register from './components/Register';
-import UserConnect from './components/UserConnect';
-import LoginProvider from './context/LoginProvider';
-import Header from './components/header/Header';
-import Home from './components/Home';
-import Footer from './components/Footer';
-import Category from './components/category/Category';
-import Destination from './components/destination/Destination';
-import Shop from './components/shop/Shop';
-import './App.css';
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import Auth from "./components/Auth";
+import Login from "./pages/page-authentification/Login";
+import Register from "./pages/page-authentification/Register";
+import UserConnect from "./components/UserConnect";
+import LoginProvider from "./context/LoginProvider";
+import Header from "./components/header/Header";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
+import Category from "./components/category/Category";
+import Destination from "./components/destination/Destination";
+import Shop from "./components/shop/Shop";
+import "./App.css";
+import UserProfile from "./pages/page-profile/UserProfile";
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route element={<Auth />}>
               <Route path="/userconnect" element={<UserConnect />} />
             </Route>
