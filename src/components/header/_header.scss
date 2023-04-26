@@ -1,0 +1,54 @@
+$primary : #3176DE;
+$dark: #3176DE;
+$light: #ffffff;
+$navbar-dark-color: #9bdfff;
+
+
+.nav-container {
+    display:  flex;
+    justify-content: end;
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    height: 10vh;
+    color: #aae4ff;
+}
+
+.nav-container ul {
+    display:  flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-container ul :link {
+    color: #d1dd24;
+}
+
+.nav-container ul :link.active {
+    color: #e61313;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-container ul :link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #13b4ff;
+}
+.user-profil{
+  margin-top: -10px;
+  font-size: 0.8rem;
+}
+
+  @media (max-width: 768px) {
+
+  }
+  @media (max-width: 600px) {
+
+  }
+
+  @import '~bootstrap/scss/bootstrap.scss';
