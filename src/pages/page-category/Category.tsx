@@ -1,9 +1,9 @@
-import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { LIST_CATEGORY } from "../../graphql/queries/categoryQuery";
-import ListCategory from "./ListCategory";
-import logowinterent from "../../assets/Logo_winterent-light.png";
-import "./Category.scss";
+import { useQuery } from '@apollo/client';
+import { useState } from 'react';
+import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
+import ListCategory from '../../components/category/ListCategory';
+import logowinterent from '../../assets/Logo_winterent-light.png';
+import './Category.scss';
 
 interface CategoryName {
   id: string;
@@ -12,12 +12,14 @@ interface CategoryName {
 
 const Category = () => {
   const [listCategory, setListCategory] = useState([]);
-  const { loading } = useQuery(LIST_CATEGORY, {
+  const { loading, error } = useQuery(LIST_CATEGORY, {
     onCompleted(data) {
       setListCategory(data.listCategory);
     },
   });
-  console.log(listCategory, "categori");
+
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
   return (
     <div>
       <div className="home-page-image d-flex justify-content-center flex-column align-items-center">
@@ -49,6 +51,7 @@ const Category = () => {
           <div className="d-flex flex-row">
             {listCategory.map((el: CategoryName) => (
               <div
+                key={el.id}
                 className={`m-2 bg-image-${el.category} d-flex flex-column justify-content-end`}
               >
                 <ListCategory category={el.category} />
