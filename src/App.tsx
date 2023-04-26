@@ -8,11 +8,11 @@ import LoginProvider from "./context/LoginProvider";
 import Header from "./components/header/Header";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import Category from "./components/category/Category";
-import Destination from "./components/destination/Destination";
-import Shop from "./components/shop/Shop";
 import "./App.css";
 import UserProfile from "./pages/page-profile/UserProfile";
+import Category from "./pages/page-category/Category";
+import Shop from "./pages/page-shop/Shop";
+import Destination from "./pages/page-destination/Destination";
 
 function App() {
   return (
