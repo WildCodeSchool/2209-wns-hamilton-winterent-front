@@ -1,12 +1,12 @@
 $primary : #3176DE;
-$dark: #3176DE;
+$secondary: #fff;
+$dark: #3176dedf;
 $light: #ffffff;
-$navbar-dark-color: #9bdfff;
-
+$navbar-dark-color: #fff;
 
 .nav-container {
     display:  flex;
-    justify-content: end;
+    justify-content: space-between;
     background-color: transparent;
     position: absolute;
     width: 100%;
@@ -42,6 +42,15 @@ $navbar-dark-color: #9bdfff;
 .user-profil{
   margin-top: -10px;
   font-size: 0.8rem;
+}
+
+.nav-link {
+    transition: all 0.2s;
+}
+.nav-link:hover{
+    // border-bottom: 2px solid white;
+    transition: all 0.2s;
+    color:#13b4ff !important;
 }
 
   @media (max-width: 768px) {
