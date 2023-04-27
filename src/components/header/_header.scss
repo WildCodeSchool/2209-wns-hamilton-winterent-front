@@ -4,6 +4,10 @@ $dark: #3176dedf;
 $light: #ffffff;
 $navbar-dark-color: #fff;
 
+.logo-w{
+    width: 200px;
+}
+
 .nav-container {
     display:  flex;
     justify-content: space-between;
@@ -51,6 +55,10 @@ $navbar-dark-color: #fff;
     // border-bottom: 2px solid white;
     transition: all 0.2s;
     color:#13b4ff !important;
+}
+
+.opacity-bg{
+    background-color: rgba(241, 250, 255, 0.5)
 }
 
   @media (max-width: 768px) {
