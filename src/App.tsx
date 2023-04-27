@@ -13,6 +13,7 @@ import Destination from './pages/page-destination/Destination';
 import Shop from './pages/page-shop/Shop';
 import './App.css';
 import InfosGeneral from './components/InfosGeneral';
+import Products from './pages/page-products/Products';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Category />} />
             <Route path="/home" element={<Home />} />
             <Route path={`/shop/:id`} element={<Shop />} />
+            <Route path={`/products`} element={<Products />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />
