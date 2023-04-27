@@ -1,0 +1,64 @@
+.search-bar{
+    position: relative;
+    display: flex;
+    z-index: 20;
+    max-width: 1000px;
+    top: -30px;
+    height: 53px;
+    margin: 0 auto;
+    background-color: #FFF;
+    border-radius: 4px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.322);
+  }
+  
+  .destination-search{
+    width: 270px;
+    background-color: transparent;
+    height: 53px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  
+  .search-date{
+    width: 270px;
+    height: 53px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background-color: #FFF;
+  }
+  
+  .btn_travelSearch{
+    width: 200px;
+    height: 53px;
+    background-color: #bf912d;
+    color: #FFF;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  
+  .picto-search{
+    position: relative;
+    height: 20px;
+    top: 2px;
+    padding-left: 15px;
+  }
+  
+  
+  @media screen and (max-width: 767px){
+    .search-bar{
+      flex-direction: column;
+      height: 212px;
+      width: 100%;
+    }
+    .destination-search{
+      width: 100%;
+    }
+    .search-date{
+      width: 100%;
+    }
+    .btn_travelSearch{
+      width: 100%;
+    }
+  
+  }

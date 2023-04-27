@@ -47,21 +47,25 @@ const Header = () => {
                           </div>
                       </li>
                       <li className="nav-item">
-                          <Link className={`nav-link ${location.pathname === "/destination" ? "active" : ""}`} to="/destination">Stations</Link>
+                          <Link className={`nav-link ${location.pathname === "/destination" ? "active" : ""}`} to="/shop">Stations</Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/category">A propos</Link>
                       </li>
-                      <li className="vr opacity-30 d-none d-lg-block">|</li>
+                      <li className=" opacity-30 d-none d-lg-block">|</li>
+                      <li>
+                        <Link className="text-light m-2" to="/"><i className="bi bi-cart fs-4"></i></Link>
+                      </li>
+                      <li className=" opacity-30 d-none d-lg-block">|</li>
+                      <li className="nav-item text-center p-2">
+                        <Link className="d-flex flex-column text-decoration-none text-light" to="/login"><div><i className="bi bi-person-fill fs-4 "></i></div><div className="user-profil">{userLog.user.firstname}</div></Link>
+                      </li>
+                      <li className=" opacity-30 d-none d-lg-block">|</li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/login" onClick={handleDeleteLocalStorage}>
                           deconnexion
                         </Link>
                       </li >
-                      <li className="vr opacity-30 d-none d-lg-block">|</li>
-                      <li className="nav-item text-center p-2">
-                        <Link className="d-flex flex-column text-decoration-none text-light" to="/login"><div><i className="bi bi-person-fill fs-2 "></i></div><div className="user-profil">{userLog.user.firstname}</div></Link>
-                      </li>
                   </ul>
               </div>
             </div>
