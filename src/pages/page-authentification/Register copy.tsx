@@ -7,9 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
 
-interface FormValues extends CreateUser {
-  confirmPassword: string;
-}
+interface FormValues extends CreateUser {}
 
 function Register() {
   const {
@@ -130,8 +128,8 @@ function Register() {
               placeholder="0623456712"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
-              id="phoneNumber"
-              {...register("phoneNumber")}
+              id="lastname"
+              {...register("lastname")}
             />
           </label>
           <label htmlFor="">
@@ -164,15 +162,15 @@ function Register() {
             {/* <div className="text-danger">{errors.email?.message}</div> */}
           </label>
           <label htmlFor="">
-            Confirmation de Mot de passe <em className="text-danger">*</em>
+            Confiramtion de Mot de passe <em className="text-danger">*</em>
             <input
               style={{ width: "20rem" }}
               className="form-control"
               placeholder="***********"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
-              id="confirmPassword"
-              {...register("confirmPassword")}
+              id="firstname"
+              {...register("firstname")}
             />
           </label>
         </div>

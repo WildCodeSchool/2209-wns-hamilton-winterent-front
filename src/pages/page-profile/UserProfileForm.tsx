@@ -28,10 +28,12 @@ function UserProfileForm() {
   return (
     <form
       className="d-flex flex-column col-6"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+      onSubmit={handleSubmit(onSubmit)}>
       <label className="form-label m-2">
-        Nom <em className="text-danger">*</em>
+        <div className="d-flex justify-content-start">
+          Nom <em className="text-danger">*</em>
+        </div>
+
         <input
           type="text"
           id="lastname"
@@ -43,7 +45,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Prénom <em className="text-danger">*</em>
+        <div className="d-flex justify-content-start">
+          Prénom <em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="firstname"
@@ -88,7 +92,7 @@ function UserProfileForm() {
       {/* BIRTHDATE */}
 
       <label className="form-label m-2">
-        Date de naissance
+        <div className="d-flex justify-content-start">Date de naissance</div>
         <input
           type="date"
           id="birthdate"
@@ -99,7 +103,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Email <em className="text-danger">*</em>
+        <div className="d-flex justify-content-start">
+          Email <em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="email"
@@ -111,7 +117,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Mot de passe <em className="text-danger">*</em>
+        <div className="d-flex justify-content-start">
+          Mot de passe<em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="password"
@@ -123,7 +131,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Téléphone
+        <div className="d-flex justify-content-start">
+          Téléphone <em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="phoneNumber"
@@ -137,7 +147,9 @@ function UserProfileForm() {
       {/* ADDRESS SECTION */}
 
       <label className="form-label m-2">
-        Numéro de rue
+        <div className="d-flex justify-content-start">
+          Numéro de rue <em className="text-danger">*</em>
+        </div>
         <input
           type="number"
           id="roadNumber"
@@ -149,7 +161,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Nom de la voie
+        <div className="d-flex justify-content-start">
+          Nom de la voie<em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="streetName"
@@ -161,7 +175,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Code postal
+        <div className="d-flex justify-content-start">
+          Code postal <em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="postalCode"
@@ -173,7 +189,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Ville
+        <div className="d-flex justify-content-start">
+          Ville<em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="city"
@@ -185,7 +203,9 @@ function UserProfileForm() {
       </label>
 
       <label className="form-label m-2">
-        Pays
+        <div className="d-flex justify-content-start">
+          Pays <em className="text-danger">*</em>
+        </div>
         <input
           type="text"
           id="country"
