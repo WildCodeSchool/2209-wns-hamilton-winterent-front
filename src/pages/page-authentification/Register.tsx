@@ -163,7 +163,7 @@ function Register() {
             />
             {/* <div className="text-danger">{errors.email?.message}</div> */}
           </label>
-          <label htmlFor="">
+          {/* <label htmlFor="">
             Confirmation de Mot de passe <em className="text-danger">*</em>
             <input
               style={{ width: "20rem" }}
@@ -174,7 +174,7 @@ function Register() {
               id="confirmPassword"
               {...register("confirmPassword")}
             />
-          </label>
+          </label> */}
         </div>
 
         <div className="mt-5 d-flex justify-content-center">
