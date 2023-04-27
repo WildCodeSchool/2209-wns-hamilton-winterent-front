@@ -6,6 +6,8 @@ import { useLogin } from "../../context/LoginProvider";
 import { QueryLoginArgs } from "../../generated/graphql";
 import { LOGIN } from "../../graphql/queries/usersQueries";
 import imgLogin from "../../assets/imgLogin.png";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../validations/userFormValidations";
 interface FormValues extends QueryLoginArgs {}
 
 function Login() {
@@ -17,11 +19,13 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({
+    mode: "onChange",
+    resolver: yupResolver(loginSchema),
+  });
 
   const [login, { loading }] = useLazyQuery(LOGIN, {
     onCompleted(data) {
-      console.log(data.login);
       setUserLog(data.login);
       navigator("/userconnect");
     },
@@ -52,15 +56,11 @@ function Login() {
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="email"
-              {...register("user.email", {
-                required: true,
-                minLength: 3,
-                maxLength: 30,
-              })}
+              {...register("user.email")}
             />
-            {errors.user?.email && errors.user?.email.type === "required" && (
-              <span className="alert alert-danger">Le mail est required</span>
-            )}
+            <div className="text-danger">
+              <>{errors.user?.email?.message}</>
+            </div>
           </label>
           <label className="mt-5" htmlFor="">
             Mot de passe
@@ -72,18 +72,8 @@ function Login() {
               aria-describedby="inputGroup-sizing-sm"
               type="password"
               id="password"
-              {...register("user.password", {
-                required: true,
-                minLength: 3,
-                maxLength: 30,
-              })}
+              {...register("user.password")}
             />
-            {errors.user?.password &&
-              errors.user?.password.type === "required" && (
-                <span className="alert alert-danger">
-                  Le mot de passe est required
-                </span>
-              )}
           </label>
         </div>
         <h4> {err} </h4>
