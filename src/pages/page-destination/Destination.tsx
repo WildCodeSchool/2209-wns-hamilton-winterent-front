@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { LIST_ADDRESS_SHOP } from '../../graphql/queries/destinationQuery';
 import ListDestination from '../../components/destination/ListDestination';
-import googleMap from '../../assets/exemple-google-map.png';
+import googleMap from '../../assets/exemple-google-map-sombre.png';
 import './Destination.scss';
 
 interface DestinationShop {
@@ -29,7 +29,7 @@ function Destination() {
       </div>
       <div>liste input</div>
       <div className="d-flex justify-content-center pb-5">
-        <div className="w-50">
+        <div className="w-75">
           <h3 className="text-primary">
             <i className="bi bi-chevron-double-down"></i> VOTRE DESTINATION
           </h3>
@@ -39,7 +39,7 @@ function Destination() {
             soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi voluptatum
             autem, soluta magni cupiditate explicabo quis.
           </div>
-          <div className="d-flex flex-row">
+          <div className="d-flex flex-row justify-content-between">
             {destination.map((el: DestinationShop) => (
               <div
                 key={el.address.id}
@@ -51,7 +51,25 @@ function Destination() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="google-map">
+        <div className="info-google-shop">
+          <div className="test"></div>
+          <div className="d-flex justify-content-center align-items-center flex-column h-100">
+            <div className="w-75 text-white d-flex justify-content-start flex-column">
+              <h1>
+                <i className="bi bi-chevron-double-down"></i> NOS MAGASINS DE
+                LOCATION
+              </h1>
+              <div>
+                Envoie du rêve! Lorem, ipsum dolor sit amet consectetur
+                adipisicing elit. Debitis incidunt distinctio deleniti,
+                explicabo eum fuga soluta. Ipsa sit omnis nihil reprehenderit
+                sunt excepturi voluptatum autem, soluta magni cupiditate
+                explicabo quis.
+              </div>
+            </div>
+          </div>
+        </div>
         <img src={googleMap} alt="" />
       </div>
     </div>
