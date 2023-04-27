@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/client";
 import { USER } from "../../../graphql/queries/usersQueries";
 import { User } from "../../../generated/graphql";
 import "./UserProfile.scss";
+import { useLogin } from "../../../context/LoginProvider";
 
 enum TabTypes {
   Profile = "profile",
@@ -19,11 +20,11 @@ function UserProfile() {
   const navigator = useNavigate();
   const [activeTab, setActiveTab] = useState<TabTypes>(TabTypes.Profile);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const { userLog } = useLogin();
 
   const { loading, error, data } = useQuery(USER, {
-    variables: { userId: "9f350916-7dc0-4826-afc1-5a6b3f641300" },
+    variables: { userId: userLog?.user.id },
     onCompleted(data) {
-      console.log("profile", data);
       if (data.user) {
         setCurrentUser(data.user);
       }

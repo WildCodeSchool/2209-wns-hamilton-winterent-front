@@ -18,7 +18,6 @@ const schema = registerSchema.concat(addressSchema);
 
 function UserProfileForm({ user }: UserProfileFormProps) {
   const { userLog } = useLogin();
-
   const {
     register,
     handleSubmit,
@@ -38,7 +37,8 @@ function UserProfileForm({ user }: UserProfileFormProps) {
   return (
     <form
       className="d-flex flex-column col-6"
-      onSubmit={handleSubmit(onSubmit)}>
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <label className="form-label m-2">
         <div className="d-flex justify-content-start">
           Nom <em className="text-danger">*</em>
@@ -123,7 +123,10 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           placeholder="ex: john.doe@exemple.com"
           {...register("email")}
         />
-        {/* <div className="text-danger">{errors.email?.message}</div> */}
+
+        <div className="text-danger">
+          <>{errors.email?.message} </>
+        </div>
       </label>
 
       <label className="form-label m-2">
@@ -131,7 +134,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           Mot de passe<em className="text-danger">*</em>
         </div>
         <input
-          type="text"
+          type="password"
           id="password"
           className="form-control my-2"
           placeholder="ex: *****"
@@ -151,7 +154,9 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           placeholder="ex: +33 0600110011"
           {...register("phoneNumber")}
         />
-        {/* <div className="text-danger">{errors.phoneNumber?.message}</div> */}
+        <div className="text-danger">
+          <>{errors.phoneNumber?.message}</>
+        </div>
       </label>
 
       {/* ADDRESS SECTION */}
@@ -195,7 +200,9 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           placeholder="ex: 69000"
           {...register("address.postalCode")}
         />
-        {/* <div className="text-danger">{errors.address?.postalCode?.message}</div> */}
+        <div className="text-danger">
+          <>{errors.address?.postalCode?.message}</>
+        </div>
       </label>
 
       <label className="form-label m-2">

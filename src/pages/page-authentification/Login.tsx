@@ -35,7 +35,6 @@ function Login() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (response) => {
-    console.log(response);
     await login({ variables: { ...response } });
   };
   if (loading) return <div>Chargement en cours</div>;

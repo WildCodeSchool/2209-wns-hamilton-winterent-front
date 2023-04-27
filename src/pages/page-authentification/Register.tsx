@@ -21,15 +21,11 @@ function Register() {
     mode: "onChange",
     resolver: yupResolver(registerSchema),
   });
-  console.log(errors);
-  console.log("register", register("lastname"));
 
   const navigate = useNavigate();
   const [addUser, { loading, error }] = useMutation(ADD_USER);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
-
     await addUser({ variables: data });
     navigate("/login");
   };
