@@ -66,18 +66,20 @@ export default function SearchBar() {
     if (error) return <div>Une erreur s'est produite</div>;
  
     return(
-        <form className="search-bar">
-            <select className="destination-search" placeholder="Sélectionner une destination" >
+        <form className="search-bar rounded border border-primary">
+            <select className="product-search rounded-left"  defaultValue="" required>
+                <option value="" disabled selected>Catégories</option>
                 {categories.map(category =>
                     <option value={category.category} selected key={category.id}>{category.category}</option> 
                     )}
             </select>
-            <select className="destination-search" placeholder="Sélectionner une destination" >
+            <select className="product-search border-left"  defaultValue="" required>
+                <option value="" disabled selected>Magasins</option>
                 {shops.map(shop =>
                     <option value={shop.name} selected key={shop.id}>{shop.name}</option> 
                     )}
             </select>
-            <div className="date-start">
+            <div className="date-start ">
                 <input className="block-arrival search-date" 
                     type="date" 
                     placeholder="selectionner arrivée" 
@@ -89,7 +91,7 @@ export default function SearchBar() {
                     required
                     />
             </div>
-            <div className="date-end search-date">
+            <div className="date-end search-date ">
                 <input className="block-departure search-date" 
                     type="date" 
                     placeholder="selectionner départ" 
@@ -101,7 +103,7 @@ export default function SearchBar() {
                     required
             />
             </div>
-            <button type="submit" value="Rechercher" className="btn_travelSearch">
+            <button type="submit" value="Rechercher" className="btn_travelSearch rounded-right">
                 Chercher
             </button>
         </form>
