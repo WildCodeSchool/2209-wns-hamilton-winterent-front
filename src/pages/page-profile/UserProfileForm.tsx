@@ -1,17 +1,24 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CreateAddress, CreateUser } from "../../generated/graphql";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   registerSchema,
   addressSchema,
 } from "../../validations/userFormValidations";
+import { useLogin } from "../../context/LoginProvider";
+import { User } from "../../generated/graphql";
 
-interface User extends CreateUser {
-  address: CreateAddress;
+// interface FormValues extends CreateUser {
+//   address: CreateAddress;
+// }
+
+interface UserProfileFormProps {
+  user: User;
 }
 const schema = registerSchema.concat(addressSchema);
 
-function UserProfileForm() {
+function UserProfileForm({ user }: UserProfileFormProps) {
+  const { userLog } = useLogin();
+
   const {
     register,
     handleSubmit,
@@ -19,10 +26,13 @@ function UserProfileForm() {
   } = useForm<User>({
     mode: "onChange",
     resolver: yupResolver(schema),
+    defaultValues: user,
   });
 
   const onSubmit: SubmitHandler<User> = async (response) => {
     console.log("test", response);
+
+    // update user infos
   };
 
   return (

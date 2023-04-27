@@ -42,7 +42,7 @@ function Register() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div className="gap-5 mt-4 d-flex justify-content-center">
-            <label htmlFor="">
+            <label>
               Nom <em className="text-danger">*</em>
               <input
                 style={{ width: "20rem" }}

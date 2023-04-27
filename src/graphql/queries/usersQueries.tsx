@@ -23,3 +23,30 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const USER = gql`
+  query User($userId: UUID!) {
+    user(id: $userId) {
+      id
+      email
+      firstname
+      lastname
+      password
+      gender
+      birthdate
+      phoneNumber
+      role {
+        id
+        role
+      }
+      address {
+        id
+        roadNumber
+        streetName
+        city
+        postalCode
+        country
+      }
+    }
+  }
+`;
