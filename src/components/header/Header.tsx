@@ -47,7 +47,7 @@ const Header = () => {
                           </div>
                       </li>
                       <li className="nav-item">
-                          <Link className={`nav-link ${location.pathname === "/destination" ? "active" : ""}`} to="/shop">Destinations</Link>
+                          <Link className={`nav-link ${location.pathname === "/destination" ? "active" : ""}`} to="/shop">Stations</Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/category">A propos</Link>
@@ -100,7 +100,7 @@ const Header = () => {
                       </div>
                   </li>
                   <li className="nav-item">
-                      <Link className={`nav-link ${location.pathname === "/destination" ? "active" : ""}`} to="/shop">Destinations</Link>
+                      <Link className={`nav-link ${location.pathname === "/destination" ? "active" : ""}`} to="/shop">Stations</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/category">A propos</Link>
