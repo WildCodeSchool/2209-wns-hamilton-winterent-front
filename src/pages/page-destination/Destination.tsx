@@ -4,6 +4,7 @@ import { LIST_ADDRESS_SHOP } from '../../graphql/queries/destinationQuery';
 import ListDestination from '../../components/destination/ListDestination';
 import googleMap from '../../assets/exemple-google-map-sombre.png';
 import './Destination.scss';
+import SearchBar from '../../components/utils/SearchBar';
 
 interface DestinationShop {
   address: {
@@ -27,7 +28,7 @@ function Destination() {
       <div className="destination-page-image d-flex justify-content-center flex-column align-items-center">
         <div className="text-white d-flex flex-column justify-content-center"></div>
       </div>
-      <div>liste input</div>
+      <SearchBar/>
       <div className="d-flex justify-content-center pb-5">
         <div className="w-75">
           <h3 className="text-primary">

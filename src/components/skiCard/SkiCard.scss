@@ -1,0 +1,53 @@
+.cardContainer{
+    max-width:15%;
+}
+
+.skiInfos{
+
+    .range{
+        color : rgba(230, 165, 64, 1);
+        margin-bottom: 2px;
+    }
+
+    .skiModel{
+        color : rgba(76, 112, 167, 1);
+        margin-bottom: -1px;
+    }
+
+    p{
+        color : rgba(76, 112, 167, 1);
+    }
+
+}
+
+.packageContainer {
+
+    .accessory h6{
+        color: rgb(225, 80, 109);
+    }
+    
+    .skipic img{
+            height:100%;
+            width:100%;
+            object-fit: cover;
+    }
+}
+
+.shoesInfos {
+
+    img{
+        height:90%;
+        width:90%;
+        object-fit: cover;
+    }
+}
+
+.helmetInfos img{
+    height:90%;
+    width:90%;
+    object-fit: cover;
+}
+
+.others {
+    font-size:small;
+}

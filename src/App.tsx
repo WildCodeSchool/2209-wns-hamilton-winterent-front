@@ -8,13 +8,13 @@ import LoginProvider from "./context/LoginProvider";
 import Header from "./components/header/Header";
 import Home from "./components/Home";
 import Footer from "./components/footer/Footer";
-import "./App.css";
 import UserProfile from "./pages/page-profile/user-profile/UserProfile";
 import Category from "./pages/page-category/Category";
 import Destination from "./pages/page-destination/Destination";
 import Shop from "./pages/page-shop/Shop";
 import "./App.css";
 import InfosGeneral from "./components/InfosGeneral";
+import Products from './pages/page-products/Products';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
             <Route path="/" element={<Category />} />
             <Route path="/home" element={<Home />} />
             <Route path={`/shop/:id`} element={<Shop />} />
+            <Route path={`/products`} element={<Products />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />

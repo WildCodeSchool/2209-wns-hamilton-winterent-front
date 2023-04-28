@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 interface ShopAddress {
   nameShop: string;
@@ -14,15 +15,17 @@ interface ShopAddress {
 const ListShop = ({ nameShop, addressShop }: ShopAddress) => {
   return (
     <>
-      <div className="headband">
-        <h4>{nameShop}</h4>
+      <Link to="/products" className="text-decoration-none">
+        <div className="headband">
+          <h4>{nameShop}</h4>
 
-        <p>
-          {addressShop.roadNumber} {addressShop.country}
-          <br />
-          {addressShop.postalCode} {addressShop.city}
-        </p>
-      </div>
+          <p>
+            {addressShop.roadNumber} {addressShop.country}
+            <br />
+            {addressShop.postalCode} {addressShop.city}
+          </p>
+        </div>
+      </Link>
     </>
   );
 };
