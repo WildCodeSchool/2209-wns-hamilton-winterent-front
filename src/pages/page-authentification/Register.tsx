@@ -44,9 +44,6 @@ function Register(this: any) {
   const [addUser, { loading, error }] = useMutation(ADD_USER);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
-    console.log("birthdate", data.birthdate);
-
     await addUser({ variables: { user: data } });
 
     navigate("/login");
@@ -112,7 +109,8 @@ function Register(this: any) {
 
         <div
           style={{ gap: "3.8rem" }}
-          className="mt-4 d-flex justify-content-center align-items-center">
+          className="mt-4 d-flex justify-content-center align-items-center"
+        >
           <label htmlFor="">
             Date de Naissance
             <input

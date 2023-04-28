@@ -1,34 +1,62 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CreateAddress, CreateUser } from "../../generated/graphql";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   registerSchema,
   addressSchema,
 } from "../../validations/userFormValidations";
+import { useLogin } from "../../context/LoginProvider";
+import { AddressUpdateInput, User } from "../../generated/graphql";
+import { UPDATE_USER } from "../../graphql/mutations/usersMutations";
+import { useMutation } from "@apollo/client";
+import { CreateUser } from "../../generated/graphql";
 
-interface User extends CreateUser {
-  address: CreateAddress;
+interface FormValues extends CreateUser {
+  id: string;
+  address: AddressUpdateInput;
+}
+
+interface UserProfileFormProps {
+  user: User;
 }
 const schema = registerSchema.concat(addressSchema);
 
-function UserProfileForm() {
+function UserProfileForm({ user }: UserProfileFormProps) {
+  const [UpdateUser, { loading, error, data }] = useMutation(UPDATE_USER);
+  const { userLog } = useLogin();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({
-    mode: "onChange",
-    resolver: yupResolver(schema),
+  } = useForm<FormValues>({
+    // mode: "onChange",
+    // resolver: yupResolver(schema),
+    defaultValues: {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      birthdate: user.birthdate,
+      gender: user.gender,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      address: {
+        roadNumber: user.address?.roadNumber,
+        streetName: user.address?.streetName,
+        postalCode: user.address?.postalCode,
+        city: user.address?.city,
+        country: user.address?.country,
+      },
+    },
   });
 
-  const onSubmit: SubmitHandler<User> = async (response) => {
-    console.log("test", response);
+  const onSubmit: SubmitHandler<FormValues> = async (response) => {
+    response.id = user.id;
+    let toto = await UpdateUser({ variables: { user: response } });
   };
 
   return (
     <form
       className="d-flex flex-column col-6"
-      onSubmit={handleSubmit(onSubmit)}>
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <label className="form-label m-2">
         <div className="d-flex justify-content-start">
           Nom <em className="text-danger">*</em>
@@ -110,24 +138,10 @@ function UserProfileForm() {
           type="text"
           id="email"
           className="form-control my-2"
-          placeholder="ex: john.doe@exemple.com"
-          {...register("email")}
+          disabled
+          readOnly
+          value={user.email}
         />
-        {/* <div className="text-danger">{errors.email?.message}</div> */}
-      </label>
-
-      <label className="form-label m-2">
-        <div className="d-flex justify-content-start">
-          Mot de passe<em className="text-danger">*</em>
-        </div>
-        <input
-          type="text"
-          id="password"
-          className="form-control my-2"
-          placeholder="ex: *****"
-          {...register("password")}
-        />
-        <div className="text-danger">{errors.password?.message}</div>
       </label>
 
       <label className="form-label m-2">
@@ -141,7 +155,9 @@ function UserProfileForm() {
           placeholder="ex: +33 0600110011"
           {...register("phoneNumber")}
         />
-        {/* <div className="text-danger">{errors.phoneNumber?.message}</div> */}
+        <div className="text-danger">
+          <>{errors.phoneNumber?.message}</>
+        </div>
       </label>
 
       {/* ADDRESS SECTION */}
@@ -185,7 +201,9 @@ function UserProfileForm() {
           placeholder="ex: 69000"
           {...register("address.postalCode")}
         />
-        {/* <div className="text-danger">{errors.address?.postalCode?.message}</div> */}
+        <div className="text-danger">
+          <>{errors.address?.postalCode?.message}</>
+        </div>
       </label>
 
       <label className="form-label m-2">

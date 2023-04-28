@@ -8,12 +8,13 @@ import LoginProvider from "./context/LoginProvider";
 import Header from "./components/header/Header";
 import Home from "./components/Home";
 import Footer from "./components/footer/Footer";
+import "./App.css";
+import UserProfile from "./pages/page-profile/user-profile/UserProfile";
 import Category from "./pages/page-category/Category";
 import Destination from "./pages/page-destination/Destination";
 import Shop from "./pages/page-shop/Shop";
 import "./App.css";
 import InfosGeneral from "./components/InfosGeneral";
-import UserProfile from "./pages/page-profile/UserProfile";
 
 function App() {
   return (
@@ -28,8 +29,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />
-            <Route path="/profile" element={<UserProfile />} />
+
             <Route element={<Auth />}>
+              <Route path="/profile" element={<UserProfile />} />
               <Route path="/userconnect" element={<UserConnect />} />
             </Route>
           </Routes>
