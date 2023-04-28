@@ -87,7 +87,7 @@ const Header = () => {
                     className={`nav-link ${
                       location.pathname === "/destination" ? "active" : ""
                     }`}
-                    to="/shop"
+                    to="/destination"
                   >
                     Stations
                   </Link>
