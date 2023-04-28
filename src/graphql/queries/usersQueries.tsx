@@ -31,7 +31,7 @@ export const USER = gql`
       email
       firstname
       lastname
-      password
+      # password
       gender
       birthdate
       phoneNumber

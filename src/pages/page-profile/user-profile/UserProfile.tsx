@@ -31,6 +31,9 @@ function UserProfile() {
     },
   });
 
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
+
   const handleSelect = (tab: string) => {
     if (tab === "profile") setActiveTab(TabTypes.Profile);
     if (tab === "payment") setActiveTab(TabTypes.PaymentInfo);

@@ -6,6 +6,8 @@ import {
 } from "../../validations/userFormValidations";
 import { useLogin } from "../../context/LoginProvider";
 import { User } from "../../generated/graphql";
+import { UPDATE_USER } from "../../graphql/mutations/usersMutations";
+import { useMutation } from "@apollo/client";
 
 // interface FormValues extends CreateUser {
 //   address: CreateAddress;
@@ -17,21 +19,22 @@ interface UserProfileFormProps {
 const schema = registerSchema.concat(addressSchema);
 
 function UserProfileForm({ user }: UserProfileFormProps) {
+  const [UpdateUser, { loading, error, data }] = useMutation(UPDATE_USER);
   const { userLog } = useLogin();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<User>({
-    mode: "onChange",
-    resolver: yupResolver(schema),
+    // mode: "onChange",
+    // resolver: yupResolver(schema),
     defaultValues: user,
   });
 
   const onSubmit: SubmitHandler<User> = async (response) => {
     console.log("test", response);
-
-    // update user infos
+    let toto = await UpdateUser({ variables: { user: response } });
+    console.log(toto);
   };
 
   return (
@@ -121,7 +124,10 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           id="email"
           className="form-control my-2"
           placeholder="ex: john.doe@exemple.com"
-          {...register("email")}
+          readOnly
+          disabled
+
+          //{...register("email")}
         />
 
         <div className="text-danger">
@@ -129,7 +135,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
         </div>
       </label>
 
-      <label className="form-label m-2">
+      {/* <label className="form-label m-2">
         <div className="d-flex justify-content-start">
           Mot de passe<em className="text-danger">*</em>
         </div>
@@ -141,7 +147,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           {...register("password")}
         />
         <div className="text-danger">{errors.password?.message}</div>
-      </label>
+      </label> */}
 
       <label className="form-label m-2">
         <div className="d-flex justify-content-start">
