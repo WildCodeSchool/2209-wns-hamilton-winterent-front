@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
 import ListCategory from '../../components/category/ListCategory';
 import logowinterent from '../../assets/Logo_winterent-light.png';
+import SearchBar from '../../components/utils/SearchBar';
 import './Category.scss';
 
 interface CategoryName {
@@ -36,6 +37,7 @@ const Category = () => {
           </div>
         </div>
       </div>
+      <SearchBar/>
       <div>liste input</div>
       <div className="d-flex justify-content-center">
         <div className="w-50">
@@ -57,6 +59,22 @@ const Category = () => {
                 <ListCategory category={el.category} />
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+      <div className="a-propos mt-5">
+        <div className="bandeau"></div>
+        <div className="d-flex justify-content-center align-items-center flex-column h-100">
+          <div className="w-75 text-white d-flex justify-content-start flex-column">
+            <h1>
+              <i className="bi bi-chevron-double-down"></i> A PROPOS DE NOUS
+            </h1>
+            <div>
+              Envoie du rêve! Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Debitis incidunt distinctio deleniti, explicabo
+              eum fuga soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi
+              voluptatum autem, soluta magni cupiditate explicabo quis.
+            </div>
           </div>
         </div>
       </div>

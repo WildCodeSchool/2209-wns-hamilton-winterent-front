@@ -1,4 +1,3 @@
-import shopImage from '../../assets/0d195a5e-b30b-4b8e-8fec-90db57366dfe.jpg';
 
 interface ShopAddress {
   nameShop: string;
@@ -14,16 +13,17 @@ interface ShopAddress {
 
 const ListShop = ({ nameShop, addressShop }: ShopAddress) => {
   return (
-    <div>
-      <img src={shopImage} alt="" />
-      <h3>{nameShop}</h3>
-      <h5>
-        {addressShop.roadNumber} {addressShop.country}
-      </h5>
-      <h5>
-        {addressShop.postalCode} {addressShop.city}
-      </h5>
-    </div>
+    <>
+      <div className="headband">
+        <h4>{nameShop}</h4>
+
+        <p>
+          {addressShop.roadNumber} {addressShop.country}
+          <br />
+          {addressShop.postalCode} {addressShop.city}
+        </p>
+      </div>
+    </>
   );
 };
 

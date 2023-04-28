@@ -40,10 +40,10 @@ function Destination() {
             autem, soluta magni cupiditate explicabo quis.
           </div>
           <div className="d-flex flex-row justify-content-between">
-            {destination.map((el: DestinationShop) => (
+            {destination.map((el: DestinationShop, index) => (
               <div
                 key={el.address.id}
-                className={`m-2 bg-image-${el.address.id} d-flex flex-column justify-content-end`}
+                className={`m-2 bg-image-${index} d-flex flex-column justify-content-end`}
               >
                 <ListDestination city={el.address.city} />
               </div>
@@ -53,7 +53,7 @@ function Destination() {
       </div>
       <div className="google-map">
         <div className="info-google-shop">
-          <div className="test"></div>
+          <div className="bandeau"></div>
           <div className="d-flex justify-content-center align-items-center flex-column h-100">
             <div className="w-75 text-white d-flex justify-content-start flex-column">
               <h1>
