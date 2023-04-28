@@ -1,4 +1,3 @@
-import shopImage from '../../assets/1.jpg';
 
 interface ShopAddress {
   nameShop: string;
@@ -15,7 +14,7 @@ interface ShopAddress {
 const ListShop = ({ nameShop, addressShop }: ShopAddress) => {
   return (
     <>
-      <div className="test">
+      <div className="headband">
         <h4>{nameShop}</h4>
 
         <p>

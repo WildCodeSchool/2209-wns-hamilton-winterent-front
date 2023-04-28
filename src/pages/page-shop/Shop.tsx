@@ -51,7 +51,7 @@ function Shop() {
             {shopList.map((el: ListShops) => (
               <div
                 key={el.id}
-                className={`m-2 bg-image-0d195a5e-b30b-4b8e-8fec-90db57366dfe d-flex flex-column justify-content-end`}
+                className={`m-2 bg-image-1 d-flex flex-column justify-content-end`}
               >
                 <ListShop nameShop={el.name} addressShop={el.address} />
               </div>
