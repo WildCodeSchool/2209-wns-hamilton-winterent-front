@@ -7,9 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
 
-interface FormValues extends CreateUser {
-  confirmPassword: string;
-}
+interface FormValues extends CreateUser {}
 
 function Register() {
   const {
@@ -19,6 +17,7 @@ function Register() {
     formState: { errors },
   } = useForm<FormValues>({
     mode: "onChange",
+    defaultValues: { phoneNumber: null },
     resolver: yupResolver(registerSchema),
   });
 
@@ -27,6 +26,11 @@ function Register() {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await addUser({ variables: data });
+    console.log(data);
+    console.log("birthdate", data.birthdate);
+
+    await addUser({ variables: { user: data } });
+
     navigate("/login");
   };
 
@@ -67,7 +71,6 @@ function Register() {
               aria-describedby="inputGroup-sizing-sm"
               id="firstname"
               {...register("firstname")}
-              // value={getValues("firstname")}
             />
             <div className="text-danger">{errors.firstname?.message}</div>
           </label>
@@ -82,37 +85,37 @@ function Register() {
             <input
               style={{ width: "20rem" }}
               className="form-control"
-              placeholder="20/10/2000"
+              type="date"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="birthdate"
-              {...register("birthdate")}
+              {...(register("birthdate"), { required: false })}
             />
           </label>
           <div className="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
-              id="customRadioInline1"
-              name="customRadioInline1"
-              className="custom-control-input"
+              className="form-check-input"
+              {...register("gender")}
+              value="MAN"
             />
             <label className="custom-control-label">Homme</label>
           </div>
           <div className="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
-              id="customRadioInline2"
-              name="customRadioInline1"
-              className="custom-control-input"
+              className="form-check-input"
+              {...register("gender")}
+              value="WOMAN"
             />
             <label className="custom-control-label">Femme</label>
           </div>
           <div className="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
-              id="customRadioInline2"
-              name="customRadioInline1"
-              className="custom-control-input"
+              className="form-check-input"
+              {...register("gender")}
+              value="OTHER"
             />
             <label className="custom-control-label">Autre</label>
           </div>
@@ -160,18 +163,19 @@ function Register() {
             />
             {/* <div className="text-danger">{errors.email?.message}</div> */}
           </label>
-          {/* <label htmlFor="">
+          <label htmlFor="">
             Confirmation de Mot de passe <em className="text-danger">*</em>
             <input
               style={{ width: "20rem" }}
               className="form-control"
               placeholder="***********"
+              type="password"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="confirmPassword"
               {...register("confirmPassword")}
             />
-          </label> */}
+          </label>
         </div>
 
         <div className="mt-5 d-flex justify-content-center">

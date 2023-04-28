@@ -73,6 +73,9 @@ function Login() {
               id="password"
               {...register("user.password")}
             />
+            <div className="text-danger">
+              <>{errors.user?.password?.message}</>
+            </div>
           </label>
         </div>
         <h4> {err} </h4>
