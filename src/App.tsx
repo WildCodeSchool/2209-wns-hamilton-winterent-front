@@ -29,7 +29,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/destination" element={<Destination />} />
-
             <Route element={<Auth />}>
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/userconnect" element={<UserConnect />} />
