@@ -40,10 +40,10 @@ function Destination() {
             autem, soluta magni cupiditate explicabo quis.
           </div>
           <div className="d-flex flex-row justify-content-between">
-            {destination.map((el: DestinationShop) => (
+            {destination.map((el: DestinationShop, index) => (
               <div
                 key={el.address.id}
-                className={`m-2 bg-image-${el.address.id} d-flex flex-column justify-content-end`}
+                className={`m-2 bg-image-${index} d-flex flex-column justify-content-end`}
               >
                 <ListDestination city={el.address.city} />
               </div>
