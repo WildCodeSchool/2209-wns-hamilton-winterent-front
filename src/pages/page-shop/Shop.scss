@@ -5,15 +5,43 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .image-width {
-    background-color: red;
+
+  .bg-image-1 {
+    height: 15rem;
     width: 30%;
-  }
-  img {
-    width: 100%;
     border-radius: 5px;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url('../../assets/1.jpg');
+  }
+
+  .headband {
+    background-color: rgba(#ffffff, 0.8);
+    height: 40%;
+    h4 {
+      color: #0082fb;
+    }
+  }
+
+  .google-map {
+    height: 80vh;
+    width: 100vw;
+    .info-google-shop {
+      position: absolute;
+      height: 30%;
+      width: 100%;
+      background-color: rgba(#3f78cd, 0.6);
+      .bandeau {
+        width: 100%;
+        height: 8px;
+        position: absolute;
+        background-color: #9ae6f0;
+        margin-top: 8px;
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

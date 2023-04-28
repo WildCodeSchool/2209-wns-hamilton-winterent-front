@@ -53,7 +53,7 @@ function Destination() {
       </div>
       <div className="google-map">
         <div className="info-google-shop">
-          <div className="test"></div>
+          <div className="bandeau"></div>
           <div className="d-flex justify-content-center align-items-center flex-column h-100">
             <div className="w-75 text-white d-flex justify-content-start flex-column">
               <h1>

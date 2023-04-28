@@ -4,7 +4,7 @@ interface Category {
 
 const ListCategory = ({ category }: Category) => {
   return (
-    <div className="">
+    <div>
       <div className="well">
         <div className="text-primary ms-1">Location</div>
         <div className="d-flex ms-1 justify-content-between align-items-center">
