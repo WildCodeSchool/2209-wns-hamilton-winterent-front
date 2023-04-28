@@ -6,10 +6,29 @@ import { ADD_USER } from "../../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
+// import {NotificationContainer, NotificationManager} from 'react-notifications';
+// import React from "react";
 
 interface FormValues extends CreateUser {}
 
-function Register() {
+// interface Example extends React.Component {
+//   createNotification = (type: any) => {
+//     return () => {
+//       switch (type) {
+//         case 'success':
+//           NotificationManager.success('Success message', 'Title here');
+//           break;
+//         case 'error':
+//           NotificationManager.error('Error message', 'Click me!', 5000, () => {
+//             alert('callback');
+//           });
+//           break;
+//       }
+//     };
+//   };
+// };
+
+function Register(this: any) {
   const {
     register,
     handleSubmit,
@@ -35,11 +54,27 @@ function Register() {
 
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;
+
   return (
     <div>
       <div>
         <img className="w-100" src={imgLogin} alt="" />
       </div>
+
+      {/* Notification  */}
+      <div>
+        <button
+          className="btn btn-success"
+          onClick={this.createNotification("success")}>
+          Success
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={this.createNotification("error")}>
+          Error
+        </button>
+      </div>
+
       <div className="mt-3 d-flex justify-content-center">
         <h3>Créer un compte</h3>
         <br className="line" />
