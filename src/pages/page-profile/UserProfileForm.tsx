@@ -5,13 +5,15 @@ import {
   addressSchema,
 } from "../../validations/userFormValidations";
 import { useLogin } from "../../context/LoginProvider";
-import { User } from "../../generated/graphql";
+import { AddressUpdateInput, User } from "../../generated/graphql";
 import { UPDATE_USER } from "../../graphql/mutations/usersMutations";
 import { useMutation } from "@apollo/client";
+import { CreateUser } from "../../generated/graphql";
 
-// interface FormValues extends CreateUser {
-//   address: CreateAddress;
-// }
+interface FormValues extends CreateUser {
+  id: string;
+  address: AddressUpdateInput;
+}
 
 interface UserProfileFormProps {
   user: User;
@@ -25,14 +27,29 @@ function UserProfileForm({ user }: UserProfileFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({
+  } = useForm<FormValues>({
     // mode: "onChange",
     // resolver: yupResolver(schema),
-    defaultValues: user,
+    defaultValues: {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      birthdate: user.birthdate,
+      gender: user.gender,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      address: {
+        roadNumber: user.address?.roadNumber,
+        streetName: user.address?.streetName,
+        postalCode: user.address?.postalCode,
+        city: user.address?.city,
+        country: user.address?.country,
+      },
+    },
   });
 
-  const onSubmit: SubmitHandler<User> = async (response) => {
+  const onSubmit: SubmitHandler<FormValues> = async (response) => {
     console.log("test", response);
+    response.id = user.id;
     let toto = await UpdateUser({ variables: { user: response } });
     console.log(toto);
   };
@@ -123,31 +140,11 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           type="text"
           id="email"
           className="form-control my-2"
-          placeholder="ex: john.doe@exemple.com"
-          readOnly
           disabled
-
-          //{...register("email")}
+          readOnly
+          value={user.email}
         />
-
-        <div className="text-danger">
-          <>{errors.email?.message} </>
-        </div>
       </label>
-
-      {/* <label className="form-label m-2">
-        <div className="d-flex justify-content-start">
-          Mot de passe<em className="text-danger">*</em>
-        </div>
-        <input
-          type="password"
-          id="password"
-          className="form-control my-2"
-          placeholder="ex: *****"
-          {...register("password")}
-        />
-        <div className="text-danger">{errors.password?.message}</div>
-      </label> */}
 
       <label className="form-label m-2">
         <div className="d-flex justify-content-start">

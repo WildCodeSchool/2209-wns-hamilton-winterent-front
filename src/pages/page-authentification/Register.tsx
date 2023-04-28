@@ -25,10 +25,6 @@ function Register() {
   const [addUser, { loading, error }] = useMutation(ADD_USER);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await addUser({ variables: data });
-    console.log(data);
-    console.log("birthdate", data.birthdate);
-
     await addUser({ variables: { user: data } });
 
     navigate("/login");
@@ -173,7 +169,7 @@ function Register() {
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="confirmPassword"
-              {...register("confirmPassword")}
+              //{...register("confirmPassword")}
             />
           </label>
         </div>
