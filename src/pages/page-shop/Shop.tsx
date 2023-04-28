@@ -38,7 +38,7 @@ function Shop() {
       <div className="d-flex justify-content-center pb-5">
         <div className="w-75">
           <h3 className="text-primary">
-            <i className="bi bi-chevron-double-down"></i> VOTRE DESTINATION
+            <i className="bi bi-chevron-double-down"></i> NOS MAGASINS
           </h3>
           <div>
             Envoie du rêve! Lorem, ipsum dolor sit amet consectetur adipisicing
