@@ -1,4 +1,4 @@
-import shopImage from '../../assets/0d195a5e-b30b-4b8e-8fec-90db57366dfe.jpg';
+import shopImage from '../../assets/1.jpg';
 
 interface ShopAddress {
   nameShop: string;

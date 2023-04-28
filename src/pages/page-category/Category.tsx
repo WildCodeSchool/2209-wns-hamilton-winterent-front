@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
 import ListCategory from '../../components/category/ListCategory';
 import logowinterent from '../../assets/Logo_winterent-light.png';
+import SearchBar from '../../components/utils/SearchBar';
 import './Category.scss';
 
 interface CategoryName {
@@ -36,6 +37,7 @@ const Category = () => {
           </div>
         </div>
       </div>
+      <SearchBar/>
       <div>liste input</div>
       <div className="d-flex justify-content-center">
         <div className="w-50">
