@@ -48,10 +48,8 @@ function UserProfileForm({ user }: UserProfileFormProps) {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (response) => {
-    console.log("test", response);
     response.id = user.id;
     let toto = await UpdateUser({ variables: { user: response } });
-    console.log(toto);
   };
 
   return (

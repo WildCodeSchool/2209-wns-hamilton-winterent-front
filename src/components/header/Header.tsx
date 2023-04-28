@@ -32,12 +32,14 @@ const Header = () => {
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
-              aria-label="Toggle navigation">
+              aria-label="Toggle navigation"
+            >
               <span className="navbar-toggler-icon"></span>
             </button>
             <div
               className="collapse navbar-collapse"
-              id="navbarSupportedContent">
+              id="navbarSupportedContent"
+            >
               <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
@@ -45,7 +47,8 @@ const Header = () => {
                       location.pathname === "/" ? "active" : ""
                     }`}
                     aria-current="page"
-                    to="/">
+                    to="/"
+                  >
                     Home
                   </Link>
                 </li>
@@ -58,12 +61,14 @@ const Header = () => {
                     className="nav-link dropdown-toggle"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    type="button">
+                    type="button"
+                  >
                     Categories
                   </a>
                   <div
                     className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton1">
+                    aria-labelledby="dropdownMenuButton1"
+                  >
                     <a className="dropdown-item" href="#">
                       Ski
                     </a>
@@ -84,7 +89,8 @@ const Header = () => {
                     className={`nav-link ${
                       location.pathname === "/destination" ? "active" : ""
                     }`}
-                    to="/shop">
+                    to="/shop"
+                  >
                     Stations
                   </Link>
                 </li>
@@ -103,7 +109,8 @@ const Header = () => {
                 <li className="nav-item text-center p-2">
                   <Link
                     className="d-flex flex-column text-decoration-none text-light"
-                    to="/login">
+                    to="/profile"
+                  >
                     <div>
                       <i className="bi bi-person-fill fs-4 "></i>
                     </div>
@@ -115,7 +122,8 @@ const Header = () => {
                   <Link
                     className="nav-link"
                     to="/login"
-                    onClick={handleDeleteLocalStorage}>
+                    onClick={handleDeleteLocalStorage}
+                  >
                     deconnexion
                   </Link>
                 </li>

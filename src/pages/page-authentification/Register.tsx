@@ -169,7 +169,7 @@ function Register() {
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="confirmPassword"
-              //{...register("confirmPassword")}
+              {...register("confirmPassword")}
             />
           </label>
         </div>
