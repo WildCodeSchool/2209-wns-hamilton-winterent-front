@@ -1,4 +1,5 @@
 import SkiCard from "../../components/skiCard/SkiCard";
+import SearchBar from "../../components/utils/SearchBar";
 import './Products.scss';
 const Products = () => {
     return (
@@ -6,7 +7,7 @@ const Products = () => {
             <div className="destination-page-image d-flex justify-content-center flex-column align-items-center">
                 <div className="text-white d-flex flex-column justify-content-center"></div>
             </div>
-            <div>liste input</div>
+            <SearchBar/>
             <div className="d-flex justify-content-center">
                 <div className="w-75">
                     <h3 className="text-primary">

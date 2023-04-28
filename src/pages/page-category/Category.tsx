@@ -38,7 +38,6 @@ const Category = () => {
         </div>
       </div>
       <SearchBar/>
-      <div>liste input</div>
       <div className="d-flex justify-content-center">
         <div className="w-50">
           <h3 className="text-primary">

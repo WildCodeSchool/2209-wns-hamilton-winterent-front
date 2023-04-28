@@ -5,6 +5,7 @@ import { LIST_SHOP } from '../../graphql/queries/shopQuery';
 import ListShop from '../../components/shop/ListShop';
 import googleMap from '../../assets/exemple-google-map-sombre.png';
 import './Shop.scss';
+import SearchBar from '../../components/utils/SearchBar';
 
 interface ListShops {
   id: string;
@@ -35,7 +36,7 @@ function Shop() {
       <div className="shop-page-image d-flex justify-content-center flex-column align-items-center">
         <div className="text-white d-flex flex-column justify-content-center"></div>
       </div>
-      <div>liste input</div>
+      <SearchBar/>
       <div className="d-flex justify-content-center pb-5">
         <div className="w-75">
           <h3 className="text-primary">
