@@ -15,10 +15,9 @@ interface ShopAddress {
 const ListShop = ({ nameShop, addressShop }: ShopAddress) => {
   return (
     <>
-      <Link to="/products" className="text-decoration-none">
-        <div className="headband">
+      <Link to="/products" className="text-decoration-none headband">
+        <div>
           <h4>{nameShop}</h4>
-
           <p>
             {addressShop.roadNumber} {addressShop.country}
             <br />
