@@ -6,27 +6,8 @@ import { ADD_USER } from "../../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
-// import {NotificationContainer, NotificationManager} from 'react-notifications';
-// import React from "react";
 
 interface FormValues extends CreateUser {}
-
-// interface Example extends React.Component {
-//   createNotification = (type: any) => {
-//     return () => {
-//       switch (type) {
-//         case 'success':
-//           NotificationManager.success('Success message', 'Title here');
-//           break;
-//         case 'error':
-//           NotificationManager.error('Error message', 'Click me!', 5000, () => {
-//             alert('callback');
-//           });
-//           break;
-//       }
-//     };
-//   };
-// };
 
 function Register(this: any) {
   const {
@@ -56,20 +37,6 @@ function Register(this: any) {
     <div>
       <div>
         <img className="w-100" src={imgLogin} alt="" />
-      </div>
-
-      {/* Notification  */}
-      <div>
-        <button
-          className="btn btn-success"
-          onClick={this.createNotification("success")}>
-          Success
-        </button>
-        <button
-          className="btn btn-danger"
-          onClick={this.createNotification("error")}>
-          Error
-        </button>
       </div>
 
       <div className="mt-3 d-flex justify-content-center">
@@ -109,8 +76,7 @@ function Register(this: any) {
 
         <div
           style={{ gap: "3.8rem" }}
-          className="mt-4 d-flex justify-content-center align-items-center"
-        >
+          className="mt-4 d-flex justify-content-center align-items-center">
           <label htmlFor="">
             Date de Naissance
             <input
