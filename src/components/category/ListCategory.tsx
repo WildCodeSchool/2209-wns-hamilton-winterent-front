@@ -7,7 +7,7 @@ interface Category {
 const ListCategory = ({ category }: Category) => {
   return (
     <div>
-      <Link to="/destination" className="text-decoration-none">
+      <Link to={`/destination?nameCategory=${category}`} className="text-decoration-none">
         <div className="well">
           <div className="text-primary ms-1">Location</div>
           <div className="d-flex ms-1 justify-content-between align-items-center">
