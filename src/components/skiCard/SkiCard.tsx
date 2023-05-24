@@ -15,7 +15,7 @@ interface Product {
 function SkiCard ({nameProduct, descriptionProduct }: Product) {
     
     return (
-      <div className="cardContainer container w-25 m-4">
+      <div className="cardContainer container w-100 m-4">
 
         <div className="skiInfos row">
             <h3 className="range fs-2 fw-normal">Bronze</h3>
@@ -56,7 +56,7 @@ function SkiCard ({nameProduct, descriptionProduct }: Product) {
                 <div className="others text-wrap fw-bold mt-2"> VOIR LES AUTRES MODELES</div>
             </div>
         </div>
-        <button className="w-100 btn btn-primary mt-1" type="submit">Sélectionner</button>
+        <button className="w-100 btn btn-primary mt-3" type="submit">Sélectionner</button>
 
       </div>
     );

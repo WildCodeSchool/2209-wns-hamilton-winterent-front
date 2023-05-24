@@ -53,11 +53,11 @@ const Products = () => {
                         omnis nihil reprehenderit sunt excepturi voluptatum autem, soluta
                         magni cupiditate explicabo quis.
                     </div>
-                    <div className="d-flex flex-row justify-content-between">
+                    <div className="row">
                         {productlist.map((el: Product) => (
                             <div
                                 key={el.id}
-                                className={`m-2 bg-image-1 d-flex flex-column justify-content-end`}
+                                className={`col-sm-4 mb-3`}
                             >
                                 <SkiCard nameProduct={el.name} idProduct={el.id} descriptionProduct={el.description} />
                             </div>
