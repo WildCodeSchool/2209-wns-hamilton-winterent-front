@@ -58,34 +58,7 @@ export const passwordSchema = yup.object().shape({
     .required("La confirmation du mot de passe est obligatoire"),
 });
 
-export const loginSchema = yup.object().shape({
-  user: yup.object().shape({
-    email: yup
-      .string()
-      .email("L'email fournit n'est pas valide")
-      .matches(/[A-Za-z]{3}/)
-      .required("L'email est obligatoire"),
-    password: yup
-      .string()
-      .required("Mot de passe est obligatoire")
-      .min(8, "Le mot de passe doit contenir au minimum 8 caractères")
-      .matches(/[0-9]/, "Le mot de passe doit contenir au minimum 8 caractères")
-      .matches(
-        /[a-z]/,
-        "Le mot de passe doit contenir au minimum 1 lettre en miniscule"
-      )
-      .matches(
-        /[A-Z]/,
-        "Le mot de passe doit contenir au minimum 1 lettre en majuscule"
-      )
-      .matches(
-        /[^\w]/,
-        "Le mot de passe doit contenir au minimum 1 caractère spécial"
-      ),
-  }),
-});
-
-/* Address validation */
+/* Adress validation */
 
 export const addressSchema = yup.object().shape({
   address: yup.object().shape({

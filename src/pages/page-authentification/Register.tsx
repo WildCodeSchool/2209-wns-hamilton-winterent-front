@@ -36,11 +36,13 @@ function Register() {
 
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;
+
   return (
     <div>
       <div>
         <img className="w-100" src={imgLogin} alt="" />
       </div>
+
       <div className="mt-3 d-flex justify-content-center">
         <h3>Créer un compte</h3>
         <br className="line" />
