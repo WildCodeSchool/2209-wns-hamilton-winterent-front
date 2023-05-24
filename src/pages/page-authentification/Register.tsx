@@ -4,21 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { CreateUser } from "../../generated/graphql";
 import { ADD_USER } from "../../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../../validations/userFormValidations";
+import {
+  passwordSchema,
+  registerSchema,
+} from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
 
 interface FormValues extends CreateUser {}
+
+const schema = registerSchema.concat(passwordSchema);
 
 function Register() {
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm<FormValues>({
     mode: "onChange",
     defaultValues: { phoneNumber: null },
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
