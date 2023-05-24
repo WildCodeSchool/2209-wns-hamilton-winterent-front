@@ -10,6 +10,7 @@ interface IOrder {
 }
 
 function UserOrders() {
+  // faire un state de mon tableau d'order avec la valeur du statut pour chaque commande ?
   const orders: IOrder[] = [
     {
       id: 1,
@@ -22,6 +23,13 @@ function UserOrders() {
       id: 2,
       date: "12/02/2023",
       status: "En cours",
+      bookingEndDate: "01/01/2024",
+      bookingStartDate: "10/01/2024",
+    },
+    {
+      id: 3,
+      date: "12/02/2023",
+      status: "Annulé",
       bookingEndDate: "01/01/2024",
       bookingStartDate: "10/01/2024",
     },
@@ -51,7 +59,26 @@ function UserOrders() {
                     Dates de location : du {order.bookingStartDate} au{" "}
                     {order.bookingEndDate}
                   </p>
-                  <p className="card-text">Statut : {order.status}</p>
+                  <p className="card-text">
+                    Statut :&nbsp;
+                    <span>
+                      {order.status === "En cours" && (
+                        <span className="badge rounded-pill bg-primary">
+                          {order.status}
+                        </span>
+                      )}
+                      {order.status === "Terminée" && (
+                        <span className="badge rounded-pill bg-success">
+                          {order.status}
+                        </span>
+                      )}
+                      {order.status === "Annulé" && (
+                        <span className="badge rounded-pill bg-danger">
+                          {order.status}
+                        </span>
+                      )}
+                    </span>
+                  </p>
                   <p className="card-text">
                     <small className="text-muted">Reste à régler : 0</small>
                   </p>
