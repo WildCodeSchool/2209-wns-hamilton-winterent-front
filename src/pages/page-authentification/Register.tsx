@@ -4,21 +4,29 @@ import { useNavigate } from "react-router-dom";
 import { CreateUser } from "../../generated/graphql";
 import { ADD_USER } from "../../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../../validations/userFormValidations";
+import {
+  passwordSchema,
+  registerSchema,
+} from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
 
-interface FormValues extends CreateUser {}
+interface FormValues extends CreateUser {
+  email: string;
+  phoneNumber: string | null;
+  birthdate: string | null;
+}
 
-function Register(this: any) {
+const schema = registerSchema.concat(passwordSchema);
+
+function Register() {
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm<FormValues>({
     mode: "onChange",
     defaultValues: { phoneNumber: null },
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
@@ -76,7 +84,8 @@ function Register(this: any) {
 
         <div
           style={{ gap: "3.8rem" }}
-          className="mt-4 d-flex justify-content-center align-items-center">
+          className="mt-4 d-flex justify-content-center align-items-center"
+        >
           <label htmlFor="">
             Date de Naissance
             <input
@@ -88,6 +97,7 @@ function Register(this: any) {
               id="birthdate"
               {...(register("birthdate"), { required: false })}
             />
+            <div className="text-danger">{errors.birthdate?.message}</div>
           </label>
           <div className="custom-control custom-radio custom-control-inline">
             <input
@@ -130,6 +140,7 @@ function Register(this: any) {
               id="phoneNumber"
               {...register("phoneNumber")}
             />
+            <div className="text-danger">{errors.phoneNumber?.message}</div>
           </label>
           <label htmlFor="">
             Mot de passe <em className="text-danger">*</em>
@@ -158,7 +169,7 @@ function Register(this: any) {
               id="email"
               {...register("email")}
             />
-            {/* <div className="text-danger">{errors.email?.message}</div> */}
+            <div className="text-danger">{errors.email?.message}</div>
           </label>
           <label htmlFor="">
             Confirmation de Mot de passe <em className="text-danger">*</em>
@@ -172,6 +183,7 @@ function Register(this: any) {
               id="confirmPassword"
               {...register("confirmPassword")}
             />
+            <div className="text-danger">{errors.confirmPassword?.message}</div>
           </label>
         </div>
 
