@@ -56,7 +56,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
 
   return (
     <form
-      className="d-flex flex-column col-6"
+      className="d-flex flex-column col-6 mb-5"
       onSubmit={handleSubmit(onSubmit)}
     >
       <label className="form-label m-2">
@@ -224,8 +224,8 @@ function UserProfileForm({ user }: UserProfileFormProps) {
         <div className="text-danger">{errors.address?.country?.message}</div>
       </label>
 
-      <div>
-        <button className="btn btn-light" type="submit">
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-primary" type="submit">
           Sauvegarder
         </button>
       </div>
