@@ -63,7 +63,6 @@ function UserProfileForm({ user }: UserProfileFormProps) {
         <div className="d-flex justify-content-start">
           Nom <em className="text-danger">*</em>
         </div>
-
         <input
           type="text"
           id="lastname"
@@ -144,6 +143,9 @@ function UserProfileForm({ user }: UserProfileFormProps) {
           readOnly
           value={user.email}
         />
+        <div className="text-danger">
+          <>{errors.email?.message}</>
+        </div>
       </label>
 
       <label className="form-label m-2">

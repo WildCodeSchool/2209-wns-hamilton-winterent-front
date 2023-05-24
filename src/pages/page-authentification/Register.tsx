@@ -10,7 +10,11 @@ import {
 } from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
 
-interface FormValues extends CreateUser {}
+interface FormValues extends CreateUser {
+  email: string;
+  phoneNumber: string | null;
+  birthdate: string | null;
+}
 
 const schema = registerSchema.concat(passwordSchema);
 
@@ -93,6 +97,7 @@ function Register() {
               id="birthdate"
               {...(register("birthdate"), { required: false })}
             />
+            <div className="text-danger">{errors.birthdate?.message}</div>
           </label>
           <div className="custom-control custom-radio custom-control-inline">
             <input
@@ -135,6 +140,7 @@ function Register() {
               id="phoneNumber"
               {...register("phoneNumber")}
             />
+            <div className="text-danger">{errors.phoneNumber?.message}</div>
           </label>
           <label htmlFor="">
             Mot de passe <em className="text-danger">*</em>
@@ -163,7 +169,7 @@ function Register() {
               id="email"
               {...register("email")}
             />
-            {/* <div className="text-danger">{errors.email?.message}</div> */}
+            <div className="text-danger">{errors.email?.message}</div>
           </label>
           <label htmlFor="">
             Confirmation de Mot de passe <em className="text-danger">*</em>
@@ -177,6 +183,7 @@ function Register() {
               id="confirmPassword"
               {...register("confirmPassword")}
             />
+            <div className="text-danger">{errors.confirmPassword?.message}</div>
           </label>
         </div>
 

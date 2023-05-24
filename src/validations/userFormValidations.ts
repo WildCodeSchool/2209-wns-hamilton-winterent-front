@@ -3,6 +3,7 @@ import * as yup from "yup";
 /* Basic infos user */
 
 const phoneRegExp = /^((\+)33)[1-9](\d{2}){4}$/g;
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
 export const registerSchema = yup.object().shape(
   {
@@ -17,13 +18,22 @@ export const registerSchema = yup.object().shape(
       .max(30, "Le prénom doit contenir au maximum 30 lettres"),
     email: yup
       .string()
-      .email("L'email fournit n'est pas valide")
-      .matches(/[A-Za-z]{3}/)
-      .required("L'email est obligatoire"),
+      .email("L'email fourni n'est pas valide")
+      .test("email-valid", "L'email n'est pas valide", function (value) {
+        if (!value) {
+          return false;
+        }
+        return emailRegex.test(value);
+      })
+      .required("L'email est requis"),
+
     phoneNumber: yup.string().when("phoneNumber", {
       is: (val: string) => val?.length > 0,
       then: (schema) => {
-        return schema.matches(phoneRegExp, "Phone number is not valid");
+        return schema.matches(
+          phoneRegExp,
+          "Le numéro de téléphone n'est pas valide"
+        );
       },
       otherwise: (schema) => schema.notRequired(),
     }),
