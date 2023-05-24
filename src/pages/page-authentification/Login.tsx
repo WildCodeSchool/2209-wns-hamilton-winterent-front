@@ -6,8 +6,7 @@ import { useLogin } from "../../context/LoginProvider";
 import { QueryLoginArgs } from "../../generated/graphql";
 import { LOGIN } from "../../graphql/queries/usersQueries";
 import imgLogin from "../../assets/imgLogin.png";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../validations/userFormValidations";
+
 interface FormValues extends QueryLoginArgs {}
 
 function Login() {
@@ -19,15 +18,12 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    mode: "onChange",
-    resolver: yupResolver(loginSchema),
-  });
+  } = useForm<FormValues>();
 
   const [login, { loading }] = useLazyQuery(LOGIN, {
     onCompleted(data) {
       setUserLog(data.login);
-      navigator("/userconnect");
+      navigator("/");
     },
     onError(error) {
       setErr(error.message);
@@ -35,9 +31,11 @@ function Login() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (response) => {
-    await login({ variables: { ...response } });
+    var result = await login({ variables: { ...response } });
+    console.log(result);
   };
   if (loading) return <div>Chargement en cours</div>;
+
   return (
     <div>
       <div>
@@ -57,9 +55,6 @@ function Login() {
               id="email"
               {...register("user.email")}
             />
-            <div className="text-danger">
-              <>{errors.user?.email?.message}</>
-            </div>
           </label>
           <label className="mt-5" htmlFor="">
             Mot de passe
@@ -73,14 +68,14 @@ function Login() {
               id="password"
               {...register("user.password")}
             />
-            <div className="text-danger">
-              <>{errors.user?.password?.message}</>
-            </div>
           </label>
         </div>
-        <h4> {err} </h4>
+        <p className="text-danger d-flex justify-content-center">
+          {" "}
+          {err ? "Les informations fournies ne sont pas correctes" : ""}{" "}
+        </p>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-light btn-sm mt-4" type="submit">
+          <button className="btn btn-primary btn-sm mt-4" type="submit">
             Connexion
           </button>
         </div>
