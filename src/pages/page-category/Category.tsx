@@ -55,7 +55,7 @@ const Category = () => {
                 key={el.id}
                 className={`m-2 bg-image-${el.category} d-flex flex-column justify-content-end`}
               >
-                <ListCategory category={el.category} />
+                <ListCategory category={el.category} idCategory={el.id} />
               </div>
             ))}
           </div>

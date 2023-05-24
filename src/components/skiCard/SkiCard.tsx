@@ -4,18 +4,22 @@ import shoe from '../../assets/shoe.png';
 import helmet from '../../assets/helmet.png';
 
 interface Product {
-    range: string
+    idProduct: string;
+    nameProduct: string;
+    descriptionProduct: string;
+    // range: string
+    // image: string
 }
 
 
-function SkiCard () {
+function SkiCard ({nameProduct, descriptionProduct }: Product) {
     
     return (
       <div className="cardContainer container w-25 m-4">
 
         <div className="skiInfos row">
             <h3 className="range fs-2 fw-normal">Bronze</h3>
-            <h5 className="skiModel fw-normal">Head RX600</h5>
+            <h5 className="skiModel fw-normal">{nameProduct}</h5>
             <p>ou modèle équivalent</p>
             <h3>29€</h3>
         </div>
@@ -53,7 +57,6 @@ function SkiCard () {
             </div>
         </div>
         <button className="w-100 btn btn-primary mt-1" type="submit">Sélectionner</button>
-        
 
       </div>
     );

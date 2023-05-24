@@ -54,7 +54,7 @@ function Shop() {
                 key={el.id}
                 className={`m-2 bg-image-1 d-flex flex-column justify-content-end`}
               >
-                <ListShop nameShop={el.name} addressShop={el.address} />
+                <ListShop nameShop={el.name} idShop={el.id} addressShop={el.address} />
               </div>
             ))}
           </div>
