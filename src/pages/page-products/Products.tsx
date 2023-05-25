@@ -58,11 +58,11 @@ const Products = () => {
             </div>
             <div className="d-flex justify-content-center container-product mt-5">
                 <div className="w-75">
-                    <div className="row">
+                    <div className="row mt-4">
                         {productlist.map((el: Product) => (
                             <div
                                 key={el.id}
-                                className={`col-sm-4 mb-3 ski-card`}
+                                className={`col-sm-4 mb-3 mt-6 ski-card`}
                             >
                                 <SkiCard nameProduct={el.name} idProduct={el.id} descriptionProduct={el.description} range={el.range} />
                             </div>

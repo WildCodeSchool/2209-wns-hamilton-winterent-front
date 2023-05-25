@@ -58,7 +58,6 @@ function SkiCard ({nameProduct, range }: Product) {
             </div>
         </div>
         <Link className="w-100 btn btn-primary mt-3 mb-3" type="submit" to={''}>Sélectionner</Link>
-
       </div>
     );
   }
