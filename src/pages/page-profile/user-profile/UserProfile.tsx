@@ -46,7 +46,7 @@ function UserProfile() {
         <img className="w-100" src={imgLogin} alt="" />
       </div>
 
-      <div className="d-flex justify-content-around">
+      <div className="d-flex justify-content-around mt-5">
         <div
           className=" col-6 card m-3"
           style={{ width: "18rem", height: "fit-content" }}
