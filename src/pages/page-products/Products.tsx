@@ -13,6 +13,7 @@ interface Product{
     id: string;
     name: string;
     description: string;
+    range: string;
 }
 
 const Products = () => {
@@ -42,7 +43,7 @@ const Products = () => {
                 <div className="text-white d-flex flex-column justify-content-center"></div>
             </div>
             <SearchBar/>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mt-4">
                 <div className="w-75">
                     <h3 className="text-primary">
                         <i className="bi bi-chevron-double-down"></i> NOS SKI
@@ -53,13 +54,17 @@ const Products = () => {
                         omnis nihil reprehenderit sunt excepturi voluptatum autem, soluta
                         magni cupiditate explicabo quis.
                     </div>
+                </div>
+            </div>
+            <div className="d-flex justify-content-center container-product mt-5">
+                <div className="w-75">
                     <div className="row">
                         {productlist.map((el: Product) => (
                             <div
                                 key={el.id}
-                                className={`col-sm-4 mb-3`}
+                                className={`col-sm-4 mb-3 ski-card`}
                             >
-                                <SkiCard nameProduct={el.name} idProduct={el.id} descriptionProduct={el.description} />
+                                <SkiCard nameProduct={el.name} idProduct={el.id} descriptionProduct={el.description} range={el.range} />
                             </div>
                         ))}
                     </div>
