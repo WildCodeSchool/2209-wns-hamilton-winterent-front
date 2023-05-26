@@ -38,7 +38,7 @@ const Category = () => {
         </div>
       </div>
       <SearchBar/>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mt-4">
         <div className="w-50">
           <h3 className="text-primary">
             <i className="bi bi-chevron-double-down"></i> CATEGORIES
@@ -49,13 +49,13 @@ const Category = () => {
             soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi voluptatum
             autem, soluta magni cupiditate explicabo quis.
           </div>
-          <div className="d-flex flex-row">
+          <div className="d-flex flex-row mt-4">
             {listCategory.map((el: CategoryName) => (
               <div
                 key={el.id}
                 className={`m-2 bg-image-${el.category} d-flex flex-column justify-content-end`}
               >
-                <ListCategory category={el.category} />
+                <ListCategory category={el.category} idCategory={el.id} />
               </div>
             ))}
           </div>
