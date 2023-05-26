@@ -6,6 +6,10 @@ import { ADD_USER } from "../../graphql/mutations/usersMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/userFormValidations";
 import imgLogin from "../../../src/assets/imgLogin.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import useNotification from "../../notifications/useNotification";
+import { useState } from "react";
 
 interface FormValues extends CreateUser {}
 
@@ -21,22 +25,51 @@ function Register(this: any) {
     resolver: yupResolver(registerSchema),
   });
 
+  const { authentification } = useNotification();
+
   const navigate = useNavigate();
   const [addUser, { loading, error }] = useMutation(ADD_USER);
+  const [waiting, setWaiting] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await addUser({ variables: { user: data } });
+    await addUser({
+      variables: { user: data },
+      onCompleted(data) {
+        toast(authentification.loginSuccess, {
+          onClose(props) {
+            navigate("/login");
+          },
+          onOpen() {
+            setWaiting(true);
+          },
 
-    navigate("/login");
+          type: "success",
+        });
+      },
+    });
   };
 
-  if (loading) return <div>Chargement en cours</div>;
-  if (error) return <div>Une erreur s'est produite</div>;
+  // if (loading) return <div>Chargement en cours</div>;
+  // if (error) return <div>Une erreur s'est produite</div>;
 
   return (
     <div>
       <div>
         <img className="w-100" src={imgLogin} alt="" />
+      </div>
+      <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
 
       <div className="mt-3 d-flex justify-content-center">
@@ -176,7 +209,13 @@ function Register(this: any) {
         </div>
 
         <div className="mt-5 d-flex justify-content-center">
-          <button className="btn btn-primary">Inscription</button>
+          <button className="btn btn-primary" disabled={waiting || loading}>
+            {loading
+              ? "Chargement en cours"
+              : waiting
+              ? "Veuillez patienter..."
+              : "Inscription"}
+          </button>
         </div>
       </form>
     </div>
@@ -184,3 +223,6 @@ function Register(this: any) {
 }
 
 export default Register;
+function onCompleted(data: FormValues) {
+  throw new Error("Function not implemented.");
+}
