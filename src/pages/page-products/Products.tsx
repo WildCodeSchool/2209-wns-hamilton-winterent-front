@@ -1,8 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-// import { useParams } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { string } from "yargs";
 import SkiCard from "../../components/skiCard/SkiCard";
 import SearchBar from "../../components/utils/SearchBar";
 import { GET_PRODUCT } from "../../graphql/queries/productQuery";
@@ -21,8 +19,6 @@ const Products = () => {
     let [searchParams] = useSearchParams();
     const idCategory = searchParams.get('idCategory');
     const idShop = searchParams.get('idShop');
-    console.log("idCategory", idCategory)
-    console.log("idShop", idShop)
 
     const [productlist, setProductlist] = useState([]);
     const { loading, error } = useQuery(GET_PRODUCT, {
@@ -35,7 +31,6 @@ const Products = () => {
     console.log('searchParams', searchParams)
     if (loading) return <div>Chargement en cours</div>;
     if (error) return <div>Une erreur s'est produite</div>;
-
 
     return (
         <div className="products">

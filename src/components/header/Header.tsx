@@ -2,14 +2,36 @@ import { useLogin } from '../../context/LoginProvider';
 import { Link, useLocation } from 'react-router-dom';
 import logoWinterent from '../../assets/Logo_winterent-ligh-Ht.png';
 import './_header.scss';
+import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
+import { useQuery } from '@apollo/client';
+import { useState } from 'react';
+
+interface CategoryName {
+  id: string;
+  category: string;
+}
 
 const Header = () => {
+  const [categories, setCategories] = useState<CategoryName[]>([]);
+
   let location = useLocation();
   const { userLog, setUserLog } = useLogin();
 
   const handleDeleteLocalStorage = () => {
     setUserLog(null);
   };
+
+  //Récupérer les catégories
+  const { loading, error } = useQuery(
+    LIST_CATEGORY,
+    {
+      onCompleted(data) {
+        setCategories(data.listCategory);
+      },
+    }
+  );
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
 
   return userLog ? (
     <>
@@ -59,15 +81,15 @@ const Header = () => {
                     className="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <a className="dropdown-item" href="#">
-                      Ski
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Snow
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Chaussures
-                    </a>
+                    {categories.map((category) => (
+                      <Link
+                        to={`/destination?idCategory=${category.id}`}
+                        key={category.id}
+                        className="dropdown-item"
+                      >
+                        {category.category}
+                      </Link>
+                    ))}
                     <div className="hr dropdown-divider"></div>
                     <a className="dropdown-item" href="#">
                       Toutes les catégories
