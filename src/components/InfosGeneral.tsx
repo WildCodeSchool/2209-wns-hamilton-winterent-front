@@ -1,7 +1,7 @@
-import './InfosGeneral.scss';
 import { IoCardOutline, IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { FiSun } from 'react-icons/fi';
 import { BsStopwatch } from 'react-icons/bs';
+import './InfosGeneral.scss';
 
 const InfosGeneral = () => {
   return (

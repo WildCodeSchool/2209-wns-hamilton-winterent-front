@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const LIST_USERS = gql`
   query Users {
@@ -31,7 +31,6 @@ export const USER = gql`
       email
       firstname
       lastname
-      # password
       gender
       birthdate
       phoneNumber

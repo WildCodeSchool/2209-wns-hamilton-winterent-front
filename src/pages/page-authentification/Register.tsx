@@ -1,18 +1,18 @@
-import { useMutation } from "@apollo/client";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { CreateUser } from "../../generated/graphql";
-import { ADD_USER } from "../../graphql/mutations/usersMutations";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from '@apollo/client';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { CreateUser } from '../../generated/graphql';
+import { ADD_USER } from '../../graphql/mutations/usersMutations';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   passwordSchema,
   registerSchema,
-} from "../../validations/userFormValidations";
-import imgLogin from "../../../src/assets/imgLogin.png";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import useNotification from "../../notifications/useNotification";
-import { useState } from "react";
+} from '../../validations/userFormValidations';
+import imgLogin from '../../../src/assets/imgLogin.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import useNotification from '../../notifications/useNotification';
+import { useState } from 'react';
 
 interface FormValues extends CreateUser {
   email: string;
@@ -28,7 +28,7 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: { phoneNumber: null },
     resolver: yupResolver(schema),
   });
@@ -45,13 +45,12 @@ function Register() {
       onCompleted(data) {
         toast(authentification.loginSuccess, {
           onClose(props) {
-            navigate("/login");
+            navigate('/login');
           },
           onOpen() {
             setWaiting(true);
           },
-
-          type: "success",
+          type: 'success',
         });
       },
     });
@@ -86,13 +85,13 @@ function Register() {
           <label htmlFor="">
             Nom <em className="text-danger">*</em>
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               placeholder="Doe"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="lastname"
-              {...register("lastname")}
+              {...register('lastname')}
             />
             <div className="text-danger">{errors.lastname?.message}</div>
           </label>
@@ -100,32 +99,32 @@ function Register() {
           <label htmlFor="">
             Prenom <em className="text-danger">*</em>
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               placeholder="John"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="firstname"
-              {...register("firstname")}
+              {...register('firstname')}
             />
             <div className="text-danger">{errors.firstname?.message}</div>
           </label>
         </div>
 
         <div
-          style={{ gap: "3.8rem" }}
+          style={{ gap: '3.8rem' }}
           className="mt-4 d-flex justify-content-center align-items-center"
         >
           <label htmlFor="">
             Date de Naissance
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               type="date"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="birthdate"
-              {...(register("birthdate"), { required: false })}
+              {...(register('birthdate'), { required: false })}
             />
             <div className="text-danger">{errors.birthdate?.message}</div>
           </label>
@@ -133,7 +132,7 @@ function Register() {
             <input
               type="radio"
               className="form-check-input"
-              {...register("gender")}
+              {...register('gender')}
               value="MAN"
             />
             <label className="custom-control-label">Homme</label>
@@ -142,7 +141,7 @@ function Register() {
             <input
               type="radio"
               className="form-check-input"
-              {...register("gender")}
+              {...register('gender')}
               value="WOMAN"
             />
             <label className="custom-control-label">Femme</label>
@@ -151,7 +150,7 @@ function Register() {
             <input
               type="radio"
               className="form-check-input"
-              {...register("gender")}
+              {...register('gender')}
               value="OTHER"
             />
             <label className="custom-control-label">Autre</label>
@@ -162,27 +161,27 @@ function Register() {
           <label htmlFor="">
             Téléphone
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               placeholder="0623456712"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="phoneNumber"
-              {...register("phoneNumber")}
+              {...register('phoneNumber')}
             />
             <div className="text-danger">{errors.phoneNumber?.message}</div>
           </label>
           <label htmlFor="">
             Mot de passe <em className="text-danger">*</em>
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               placeholder="***********"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               type="password"
               id="password"
-              {...register("password")}
+              {...register('password')}
             />
             <div className="text-danger">{errors.password?.message}</div>
           </label>
@@ -191,27 +190,27 @@ function Register() {
           <label htmlFor="">
             Email <em className="text-danger">*</em>
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               placeholder="doe@gmail.com"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="email"
-              {...register("email")}
+              {...register('email')}
             />
             <div className="text-danger">{errors.email?.message}</div>
           </label>
           <label htmlFor="">
             Confirmation de Mot de passe <em className="text-danger">*</em>
             <input
-              style={{ width: "20rem" }}
+              style={{ width: '20rem' }}
               className="form-control"
               placeholder="***********"
               type="password"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
               id="confirmPassword"
-              {...register("confirmPassword")}
+              {...register('confirmPassword')}
             />
             <div className="text-danger">{errors.confirmPassword?.message}</div>
           </label>
@@ -220,10 +219,10 @@ function Register() {
         <div className="my-5 d-flex justify-content-center">
           <button className="btn btn-primary" disabled={waiting || loading}>
             {loading
-              ? "Chargement en cours"
+              ? 'Chargement en cours'
               : waiting
-              ? "Veuillez patienter..."
-              : "Inscription"}
+              ? 'Veuillez patienter...'
+              : 'Inscription'}
           </button>
         </div>
       </form>
@@ -232,6 +231,3 @@ function Register() {
 }
 
 export default Register;
-function onCompleted(data: FormValues) {
-  throw new Error("Function not implemented.");
-}

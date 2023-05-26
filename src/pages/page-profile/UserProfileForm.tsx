@@ -1,18 +1,16 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   registerSchema,
   addressSchema,
-} from "../../validations/userFormValidations";
-import { useLogin } from "../../context/LoginProvider";
-import { AddressUpdateInput, User } from "../../generated/graphql";
-import { UPDATE_USER } from "../../graphql/mutations/usersMutations";
-import { useMutation } from "@apollo/client";
-import { CreateUser } from "../../generated/graphql";
-import useNotification from "../../notifications/useNotification";
-import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+} from '../../validations/userFormValidations';
+import { AddressUpdateInput, User } from '../../generated/graphql';
+import { UPDATE_USER } from '../../graphql/mutations/usersMutations';
+import { useMutation } from '@apollo/client';
+import { CreateUser } from '../../generated/graphql';
+import useNotification from '../../notifications/useNotification';
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface FormValues extends CreateUser {
   id: string;
@@ -25,18 +23,16 @@ interface UserProfileFormProps {
 const schema = registerSchema.concat(addressSchema);
 
 function UserProfileForm({ user }: UserProfileFormProps) {
-  const navigator = useNavigate();
   const { profile } = useNotification();
   const [err, setErr] = useState<String | null>(null);
   const [waiting, setWaiting] = useState<boolean>(false);
-  const [UpdateUser, { loading, error, data }] = useMutation(UPDATE_USER);
-  const { userLog } = useLogin();
+  const [UpdateUser, { loading }] = useMutation(UPDATE_USER);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    mode: "onBlur",
+    mode: 'onBlur',
     resolver: yupResolver(schema),
     defaultValues: {
       firstname: user.firstname,
@@ -63,13 +59,13 @@ function UserProfileForm({ user }: UserProfileFormProps) {
       variables: { user: response },
       onCompleted() {
         toast(profile.profileUpdateSuccess, {
-          onClose(props) {
+          onClose() {
             setWaiting(false);
           },
           onOpen() {
             setWaiting(true);
           },
-          type: "success",
+          type: 'success',
         });
       },
       onError(error) {
@@ -107,7 +103,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="lastname"
             className="form-control my-2"
             placeholder="ex: Doe"
-            {...register("lastname")}
+            {...register('lastname')}
           />
           <div className="text-danger">{errors.lastname?.message}</div>
         </label>
@@ -121,7 +117,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="firstname"
             className="form-control my-2"
             placeholder="ex: John"
-            {...register("firstname")}
+            {...register('firstname')}
           />
           <div className="text-danger">{errors.firstname?.message}</div>
         </label>
@@ -133,7 +129,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             <input
               type="radio"
               className="form-check-input"
-              {...register("gender")}
+              {...register('gender')}
               value="WOMAN"
             />
           </label>
@@ -142,7 +138,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             <input
               type="radio"
               className="form-check-input"
-              {...register("gender")}
+              {...register('gender')}
               value="MAN"
             />
           </label>
@@ -151,7 +147,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             <input
               type="radio"
               className="form-check-input"
-              {...register("gender")}
+              {...register('gender')}
               value="OTHER"
             />
           </label>
@@ -166,7 +162,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="birthdate"
             className="form-control my-2"
             placeholder="ex: "
-            {...register("birthdate")}
+            {...register('birthdate')}
           />
         </label>
 
@@ -194,7 +190,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="phoneNumber"
             className="form-control my-2"
             placeholder="ex: +33617931076"
-            {...register("phoneNumber")}
+            {...register('phoneNumber')}
           />
           <div className="text-danger">
             <>{errors.phoneNumber?.message}</>
@@ -210,7 +206,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="roadNumber"
             className="form-control my-2"
             placeholder="ex: 1"
-            {...register("address.roadNumber")}
+            {...register('address.roadNumber')}
           />
           <div className="text-danger">
             {errors.address?.roadNumber?.message}
@@ -224,7 +220,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="streetName"
             className="form-control my-2"
             placeholder="ex: Rue du chemin"
-            {...register("address.streetName")}
+            {...register('address.streetName')}
           />
           <div className="text-danger">
             {errors.address?.streetName?.message}
@@ -238,7 +234,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="postalCode"
             className="form-control my-2"
             placeholder="ex: 69000"
-            {...register("address.postalCode")}
+            {...register('address.postalCode')}
           />
           <div className="text-danger">
             <>{errors.address?.postalCode?.message}</>
@@ -252,7 +248,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="city"
             className="form-control my-2"
             placeholder="ex: Lyonn"
-            {...register("address.city")}
+            {...register('address.city')}
           />
           <div className="text-danger">{errors.address?.city?.message}</div>
         </label>
@@ -264,7 +260,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             id="country"
             className="form-control my-2"
             placeholder="ex: France"
-            {...register("address.country")}
+            {...register('address.country')}
           />
           <div className="text-danger">{errors.address?.country?.message}</div>
         </label>
@@ -276,10 +272,10 @@ function UserProfileForm({ user }: UserProfileFormProps) {
             disabled={waiting || loading}
           >
             {loading
-              ? "Chargement en cours"
+              ? 'Chargement en cours'
               : waiting
-              ? "Veuillez patienter..."
-              : "Sauvegarder"}
+              ? 'Veuillez patienter...'
+              : 'Sauvegarder'}
           </button>
         </div>
       </form>

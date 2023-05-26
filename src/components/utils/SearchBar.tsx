@@ -6,10 +6,6 @@ import { useQuery } from '@apollo/client';
 import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
 import { useNavigate } from 'react-router-dom';
 
-interface Test {
-  category: string;
-}
-
 interface Shop {
   id: string;
   name: string;
@@ -41,7 +37,7 @@ export default function SearchBar() {
       setShops(data.shops);
     },
   });
-  
+
   const handleClick = () => {
     navigator(`/products?idCategory=${selectCategories}&idShop=${selectShop}`);
   };
