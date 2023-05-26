@@ -55,10 +55,7 @@ function UserProfileForm({ user }: UserProfileFormProps) {
   };
 
   return (
-    <form
-      className="d-flex flex-column col-6 mb-5"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="d-flex flex-column mb-5" onSubmit={handleSubmit(onSubmit)}>
       <label className="form-label m-2">
         <div className="d-flex justify-content-start">
           Nom <em className="text-danger">*</em>
