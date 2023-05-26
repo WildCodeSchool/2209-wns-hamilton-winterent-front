@@ -2,14 +2,9 @@ import React from 'react';
 import './SearchBar.scss';
 import { useState } from 'react';
 import { SHOPS } from '../../graphql/queries/shopQuery';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
-import { SEARCHBAR } from '../../graphql/queries/searchbarQuery';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-
-interface Test {
-  category: string;
-}
+import { useNavigate } from 'react-router-dom';
 
 interface Shop {
   id: string;
@@ -42,9 +37,9 @@ export default function SearchBar() {
       setShops(data.shops);
     },
   });
-  
+
   const handleClick = () => {
-    navigator(`/products?category=${selectCategories}&shops=${selectShop}`);
+    navigator(`/products?idCategory=${selectCategories}&idShop=${selectShop}`);
   };
 
   //Récupérer les catégories

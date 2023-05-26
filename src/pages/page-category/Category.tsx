@@ -37,7 +37,7 @@ const Category = () => {
           </div>
         </div>
       </div>
-      <SearchBar/>
+      <SearchBar />
       <div className="d-flex justify-content-center mt-4">
         <div className="w-50">
           <h3 className="text-primary">

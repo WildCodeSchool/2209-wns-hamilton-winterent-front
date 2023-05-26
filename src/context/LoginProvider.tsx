@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface LoginInterface {
   token: String;
@@ -21,16 +21,16 @@ const LoginContext = createContext<UserContextInterface>({
 
 const LoginProvider = ({ children }: any) => {
   const [userLog, setUserLog] = useState<LoginInterface | null>(
-    localStorage.getItem("userLog")
-      ? JSON.parse(localStorage.getItem("userLog") || "")
+    localStorage.getItem('userLog')
+      ? JSON.parse(localStorage.getItem('userLog') || '')
       : null
   );
 
   useEffect(() => {
     if (userLog) {
-      localStorage.setItem("userLog", JSON.stringify(userLog));
+      localStorage.setItem('userLog', JSON.stringify(userLog));
     } else {
-      localStorage.removeItem("userLog");
+      localStorage.removeItem('userLog');
     }
   }, [userLog]);
 
