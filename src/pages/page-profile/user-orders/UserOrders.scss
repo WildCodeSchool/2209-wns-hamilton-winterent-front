@@ -1,0 +1,11 @@
+.cardStyle {
+  max-width: 540px;
+}
+
+//media xl
+@media (min-width: 992px) {
+  .cardStyle {
+    min-width: 600px;
+    max-width: 800px;
+  }
+}

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import imgLogin from "../../../../src/assets/imgLogin.png";
-import UserOrders from "../UserOrders";
+import UserOrders from "../user-orders/UserOrders";
 import { useState } from "react";
 import UserPaymentInfos from "../UserPaymentInfos";
 import UserProfileForm from "../UserProfileForm";
@@ -41,18 +41,24 @@ function UserProfile() {
   };
 
   return (
-    <div>
+    <>
       <div>
         <img className="w-100" src={imgLogin} alt="" />
       </div>
 
-      <div className="d-flex justify-content-around">
+      <div className="d-flex flex-column flex-md-row justify-content-around mt-5">
         <div
           className=" col-6 card m-3"
           style={{ width: "18rem", height: "fit-content" }}
         >
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">
+            <li
+              className={
+                activeTab.valueOf().match("profile")
+                  ? "tabSelected list-group-item"
+                  : "list-group-item tab"
+              }
+            >
               <button
                 className="custom-button"
                 onClick={() => handleSelect("profile")}
@@ -60,7 +66,13 @@ function UserProfile() {
                 Mon profil
               </button>
             </li>
-            <li className="list-group-item">
+            <li
+              className={
+                activeTab.valueOf().match("paymentInfos")
+                  ? "tabSelected list-group-item"
+                  : "list-group-item tab"
+              }
+            >
               <button
                 className="custom-button"
                 onClick={() => handleSelect("payment")}
@@ -68,7 +80,13 @@ function UserProfile() {
                 Mes informations de paiement
               </button>
             </li>
-            <li className="list-group-item">
+            <li
+              className={
+                activeTab.valueOf().match("userOrders")
+                  ? "tabSelected list-group-item"
+                  : "list-group-item tab"
+              }
+            >
               <button
                 className="custom-button"
                 onClick={() => handleSelect("orders")}
@@ -76,7 +94,13 @@ function UserProfile() {
                 Mes commandes
               </button>
             </li>
-            <li className="list-group-item">
+            <li
+              className={
+                activeTab.valueOf().match("logOut")
+                  ? "tabSelected list-group-item"
+                  : "list-group-item tab"
+              }
+            >
               <button
                 className="custom-button"
                 onClick={() => handleSelect("unlog")}
@@ -86,14 +110,15 @@ function UserProfile() {
             </li>
           </ul>
         </div>
-
-        {activeTab === "profile" && currentUser ? (
-          <UserProfileForm user={currentUser} />
-        ) : null}
-        {activeTab === "paymentInfos" && <UserPaymentInfos />}
-        {activeTab === "userOrders" && <UserOrders />}
+        <div className="col-md-6">
+          {activeTab === "profile" && currentUser ? (
+            <UserProfileForm user={currentUser} />
+          ) : null}
+          {activeTab === "paymentInfos" && <UserPaymentInfos />}
+          {activeTab === "userOrders" && <UserOrders />}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

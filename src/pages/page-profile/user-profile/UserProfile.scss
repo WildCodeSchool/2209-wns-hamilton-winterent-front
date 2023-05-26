@@ -7,3 +7,12 @@
   cursor: pointer;
   outline: inherit;
 }
+
+.tabSelected {
+  background-color: #0f2641;
+  color: white;
+}
+
+.tab:hover {
+  background-color: #e3e9ef;
+}

@@ -1,9 +1,13 @@
 .destination {
   .destination-page-image {
-    height: 25vh;
-    background-image: url('../../assets/bg_home.jpg');
+    height: 30vh;
+    background : linear-gradient(
+      rgba(48, 48, 48, 0.45), 
+      rgba(48, 48, 48, 0.45)
+    ), url('../../assets/header_category.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   .well {
