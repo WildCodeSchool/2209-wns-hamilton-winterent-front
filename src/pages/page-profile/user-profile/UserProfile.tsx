@@ -20,9 +20,9 @@ function UserProfile() {
   const navigator = useNavigate();
   const [activeTab, setActiveTab] = useState<TabTypes>(TabTypes.Profile);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const { userLog } = useLogin();
+  const { userLog, setUserLog } = useLogin();
 
-  const { loading, error, data } = useQuery(USER, {
+  const { loading, error } = useQuery(USER, {
     variables: { userId: userLog?.user.id },
     onCompleted(data) {
       if (data.user) {
@@ -30,6 +30,10 @@ function UserProfile() {
       }
     },
   });
+
+  const handleDeleteLocalStorage = () => {
+    setUserLog(null);
+  };
 
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;
@@ -103,7 +107,7 @@ function UserProfile() {
             >
               <button
                 className="custom-button"
-                onClick={() => handleSelect("unlog")}
+                onClick={handleDeleteLocalStorage}
               >
                 Déconnexion
               </button>
