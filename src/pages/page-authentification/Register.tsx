@@ -57,9 +57,6 @@ function Register() {
     });
   };
 
-  // if (loading) return <div>Chargement en cours</div>;
-  // if (error) return <div>Une erreur s'est produite</div>;
-
   return (
     <div>
       <div>
@@ -220,7 +217,7 @@ function Register() {
           </label>
         </div>
 
-        <div className="mt-5 d-flex justify-content-center">
+        <div className="my-5 d-flex justify-content-center">
           <button className="btn btn-primary" disabled={waiting || loading}>
             {loading
               ? "Chargement en cours"

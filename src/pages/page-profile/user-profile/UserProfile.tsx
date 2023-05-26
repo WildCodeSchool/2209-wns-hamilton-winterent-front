@@ -22,7 +22,7 @@ function UserProfile() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const { userLog, setUserLog } = useLogin();
 
-  const { loading, error } = useQuery(USER, {
+  const {} = useQuery(USER, {
     variables: { userId: userLog?.user.id },
     onCompleted(data) {
       if (data.user) {
@@ -34,9 +34,6 @@ function UserProfile() {
   const handleDeleteLocalStorage = () => {
     setUserLog(null);
   };
-
-  if (loading) return <div>Chargement en cours</div>;
-  if (error) return <div>Une erreur s'est produite</div>;
 
   const handleSelect = (tab: string) => {
     if (tab === "profile") setActiveTab(TabTypes.Profile);

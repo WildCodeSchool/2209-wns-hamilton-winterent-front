@@ -43,7 +43,6 @@ function Login() {
 
   const onSubmit: SubmitHandler<FormValues> = async (response) => {
     var result = await login({ variables: { ...response } });
-    console.log(result);
   };
 
   return (
@@ -66,7 +65,7 @@ function Login() {
         />
       </div>
 
-      <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
+      <form className="my-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-column align-items-center text-center">
           <label className="d-flex flex-column" htmlFor="">
             Mail
@@ -102,7 +101,8 @@ function Login() {
           <button
             className="btn btn-primary btn-sm mt-4"
             type="submit"
-            disabled={waiting || loading}>
+            disabled={waiting || loading}
+          >
             {loading
               ? "Chargement en cours"
               : waiting
