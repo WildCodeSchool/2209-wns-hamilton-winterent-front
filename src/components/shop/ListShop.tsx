@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from 'react-router-dom';
 
 interface ShopAddress {
   nameShop: string;
@@ -18,7 +18,10 @@ const ListShop = ({ nameShop, addressShop, idShop }: ShopAddress) => {
   const idCategory = searchParams.get('idCategory');
   return (
     <>
-      <Link to={`/products?idCategory=${idCategory}&idShop=${idShop}`}  className="text-decoration-none headband p-2">
+      <Link
+        to={`/products?idCategory=${idCategory}&idShop=${idShop}`}
+        className="text-decoration-none headband p-2"
+      >
         <div>
           <h4>Winterent {nameShop}</h4>
           <p className="text-dark">

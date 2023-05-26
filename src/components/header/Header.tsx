@@ -22,14 +22,11 @@ const Header = () => {
   };
 
   //Récupérer les catégories
-  const { loading, error } = useQuery(
-    LIST_CATEGORY,
-    {
-      onCompleted(data) {
-        setCategories(data.listCategory);
-      },
-    }
-  );
+  const { loading, error } = useQuery(LIST_CATEGORY, {
+    onCompleted(data) {
+      setCategories(data.listCategory);
+    },
+  });
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;
 
@@ -37,7 +34,11 @@ const Header = () => {
     <>
       <div className="nav-container">
         <a href="/">
-          <img className="m-3 logo-w" src={logoWinterent} />
+          <img
+            className="m-3 logo-w"
+            src={logoWinterent}
+            alt="logo-winterent"
+          />
         </a>
         <nav className="navbar navbar-expand-lg navbar-dark ">
           <div className="container-fluid">
@@ -148,7 +149,7 @@ const Header = () => {
   ) : (
     <div className="nav-container">
       <a href="/">
-        <img className="m-3 logo-w" src={logoWinterent} />
+        <img className="m-3 logo-w" src={logoWinterent} alt="logo-winterent" />
       </a>
       <nav className="navbar navbar-expand-lg navbar-dark ">
         <div className="container-fluid">

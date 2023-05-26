@@ -1,9 +1,9 @@
-import { useState } from "react";
-import skiIcon from "../../../assets/skiIcon.png";
-import "./UserOrders.scss";
-import { useQuery } from "@apollo/client";
-import { USER_ORDERS } from "../../../graphql/queries/usersQueries";
-import { useLogin } from "../../../context/LoginProvider";
+import { useState } from 'react';
+import skiIcon from '../../../assets/skiIcon.png';
+import './UserOrders.scss';
+import { useQuery } from '@apollo/client';
+import { USER_ORDERS } from '../../../graphql/queries/usersQueries';
+import { useLogin } from '../../../context/LoginProvider';
 
 interface IOrder {
   id: string;
@@ -26,7 +26,7 @@ function UserOrders() {
   const { userLog } = useLogin();
   const [orders, setOrders] = useState<IOrder[]>([]);
 
-  const { loading, error, data } = useQuery(USER_ORDERS, {
+  useQuery(USER_ORDERS, {
     variables: { userId: userLog?.user.id },
     onCompleted(data) {
       setOrders(data.getOrderByUserId);
@@ -45,7 +45,7 @@ function UserOrders() {
                 <img
                   src={skiIcon}
                   className="img-fluid rounded-start m-3 d-none d-sm-block"
-                  style={{ maxWidth: "70px" }}
+                  style={{ maxWidth: '70px' }}
                   alt="..."
                 />
               </div>
