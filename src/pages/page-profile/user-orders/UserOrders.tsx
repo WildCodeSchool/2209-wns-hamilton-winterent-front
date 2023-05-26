@@ -6,28 +6,40 @@ import { USER_ORDERS } from "../../../graphql/queries/usersQueries";
 import { useLogin } from "../../../context/LoginProvider";
 import { Order } from "../../../generated/graphql";
 
-// interface IOrder {
-//   id: number;
-//   date: string;
-//   status: string;
-//   bookingStartDate: string;
-//   bookingEndDate: string;
-// }
+interface IOrder {
+  id: string;
+  date: string;
+  status: string;
+  user: {
+    id: string;
+  };
+  bookings: [
+    {
+      id: string;
+      startDate: string;
+      endDate: string;
+      price: number;
+    }
+  ];
+}
 
 function UserOrders() {
   const { userLog } = useLogin();
+  const [orders, setOrders] = useState<IOrder[]>([]);
 
-  const { loading, error, data } = useQuery<Order[]>(USER_ORDERS, {
+  const { loading, error, data } = useQuery(USER_ORDERS, {
     variables: { userId: userLog?.user.id },
+    onCompleted(data) {
+      setOrders(data.getOrderByUserId);
+    },
   });
-  //console.log(data);
 
   return (
     <>
       <div className="d-flex flex-column align-items-center">
         <h2>Vos commandes</h2>
 
-        {/* {orders?.map((order) => (
+        {orders.map((order) => (
           <div className="card border-info m-3 cardStyle" key={order.id}>
             <div className="row g-0">
               <div className="col-md-3 ">
@@ -41,12 +53,14 @@ function UserOrders() {
               <div className="col-md-8 ">
                 <div className="card-body">
                   <h5 className="card-title">Commande N° : 0000</h5>
-                  <p className="card-text">Date de la commande :{order.date}</p> */}
-        {/* <p className="card-text">
+                  <p className="card-text">
+                    Date de la commande : {order.date}
+                  </p>
+                  {/* <p className="card-text">
                     Dates de location : du {order.bookingStartDate} au{" "}
                     {order.bookingEndDate}
                   </p> */}
-        {/* <p className="card-text">
+                  {/* <p className="card-text">
                     Statut :&nbsp;
                     <span>
                       {order.status === "En cours" && (
@@ -66,14 +80,14 @@ function UserOrders() {
                       )}
                     </span>
                   </p> */}
-        {/* <p className="card-text">
+                  <p className="card-text">
                     <small className="text-muted">Reste à régler : 0</small>
                   </p>
                 </div>
               </div>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
     </>
   );
