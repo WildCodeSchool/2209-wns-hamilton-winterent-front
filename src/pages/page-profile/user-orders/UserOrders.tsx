@@ -4,7 +4,6 @@ import "./UserOrders.scss";
 import { useQuery } from "@apollo/client";
 import { USER_ORDERS } from "../../../graphql/queries/usersQueries";
 import { useLogin } from "../../../context/LoginProvider";
-import { Order } from "../../../generated/graphql";
 
 interface IOrder {
   id: string;
