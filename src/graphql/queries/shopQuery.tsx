@@ -17,12 +17,11 @@ export const LIST_SHOP = gql`
   }
 `;
 
-
-export const SHOPS = gql `
+export const SHOPS = gql`
   query Shops {
-  shops {
-    name
-    id
+    shops {
+      name
+      id
+    }
   }
-}
-`
+`;

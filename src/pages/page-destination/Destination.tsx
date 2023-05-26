@@ -28,7 +28,7 @@ function Destination() {
       <div className="destination-page-image d-flex justify-content-center flex-column align-items-center">
         <div className="text-white d-flex flex-column justify-content-center"></div>
       </div>
-      <SearchBar/>
+      <SearchBar />
       <div className="d-flex justify-content-center pb-5 mt-4">
         <div className="w-75">
           <h3 className="text-primary">
