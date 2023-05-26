@@ -1,4 +1,5 @@
 import './Cart.scss';
+import CartItem from '../../components/cartItem/CartItem';
 
 const Cart = () => {
     return (
@@ -11,6 +12,7 @@ const Cart = () => {
                     <h3 className="text-primary">
                         <i className="bi bi-chevron-double-down"></i> PANIER
                     </h3>
+                    <CartItem/>
                 </div>
             </div>
         </div>
