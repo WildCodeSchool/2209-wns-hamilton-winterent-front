@@ -37,7 +37,7 @@ function Shop() {
         <div className="text-white d-flex flex-column justify-content-center"></div>
       </div>
       <SearchBar/>
-      <div className="d-flex justify-content-center pb-5">
+      <div className="d-flex justify-content-center pb-5 mt-4">
         <div className="w-75">
           <h3 className="text-primary">
             <i className="bi bi-chevron-double-down"></i> NOS MAGASINS
@@ -48,13 +48,15 @@ function Shop() {
             soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi voluptatum
             autem, soluta magni cupiditate explicabo quis.
           </div>
-          <div className="d-flex flex-row justify-content-between">
+          <hr className="hr mt-4" />
+          <h4 className="text-primary mt-4">Winterent disponible aux {}</h4>
+          <div className="d-flex flex-row justify-content-between ">
             {shopList.map((el: ListShops) => (
               <div
                 key={el.id}
                 className={`m-2 bg-image-1 d-flex flex-column justify-content-end`}
               >
-                <ListShop nameShop={el.name} addressShop={el.address} />
+                <ListShop nameShop={el.name} idShop={el.id} addressShop={el.address} />
               </div>
             ))}
           </div>

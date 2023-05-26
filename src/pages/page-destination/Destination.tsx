@@ -29,7 +29,7 @@ function Destination() {
         <div className="text-white d-flex flex-column justify-content-center"></div>
       </div>
       <SearchBar/>
-      <div className="d-flex justify-content-center pb-5">
+      <div className="d-flex justify-content-center pb-5 mt-4">
         <div className="w-75">
           <h3 className="text-primary">
             <i className="bi bi-chevron-double-down"></i> VOTRE DESTINATION
@@ -40,7 +40,7 @@ function Destination() {
             soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi voluptatum
             autem, soluta magni cupiditate explicabo quis.
           </div>
-          <div className="d-flex flex-row justify-content-between">
+          <div className="d-flex flex-row justify-content-between mt-4">
             {destination.map((el: DestinationShop, index) => (
               <div
                 key={el.address.id}
