@@ -6,14 +6,17 @@ import { useLogin } from "../../context/LoginProvider";
 import { QueryLoginArgs } from "../../generated/graphql";
 import { LOGIN } from "../../graphql/queries/usersQueries";
 import imgLogin from "../../assets/imgLogin.png";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import useNotification from "../../notifications/useNotification";
 interface FormValues extends QueryLoginArgs {}
 
 function Login() {
   const navigator = useNavigate();
+  const { authentification } = useNotification();
   const [err, setErr] = useState<String | null>(null);
   const { setUserLog } = useLogin();
-
+  const [waiting, setWaiting] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -22,8 +25,16 @@ function Login() {
 
   const [login, { loading }] = useLazyQuery(LOGIN, {
     onCompleted(data) {
-      setUserLog(data.login);
-      navigator("/");
+      toast(authentification.loginSuccess, {
+        onClose(props) {
+          setUserLog(data.login);
+          navigator("/");
+        },
+        onOpen() {
+          setWaiting(true);
+        },
+        type: "success",
+      });
     },
     onError(error) {
       setErr(error.message);
@@ -34,12 +45,25 @@ function Login() {
     var result = await login({ variables: { ...response } });
     console.log(result);
   };
-  if (loading) return <div>Chargement en cours</div>;
 
   return (
     <div>
       <div>
         <img className="w-100" src={imgLogin} alt="" />
+      </div>
+      <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
 
       <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
@@ -75,8 +99,15 @@ function Login() {
           {err ? "Les informations fournies ne sont pas correctes" : ""}{" "}
         </p>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-primary btn-sm mt-4" type="submit">
-            Connexion
+          <button
+            className="btn btn-primary btn-sm mt-4"
+            type="submit"
+            disabled={waiting || loading}>
+            {loading
+              ? "Chargement en cours"
+              : waiting
+              ? "Veuillez patienter..."
+              : "Connexion"}
           </button>
         </div>
       </form>

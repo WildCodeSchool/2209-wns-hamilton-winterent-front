@@ -1,0 +1,7 @@
+{
+  "authentification": {
+    "loginSuccess": "Connexion réussi, vous allez être redirigé sur la page principal",
+    "registerSucess": "Votre compte a bien été crée, vous allez être redirigé pour vous connecter",
+    "err": "Une erreur est survenue"
+  }
+}
