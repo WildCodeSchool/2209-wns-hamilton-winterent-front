@@ -35,7 +35,7 @@ function Destination() {
             <i className="bi bi-chevron-double-down"></i> VOTRE DESTINATION
           </h3>
           <div>
-          Choisissez parmi nos destinations de ski de renommée mondiale et trouvez le matériel parfait pour votre aventure hivernale. Des paysages incroyables et des pistes adaptées à tous les niveaux vous attendent !
+            Choisissez parmi nos destinations de ski de renommée mondiale et trouvez le matériel parfait pour votre aventure hivernale. Des paysages incroyables et des pistes adaptées à tous les niveaux vous attendent !
           </div>
           <div className="d-flex flex-row justify-content-between mt-4">
             {destination.map((el: DestinationShop, index) => (

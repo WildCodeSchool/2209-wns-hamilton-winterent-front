@@ -42,10 +42,7 @@ const Products = () => {
             <i className="bi bi-chevron-double-down"></i> NOS SKI
           </h3>
           <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis
-            incidunt distinctio deleniti, explicabo eum fuga soluta. Ipsa sit
-            omnis nihil reprehenderit sunt excepturi voluptatum autem, soluta
-            magni cupiditate explicabo quis.
+            Découvrez notre rubrique de location de ski, votre destination pour trouver l'équipement parfait. Skis, snowboards, accessoires : nous avons tout ce dont vous avez besoin. Notre équipe expérimentée vous guidera vers le matériel adapté à votre niveau et à vos préférences. Location flexible pour une journée ou plus. Prêt à dévaler les pentes en toute sécurité ? Rejoignez-nous dès maintenant !
           </div>
         </div>
       </div>
