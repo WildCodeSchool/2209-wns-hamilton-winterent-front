@@ -13,10 +13,15 @@ export const ShopContext = createContext<ICartContext>({
   removeFromCart: () => {},
 });
 
+const getDefaultCart = () => {
+  let cart: Product[] = [];
+  return cart;
+};
+
 const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>(getDefaultCart());
 
   const addToCart = (item: Product) => {
     setCartItems((prevItems = []) => [...prevItems, item]);
