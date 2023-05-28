@@ -1,0 +1,39 @@
+.cartContainer{
+    // background-color: darkgray;
+    max-width: 75%;
+
+    .itemInfo{
+        // background-color:aquamarine;
+    
+        .itemImgCtnr{
+            // background-color:rgb(127, 129, 255);
+            background-image: url("../../assets/ski_rx.png") ;
+            min-height: 100px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        // .itemImgCtnr img{
+        //     max-height: 100%;
+        //     width:100%;
+        // }
+    }
+
+        // .itemDetails{
+        //     background-color: rgb(227, 173, 48);
+        // }
+
+        // .qtyPrice{
+        //     background-color: chartreuse;
+        // }
+
+    // .cartButtons{
+    //     // background-color: coral;
+    // }
+}
+
+
+
+
+
