@@ -28,6 +28,7 @@ const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
+  console.log(cartItems);
   return (
     <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
