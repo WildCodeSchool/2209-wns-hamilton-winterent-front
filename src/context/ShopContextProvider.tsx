@@ -1,5 +1,6 @@
-import React, { ReactNode, createContext, useState } from "react";
+import React, { createContext } from "react";
 import { Product } from "../generated/graphql";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface ICartContext {
   cartItems: Product[];
@@ -13,15 +14,13 @@ export const ShopContext = createContext<ICartContext>({
   removeFromCart: () => {},
 });
 
-const getDefaultCart = () => {
-  let cart: Product[] = [];
-  return cart;
-};
-
 const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useState<Product[]>(getDefaultCart());
+  const [cartItems, setCartItems] = useLocalStorage<Product[]>(
+    "shopping-cart",
+    []
+  );
 
   const addToCart = (item: Product) => {
     setCartItems((prevItems = []) => [...prevItems, item]);
@@ -33,7 +32,7 @@ const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
-  console.log(cartItems);
+  console.log("TEST CART", cartItems);
   return (
     <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}

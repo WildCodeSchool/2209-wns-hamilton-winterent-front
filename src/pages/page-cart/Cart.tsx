@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 const Cart = () => {
   const { cartItems } = useContext(ShopContext);
-  console.log(cartItems);
+
   return (
     <div className="cart">
       <div className="cart-page-image d-flex justify-content-center flex-column align-items-center">
@@ -17,16 +17,17 @@ const Cart = () => {
             <i className="bi bi-chevron-double-down"></i> PANIER
           </h3>
           {cartItems.map((item) => {
-            if (cartItems[item.id] !== null) {
-              return (
-                <CartItem
-                  description={item.description}
-                  id={item.id}
-                  name={item.name}
-                  range={item.range}
-                />
-              );
-            }
+            //if (cartItems[item] !== null) {
+            return (
+              <CartItem
+                key={item.id}
+                description={item.description}
+                id={item.id}
+                name={item.name}
+                range={item.range}
+              />
+            );
+            //}
           })}
         </div>
       </div>
