@@ -1,10 +1,10 @@
-import React from 'react';
-import './SearchBar.scss';
-import { useState } from 'react';
-import { SHOPS } from '../../graphql/queries/shopQuery';
-import { useQuery } from '@apollo/client';
-import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./SearchBar.scss";
+import { useState } from "react";
+import { SHOPS } from "../../graphql/queries/shopQuery";
+import { useQuery } from "@apollo/client";
+import { LIST_CATEGORY } from "../../graphql/queries/categoryQuery";
+import { useNavigate } from "react-router-dom";
 
 interface Shop {
   id: string;
@@ -22,11 +22,11 @@ export default function SearchBar() {
   let currentDate = new Date().toISOString().slice(0, 10);
 
   //Sélectionner la date sélectionner dans le calendrier avec onChange
-  const [dateArrival, setDateArrival] = useState<string | null>('');
-  const [dateDeparture, setDateDeparture] = useState<string | null>('');
+  const [dateArrival, setDateArrival] = useState<string | null>("");
+  const [dateDeparture, setDateDeparture] = useState<string | null>("");
   const [categories, setCategories] = useState<CategoryName[]>([]);
-  const [selectCategories, setSelectCategories] = useState('');
-  const [selectShop, setSelectShop] = useState('');
+  const [selectCategories, setSelectCategories] = useState("");
+  const [selectShop, setSelectShop] = useState("");
 
   // récupérer les shops
   const [shops, setShops] = useState<Shop[]>([]);
@@ -75,30 +75,36 @@ export default function SearchBar() {
   if (error || errorCategory) return <div>Une erreur s'est produite</div>;
   return (
     <form className="search-bar rounded border border-primary">
-      <select className="product-search rounded-left" defaultValue="" required>
+      <select
+        className="product-search rounded-left"
+        defaultValue=""
+        required
+        onChange={(event) => {
+          setSelectCategories(event.target.value);
+        }}
+      >
         <option value="" disabled>
           Catégories
         </option>
         {categories.map((category) => (
-          <option
-            onClick={() => setSelectCategories(category.id)}
-            value={category.category}
-            key={category.id}
-          >
+          <option value={category.id} key={category.id}>
             {category.category}
           </option>
         ))}
       </select>
-      <select className="product-search border-left" defaultValue="" required>
+      <select
+        className="product-search border-left"
+        defaultValue=""
+        required
+        onChange={(event) => {
+          setSelectShop(event.target.value);
+        }}
+      >
         <option value="" disabled>
           Magasins
         </option>
         {shops.map((shop) => (
-          <option
-            onClick={() => setSelectShop(shop.id)}
-            value={shop.name}
-            key={shop.id}
-          >
+          <option value={shop.id} key={shop.id}>
             {shop.name}
           </option>
         ))}
