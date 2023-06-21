@@ -25,8 +25,7 @@ const Products = () => {
       setProductlist(data.productsFilter);
     },
   });
-  // console.log("productlist", productlist);
-  // console.log("searchParams", searchParams);
+
   if (loading) return <div>Chargement en cours</div>;
   if (error) return <div>Une erreur s'est produite</div>;
 

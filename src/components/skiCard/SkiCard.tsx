@@ -2,7 +2,6 @@ import "./SkiCard.scss";
 import ski from "../../assets/ski_rx.png";
 import shoe from "../../assets/shoe.png";
 import helmet from "../../assets/helmet.png";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContextProvider";
 import { Product } from "../../generated/graphql";
