@@ -44,10 +44,9 @@ const Category = () => {
             <i className="bi bi-chevron-double-down"></i> CATEGORIES
           </h3>
           <div>
-            Envoie du rêve! Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Debitis incidunt distinctio deleniti, explicabo eum fuga
-            soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi voluptatum
-            autem, soluta magni cupiditate explicabo quis.
+          <strong>Bienvenue sur Winterent, votre solution de location de matériel de sport d'hiver en ligne ! Que vous soyez un skieur passionné ou un amateur de glisse en quête d'aventure, nous avons tout ce qu'il vous faut pour profiter pleinement de votre séjour en montagne.</strong>
+<br/>
+Chez Winterent, nous comprenons que la qualité de l'équipement peut faire une énorme différence dans votre expérience sur les pistes. C'est pourquoi nous collaborons avec les marques les plus réputées pour vous offrir une vaste sélection.
           </div>
           <div className="d-flex flex-row mt-4">
             {listCategory.map((el: CategoryName) => (
@@ -69,10 +68,7 @@ const Category = () => {
               <i className="bi bi-chevron-double-down"></i> A PROPOS DE NOUS
             </h1>
             <div>
-              Envoie du rêve! Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Debitis incidunt distinctio deleniti, explicabo
-              eum fuga soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi
-              voluptatum autem, soluta magni cupiditate explicabo quis.
+            Notre équipe dévouée et expérimentée est toujours prête à vous aider. Que vous ayez besoin de conseils pour choisir le matériel approprié ou des recommandations sur les meilleures pistes de la région, nous sommes là pour vous guider à chaque étape. Votre satisfaction est notre priorité absolue.
             </div>
           </div>
         </div>

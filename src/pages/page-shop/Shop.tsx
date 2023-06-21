@@ -72,11 +72,7 @@ function Shop() {
                 LOCATION
               </h1>
               <div>
-                Envoie du rêve! Lorem, ipsum dolor sit amet consectetur
-                adipisicing elit. Debitis incidunt distinctio deleniti,
-                explicabo eum fuga soluta. Ipsa sit omnis nihil reprehenderit
-                sunt excepturi voluptatum autem, soluta magni cupiditate
-                explicabo quis.
+                Choisissez parmi nos magasins de ski et trouvez le matériel parfait pour votre aventure hivernale. Des paysages incroyables et des pistes adaptées à tous les niveaux vous attendent !
               </div>
             </div>
           </div>

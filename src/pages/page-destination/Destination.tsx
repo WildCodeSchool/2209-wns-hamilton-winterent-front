@@ -35,10 +35,7 @@ function Destination() {
             <i className="bi bi-chevron-double-down"></i> VOTRE DESTINATION
           </h3>
           <div>
-            Envoie du rêve! Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Debitis incidunt distinctio deleniti, explicabo eum fuga
-            soluta. Ipsa sit omnis nihil reprehenderit sunt excepturi voluptatum
-            autem, soluta magni cupiditate explicabo quis.
+            Choisissez parmi nos destinations de ski de renommée mondiale et trouvez le matériel parfait pour votre aventure hivernale. Des paysages incroyables et des pistes adaptées à tous les niveaux vous attendent !
           </div>
           <div className="d-flex flex-row justify-content-between mt-4">
             {destination.map((el: DestinationShop, index) => (
