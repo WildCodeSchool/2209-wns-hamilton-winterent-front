@@ -1,47 +1,71 @@
-import { useContext } from "react";
-import { Product } from "../../generated/graphql";
 import "./CartItem.scss";
-import { ShopContext } from "../../context/ShopContextProvider";
-// import ski from '../../assets/ski_rx.png';
+import imgSki from "../../assets/ski_rx.png";
 
-function CartItem({ id, name, description, range, image }: Product) {
-  const { removeFromCart } = useContext(ShopContext);
-
+const CartItem = () => {
   return (
-    <div className="cartContainer m-3">
-      <div className="itemInfo row">
-        <div className="itemImgCtnr col-2">
-          {/* <img className="skiImage" src={ski} alt=""/> */}
-        </div>
-
-        <div className="col-5">
-          <div className="itemName fw-bold">
-            {name} {range}
+    <div>
+      <div className="article mt-5 p-2">
+        <div className="d-flex justify-content-between">
+          <div className="d-flex gap-5">
+            <img src={imgSki} alt="" />
+            <div className="d-flex flex-column">
+              <h5>Ski Rossignol Gold, pour femme</h5>
+              <p> size : medium </p>
+              <p> shop : Isola 2000</p>
+              <button className="btn btn-outline-danger" type="submit">
+                Supprimer
+              </button>
+            </div>
           </div>
-          <div> size : medium </div>
-          <div> shop : Isola 2000</div>
+
+          <div className="d-flex flex-column align-items-center">
+            <p>28 €</p>
+            <select className="form-select">
+              <option selected>Quantité: 1</option>
+              <option value="2">Quantité: 2</option>
+              <option value="3">Quantité: 3</option>
+              <option value="4">Quantité: 4</option>
+            </select>
+          </div>
         </div>
 
-        <div className="col-5">
-          <div className="d-flex justify-content-end fw-bold">€28.00</div>
-          <div className="d-flex justify-content-end">select</div>
-        </div>
-      </div>
+        <div className="line"></div>
+        <div className="mt-5">
+          <div className="d-flex justify-content-between">
+            <div className="d-flex gap-5">
+              <img src={imgSki} alt="" />
+              <div className="d-flex flex-column">
+                <h5>Ski Rossignol Gold, pour femme</h5>
+                <p> size : medium </p>
+                <p> shop : Isola 2000</p>
+                <button className="btn btn-outline-danger" type="submit">
+                  Supprimer
+                </button>
+              </div>
+            </div>
 
-      <div className=" row">
-        <div className="space col-2"></div>
-        <div className="buttons col-9">
-          <button
-            className="btn btn-outline-danger me-1"
-            type="submit"
-            onClick={() => removeFromCart(id)}
-          >
-            Supprimer
+            <div className="d-flex flex-column align-items-center">
+              <p>28 €</p>
+              <select className="form-select">
+                <option selected>Quantité: 1</option>
+                <option value="2">Quantité: 2</option>
+                <option value="3">Quantité: 3</option>
+                <option value="4">Quantité: 4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="buts d-flex justify-content-between">
+          <button className="butBack btn btn-primary mt-4" type="submit">
+            Retour au menu
+          </button>
+          <button className="butBack btn btn-primary mt-4" type="submit">
+            Tout supprimer
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default CartItem;

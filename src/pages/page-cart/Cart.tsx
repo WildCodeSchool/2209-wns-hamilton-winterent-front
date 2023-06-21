@@ -1,11 +1,8 @@
 import "./Cart.scss";
 import CartItem from "../../components/cartItem/CartItem";
-import { ShopContext } from "../../context/ShopContextProvider";
-import { useContext } from "react";
+import CartPayment from "../../components/cartPayment/CartPayment";
 
 const Cart = () => {
-  const { cartItems } = useContext(ShopContext);
-
   return (
     <div className="cart">
       <div className="cart-page-image d-flex justify-content-center flex-column align-items-center">
@@ -13,22 +10,13 @@ const Cart = () => {
       </div>
       <div className="d-flex justify-content-center">
         <div className="w-75">
-          <h3 className="text-primary">
+          <h3 className="text-primary mt-4">
             <i className="bi bi-chevron-double-down"></i> PANIER
           </h3>
-          {cartItems.map((item) => {
-            //if (cartItems[item] !== null) {
-            return (
-              <CartItem
-                key={item.id}
-                description={item.description}
-                id={item.id}
-                name={item.name}
-                range={item.range}
-              />
-            );
-            //}
-          })}
+          <div className="components d-flex align-items-center mb-4">
+            <CartItem />
+            <CartPayment />
+          </div>
         </div>
       </div>
     </div>
