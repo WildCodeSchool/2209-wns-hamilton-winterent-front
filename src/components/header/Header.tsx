@@ -1,12 +1,12 @@
-import { useLogin } from '../../context/LoginProvider';
-import { Link, useLocation } from 'react-router-dom';
-import logoWinterent from '../../assets/Logo_winterent-ligh-Ht.png';
-import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
-import { useQuery } from '@apollo/client';
-import { useState } from 'react';
-import HeaderUserLog from './HeaderUserLog';
-import HeaderNotUser from './HeaderNotUser';
-import './_header.scss';
+import { useLogin } from "../../context/LoginProvider";
+import { Link, useLocation } from "react-router-dom";
+import logoWinterent from "../../assets/Logo_winterent-ligh-Ht.png";
+import { LIST_CATEGORY } from "../../graphql/queries/categoryQuery";
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
+import HeaderUserLog from "./HeaderUserLog";
+import HeaderNotUser from "./HeaderNotUser";
+import "./_header.scss";
 
 interface CategoryName {
   id: string;
@@ -59,7 +59,7 @@ const Header = () => {
                 <li className="nav-item">
                   <Link
                     className={`nav-link ${
-                      location.pathname === '/' ? 'active' : ''
+                      location.pathname === "/" ? "active" : ""
                     }`}
                     aria-current="page"
                     to="/"
@@ -98,7 +98,7 @@ const Header = () => {
                 <li className="nav-item">
                   <Link
                     className={`nav-link ${
-                      location.pathname === '/destination' ? 'active' : ''
+                      location.pathname === "/destination" ? "active" : ""
                     }`}
                     to="/destination"
                   >
@@ -112,7 +112,7 @@ const Header = () => {
                 </li>
                 <li className=" opacity-30 d-none d-lg-block">|</li>
                 <li>
-                  <Link className="text-light m-2" to="/">
+                  <Link className="text-light m-2" to="/cart">
                     <i className="bi bi-cart fs-4"></i>
                   </Link>
                 </li>

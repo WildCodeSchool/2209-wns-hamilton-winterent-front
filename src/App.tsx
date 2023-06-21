@@ -14,32 +14,35 @@ import Destination from "./pages/page-destination/Destination";
 import Shop from "./pages/page-shop/Shop";
 import "./App.css";
 import InfosGeneral from "./components/InfosGeneral";
-import Products from './pages/page-products/Products';
+import ShopContextProvider from "./context/ShopContextProvider";
+import Products from "./pages/page-products/Products";
 import Cart from "./pages/page-cart/Cart";
 
 function App() {
   return (
     <div className="App">
       <LoginProvider>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Category />} />
-            <Route path="/home" element={<Home />} />
-            <Route path={`/shop/:id`} element={<Shop />} />
-            <Route path={`/products`} element={<Products />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/destination" element={<Destination />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route element={<Auth />}>
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/userconnect" element={<UserConnect />} />
-            </Route>
-          </Routes>
-          <InfosGeneral />
-          <Footer />
-        </BrowserRouter>
+        <ShopContextProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Category />} />
+              <Route path="/home" element={<Home />} />
+              <Route path={`/shop/:id`} element={<Shop />} />
+              <Route path={`/products`} element={<Products />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/destination" element={<Destination />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route element={<Auth />}>
+                <Route path="/profile" element={<UserProfile />} />
+                <Route path="/userconnect" element={<UserConnect />} />
+              </Route>
+            </Routes>
+            <InfosGeneral />
+            <Footer />
+          </BrowserRouter>
+        </ShopContextProvider>
       </LoginProvider>
     </div>
   );
