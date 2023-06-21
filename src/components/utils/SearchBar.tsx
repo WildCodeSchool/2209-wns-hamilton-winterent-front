@@ -70,19 +70,19 @@ export default function SearchBar() {
       //dateDeparture.innerHTML = "";
     }
   }
+
   if (loading || loadingCategory) return <div>Chargement en cours</div>;
   if (error || errorCategory) return <div>Une erreur s'est produite</div>;
   return (
     <form className="search-bar rounded border border-primary">
       <select className="product-search rounded-left" defaultValue="" required>
-        <option value="" disabled selected>
+        <option value="" disabled>
           Catégories
         </option>
         {categories.map((category) => (
           <option
             onClick={() => setSelectCategories(category.id)}
             value={category.category}
-            selected
             key={category.id}
           >
             {category.category}
@@ -90,14 +90,13 @@ export default function SearchBar() {
         ))}
       </select>
       <select className="product-search border-left" defaultValue="" required>
-        <option value="" disabled selected>
+        <option value="" disabled>
           Magasins
         </option>
         {shops.map((shop) => (
           <option
             onClick={() => setSelectShop(shop.id)}
             value={shop.name}
-            selected
             key={shop.id}
           >
             {shop.name}
