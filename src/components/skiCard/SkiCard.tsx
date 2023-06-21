@@ -2,9 +2,11 @@ import "./SkiCard.scss";
 import ski from "../../assets/ski_rx.png";
 import shoe from "../../assets/shoe.png";
 import helmet from "../../assets/helmet.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ShopContext } from "../../context/ShopContextProvider";
 import { Product } from "../../generated/graphql";
+import { GET_PRODUCT_INFOS } from "../../graphql/queries/productQuery";
+import { useQuery } from "@apollo/client/react";
 
 // interface Product {
 //   idProduct: string;
@@ -13,8 +15,31 @@ import { Product } from "../../generated/graphql";
 //   range: string;
 // }
 
-function SkiCard(product: Product) {
+interface IItemInfos {
+  product: Product;
+  quantity: number;
+  price: number;
+}
+
+interface ISkiCardProps {
+  product: Product;
+  idShop: string | null;
+}
+
+function SkiCard({ product, idShop }: ISkiCardProps) {
   const { addToCart } = useContext(ShopContext);
+  const [item, setItem] = useState<IItemInfos>();
+
+  const { loading, error } = useQuery(GET_PRODUCT_INFOS, {
+    variables: { idShop: idShop, idProduct: product.id },
+    onCompleted(data) {
+      setItem({
+        product: product,
+        price: data.productInfos.price,
+        quantity: data.productInfos.quantity,
+      });
+    },
+  });
 
   return (
     <div className="cardContainer container w-100 m-4 bg-white shadow-sm">
@@ -24,7 +49,7 @@ function SkiCard(product: Product) {
           {product.range} {product.name}
         </h5>
         <p>ou modèle équivalent</p>
-        <h3>29€</h3>
+        <h3>{item?.price} €</h3>
       </div>
 
       <div className="packageContainer row">

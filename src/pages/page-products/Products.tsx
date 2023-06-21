@@ -56,10 +56,14 @@ const Products = () => {
             {productlist.map((product: Product) => (
               <div key={product.id} className={`col-sm-4 mb-3 mt-6 ski-card`}>
                 <SkiCard
-                  name={product.name}
-                  id={product.id}
-                  description={product.description}
-                  range={product.range}
+                  product={{
+                    description: product.description,
+                    id: product.id,
+                    image: "",
+                    name: product.name,
+                    range: product.range,
+                  }}
+                  idShop={idShop}
                 />
               </div>
             ))}

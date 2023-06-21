@@ -30,7 +30,7 @@ function CartItem({ id, name, range, description, image }: Product) {
         <div className="d-flex flex-column align-items-center">
           <p>28 €</p>
           <select className="form-select">
-            <option selected>Quantité: 1</option>
+            <option>Quantité: 1</option>
             <option value="2">Quantité: 2</option>
             <option value="3">Quantité: 3</option>
             <option value="4">Quantité: 4</option>
