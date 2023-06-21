@@ -4,7 +4,7 @@ import imgSki from "../../assets/ski_rx.png";
 const CartItem = () => {
   return (
     <div>
-      <div className="article mt-5">
+      <div className="article mt-5 p-2">
         <div className="d-flex justify-content-between">
           <div className="d-flex gap-5">
             <img src={imgSki} alt="" />
@@ -54,6 +54,14 @@ const CartItem = () => {
               </select>
             </div>
           </div>
+        </div>
+        <div className="buts d-flex justify-content-between">
+          <button className="butBack btn btn-primary mt-4" type="submit">
+            Retour au menu
+          </button>
+          <button className="butBack btn btn-primary mt-4" type="submit">
+            Tout supprimer
+          </button>
         </div>
       </div>
     </div>
