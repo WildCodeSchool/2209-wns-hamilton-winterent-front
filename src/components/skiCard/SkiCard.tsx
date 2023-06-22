@@ -8,14 +8,7 @@ import { Product } from "../../generated/graphql";
 import { GET_PRODUCT_INFOS } from "../../graphql/queries/productQuery";
 import { useQuery } from "@apollo/client/react";
 
-// interface Product {
-//   idProduct: string;
-//   nameProduct: string;
-//   descriptionProduct: string;
-//   range: string;
-// }
-
-interface IItemInfos {
+export interface IItemInfos {
   product: Product;
   quantity: number;
   price: number;
@@ -28,7 +21,11 @@ interface ISkiCardProps {
 
 function SkiCard({ product, idShop }: ISkiCardProps) {
   const { addToCart } = useContext(ShopContext);
-  const [item, setItem] = useState<IItemInfos>();
+  const [item, setItem] = useState<IItemInfos>({
+    product: product,
+    quantity: 0,
+    price: 0,
+  });
 
   const { loading, error } = useQuery(GET_PRODUCT_INFOS, {
     variables: { idShop: idShop, idProduct: product.id },
@@ -40,6 +37,14 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
       });
     },
   });
+
+  function updateQuantity(item: IItemInfos) {
+    if (item.quantity != null) {
+      setItem({ product, price: item.price, quantity: item.quantity - 1 });
+    }
+    item.quantity = 1;
+    addToCart(item);
+  }
 
   return (
     <div className="cardContainer container w-100 m-4 bg-white shadow-sm">
@@ -88,7 +93,7 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
       </div>
       <button
         className="w-100 btn btn-primary mt-3 mb-3"
-        onClick={() => addToCart(product)}
+        onClick={() => updateQuantity(item)}
       >
         Selectionner
       </button>

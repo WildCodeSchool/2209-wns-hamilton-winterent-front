@@ -1,6 +1,23 @@
+import { useContext, useEffect, useState } from "react";
 import "./CartPayment.scss";
+import { ShopContext } from "../../context/ShopContextProvider";
 
 const CartPayment = () => {
+  const { cartItems } = useContext(ShopContext);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const updateTotal = () => {
+      const result = cartItems.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+      );
+      console.log(result);
+      setTotal(result);
+    };
+    updateTotal();
+  }, [cartItems]);
+
   return (
     <div className="my-2 mt-5">
       <div className="bloc p-4">
@@ -18,7 +35,7 @@ const CartPayment = () => {
         </div> */}
         <div className="d-flex justify-content-between mt-2">
           <h5>Total: </h5>
-          <h5>€1355.30</h5>
+          <h5>{total} €</h5>
         </div>
         <div className="line"></div>
         <div className="text d-flex justify-content-center my-4 ">

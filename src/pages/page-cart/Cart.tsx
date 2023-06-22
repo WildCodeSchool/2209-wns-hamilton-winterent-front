@@ -28,10 +28,9 @@ const Cart = () => {
                     return (
                       <div key={index}>
                         <CartItem
-                          id={item.id}
-                          name={item.name}
-                          description={item.description}
-                          range={item.range}
+                          product={item.product}
+                          quantity={item.quantity}
+                          price={item.price}
                         />
                       </div>
                     );
