@@ -24,14 +24,13 @@ const Cart = () => {
             <div className="components mb-4 article mt-5 p-4">
               <div>
                 {cartItems.length > 0 ? (
-                  cartItems.map((item) => {
+                  cartItems.map((item, index) => {
                     return (
-                      <div key={item.id}>
+                      <div key={index}>
                         <CartItem
-                          id={item.id}
-                          name={item.name}
-                          description={item.description}
-                          range={item.range}
+                          product={item.product}
+                          quantity={item.quantity}
+                          price={item.price}
                         />
                       </div>
                     );

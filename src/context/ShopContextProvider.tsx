@@ -1,10 +1,10 @@
 import React, { createContext } from "react";
-import { Product } from "../generated/graphql";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { IItemInfos } from "../components/skiCard/SkiCard";
 
 interface ICartContext {
-  cartItems: Product[];
-  addToCart: (item: Product) => void;
+  cartItems: IItemInfos[];
+  addToCart: (item: IItemInfos) => void;
   removeFromCart: (itemId: string) => void;
 }
 
@@ -17,18 +17,43 @@ export const ShopContext = createContext<ICartContext>({
 const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useLocalStorage<Product[]>(
+  const [cartItems, setCartItems] = useLocalStorage<IItemInfos[]>(
     "shopping-cart",
     []
   );
 
-  const addToCart = (item: Product) => {
-    setCartItems((prevItems = []) => [...prevItems, item]);
+  const addToCart = (item: IItemInfos) => {
+    setCartItems((prevItems = []) => {
+      const updatedItems = [...prevItems];
+
+      // Vérifiez si l'élément existe déjà dans le panier
+      const existingItemIndex = updatedItems.findIndex(
+        (cartItem) => cartItem.product.id === item.product.id
+      );
+
+      console.log(existingItemIndex);
+
+      if (existingItemIndex !== -1) {
+        // L'élément existe déjà dans le panier, mettez à jour sa quantité
+        const existingItem = updatedItems[existingItemIndex];
+        const updatedItem = {
+          ...existingItem,
+          quantity:
+            existingItem.quantity !== null ? existingItem.quantity + 1 : 1,
+        };
+        updatedItems[existingItemIndex] = updatedItem;
+      } else {
+        // L'élément n'existe pas encore dans le panier, ajoutez-le avec une quantité de 1
+        updatedItems.push({ ...item, quantity: 1 });
+      }
+
+      return updatedItems;
+    });
   };
 
   const removeFromCart = (itemId: string) => {
     setCartItems((prevItems) =>
-      prevItems?.filter((item) => item.id !== itemId)
+      prevItems?.filter((item) => item.product.id !== itemId)
     );
   };
 
