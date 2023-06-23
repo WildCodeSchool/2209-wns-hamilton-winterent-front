@@ -16,7 +16,7 @@ interface Product {
 const Products = () => {
   let [searchParams] = useSearchParams();
   const idCategory = searchParams.get("idCategory");
-  const idShop = searchParams.get("idShop");
+  const idShop: string = searchParams.get("idShop") || "";
 
   const [productlist, setProductlist] = useState([]);
   const { loading, error } = useQuery(GET_PRODUCT, {
