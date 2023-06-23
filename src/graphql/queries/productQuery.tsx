@@ -13,7 +13,7 @@ export const GET_PRODUCT = gql`
 `;
 
 export const GET_PRODUCT_INFOS = gql`
-  query Query($idShop: UUID, $idProduct: UUID) {
+  query getProductInfos($idShop: UUID, $idProduct: UUID) {
     productInfos(idShop: $idShop, idProduct: $idProduct) {
       productId
       quantity
