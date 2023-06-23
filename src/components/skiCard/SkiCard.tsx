@@ -9,7 +9,6 @@ import { GET_PRODUCT_INFOS } from "../../graphql/queries/productQuery";
 import { useQuery } from "@apollo/client/react";
 
 export interface IItemInfos {
-  shopId: string;
   product: Product;
   quantity: number;
   price: number;
@@ -17,13 +16,12 @@ export interface IItemInfos {
 
 interface ISkiCardProps {
   product: Product;
-  idShop: string;
+  idShop: string | null;
 }
 
 function SkiCard({ product, idShop }: ISkiCardProps) {
   const { addToCart } = useContext(ShopContext);
   const [item, setItem] = useState<IItemInfos>({
-    shopId: idShop,
     product: product,
     quantity: 0,
     price: 0,
@@ -33,7 +31,6 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
     variables: { idShop: idShop, idProduct: product.id },
     onCompleted(data) {
       setItem({
-        shopId: idShop,
         product: product,
         price: data.productInfos.price,
         quantity: data.productInfos.quantity,
@@ -43,12 +40,7 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
 
   function updateQuantity(item: IItemInfos) {
     if (item.quantity != null) {
-      setItem({
-        shopId: idShop,
-        product,
-        price: item.price,
-        quantity: item.quantity - 1,
-      });
+      setItem({ product, price: item.price, quantity: item.quantity - 1 });
     }
     item.quantity = 1;
     addToCart(item);
