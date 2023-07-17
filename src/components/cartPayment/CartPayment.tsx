@@ -13,13 +13,13 @@ const CartPayment = () => {
   const { order } = useNotification();
   const [waiting, setWaiting] = useState<boolean>(false);
   const [err, setErr] = useState<String | null>(null);
-  const [orderInfos, setOrderInfos] = useState<OrderInput>({
-    userId: "",
-    bookings: [],
-  });
   const [total, setTotal] = useState(0);
   const [addOrder] = useMutation(ADD_ORDER);
   const { userLog, setUserLog } = useLogin();
+  const [orderInfos, setOrderInfos] = useState<OrderInput>({
+    userId: userLog != null ? userLog.user.id : "",
+    bookings: [],
+  });
 
   useEffect(() => {
     const updateTotal = () => {
@@ -35,7 +35,6 @@ const CartPayment = () => {
 
   const handleCreateOrder = async () => {
     if (userLog) {
-      //let orderInfos: OrderInput = { userId: userLog.user.id };
       setOrderInfos({ userId: userLog.user.id });
 
       cartItems.map((element) => {
@@ -98,18 +97,6 @@ const CartPayment = () => {
       </div>
       <div className="my-2 mt-5">
         <div className="bloc p-4">
-          {/* <div className="d-flex justify-content-between">
-          <p>Subtotal:</p>
-          <p>€1403.22</p>
-        </div> */}
-          {/* <div className="d-flex justify-content-between">
-          <p>Discount:</p>
-          <p className="text-danger">- €60.00</p>
-        </div> */}
-          {/* <div className="d-flex justify-content-between">
-          <p>Tax:</p>
-          <p className="text-success">+ €14.00</p>
-        </div> */}
           <div className="d-flex justify-content-between mt-2">
             <h5>Total: </h5>
             <h5>{total} €</h5>

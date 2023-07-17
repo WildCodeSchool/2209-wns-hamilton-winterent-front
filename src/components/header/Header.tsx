@@ -3,10 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import logoWinterent from "../../assets/Logo_winterent-ligh-Ht.png";
 import { LIST_CATEGORY } from "../../graphql/queries/categoryQuery";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import HeaderUserLog from "./HeaderUserLog";
 import HeaderNotUser from "./HeaderNotUser";
 import "./_header.scss";
+import { ShopContext } from "../../context/ShopContextProvider";
 
 interface CategoryName {
   id: string;
@@ -14,6 +15,7 @@ interface CategoryName {
 }
 
 const Header = () => {
+  const { cartItems } = useContext(ShopContext);
   const [categories, setCategories] = useState<CategoryName[]>([]);
 
   let location = useLocation();
@@ -113,10 +115,33 @@ const Header = () => {
                 <li className=" opacity-30 d-none d-lg-block">|</li>
                 <li>
                   <Link className="text-light m-2" to="/cart">
-                    <i className="bi bi-cart fs-4"></i>
+                    <div
+                      className="m-2"
+                      style={{
+                        width: "2rem",
+                        position: "relative",
+                        display: "flex",
+                      }}
+                    >
+                      <i className="bi bi-cart fs-4"> </i>
+                      {cartItems.length > 0 && (
+                        <div
+                          className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                          style={{
+                            width: "1.2rem",
+                            height: "1.2rem",
+                            position: "absolute",
+                            bottom: 0,
+                            right: -4,
+                          }}
+                        >
+                          {cartItems.length}
+                        </div>
+                      )}
+                    </div>
                   </Link>
                 </li>
-                <li className=" opacity-30 d-none d-lg-block">|</li>
+                <li className="opacity-30 d-none d-lg-block">|</li>
                 {userLog ? <HeaderUserLog /> : <HeaderNotUser />}
               </ul>
             </div>
