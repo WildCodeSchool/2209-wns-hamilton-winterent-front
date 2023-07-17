@@ -10,6 +10,7 @@
   },
   "order": {
     "createOrderSuccess": "Votre réservation est prise en compte",
-    "createOrderError": "Une erreur s'est produite, votre réservation n'a pas pu être crée"
+    "createOrderError": "Une erreur s'est produite, votre réservation n'a pas pu être crée",
+    "addToCartSuccess": "Article ajouté au panier"
   }
 }
