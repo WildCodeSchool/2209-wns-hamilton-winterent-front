@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import skiIcon from '../../../assets/skiIcon.png';
-import './UserOrders.scss';
-import { useQuery } from '@apollo/client';
-import { USER_ORDERS } from '../../../graphql/queries/usersQueries';
-import { useLogin } from '../../../context/LoginProvider';
+import { useState } from "react";
+import skiIcon from "../../../assets/skiIcon.png";
+import "./UserOrders.scss";
+import { useQuery } from "@apollo/client";
+import { USER_ORDERS } from "../../../graphql/queries/usersQueries";
+import { useLogin } from "../../../context/LoginProvider";
 
 interface IOrder {
   id: string;
-  date: string;
+  date: Date;
   status: string;
   user: {
     id: string;
   };
+  total: number;
   bookings: [
     {
       id: string;
@@ -29,7 +30,21 @@ function UserOrders() {
   useQuery(USER_ORDERS, {
     variables: { userId: userLog?.user.id },
     onCompleted(data) {
-      setOrders(data.getOrderByUserId);
+      const fetchOrders: IOrder[] = data.getOrderByUserId;
+      const updatedOrders: IOrder[] = fetchOrders.map((order) => ({
+        ...order,
+        total: order.bookings.reduce(
+          (total, booking) => total + booking.price,
+          0
+        ),
+      }));
+      updatedOrders.sort((a, b) => {
+        const dateA: Date = new Date(a.date);
+        const dateB: Date = new Date(b.date);
+        return dateB.getTime() - dateA.getTime();
+      });
+
+      setOrders(updatedOrders);
     },
   });
 
@@ -45,41 +60,23 @@ function UserOrders() {
                 <img
                   src={skiIcon}
                   className="img-fluid rounded-start m-3 d-none d-sm-block"
-                  style={{ maxWidth: '70px' }}
+                  style={{ maxWidth: "70px" }}
                   alt="..."
                 />
               </div>
               <div className="col-md-8 ">
                 <div className="card-body">
-                  <h5 className="card-title">Commande N° : 0000</h5>
+                  <h5 className="card-title">
+                    Commande N° : {order.id.substring(0, 5)}
+                  </h5>
                   <p className="card-text">
-                    Date de la commande : {order.date}
+                    Date de la commande : {order.date.toString()}
                   </p>
-                  {/* <p className="card-text">
-                    Dates de location : du {order.bookingStartDate} au{" "}
-                    {order.bookingEndDate}
-                  </p> */}
-                  {/* <p className="card-text">
-                    Statut :&nbsp;
-                    <span>
-                      {order.status === "En cours" && (
-                        <span className="badge rounded-pill bg-primary">
-                          {order.status}
-                        </span>
-                      )}
-                      {order.status === "Terminée" && (
-                        <span className="badge rounded-pill bg-success">
-                          {order.status}
-                        </span>
-                      )}
-                      {order.status === "Annulé" && (
-                        <span className="badge rounded-pill bg-danger">
-                          {order.status}
-                        </span>
-                      )}
-                    </span>
-                  </p> */}
                   <p className="card-text">
+                    <small className="text-muted">
+                      Total de la commande : {order.total} €
+                    </small>
+                    <br></br>
                     <small className="text-muted">Reste à régler : 0</small>
                   </p>
                 </div>
