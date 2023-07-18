@@ -54,18 +54,17 @@ function UserOrders() {
         <h2>Vos commandes</h2>
 
         {orders.map((order) => (
-          <div className="card border-info m-3 cardStyle" key={order.id}>
+          <div className="box card m-3 cardStyle" key={order.id}>
             <div className="row g-0">
-              <div className="col-md-3 ">
+              <div className="col-sm-3 ">
                 <img
                   src={skiIcon}
-                  className="img-fluid rounded-start m-3 d-none d-sm-block"
-                  style={{ maxWidth: "70px" }}
+                  className="ski img-fluid rounded-start m-3 d-none d-sm-block"
                   alt="..."
                 />
               </div>
-              <div className="col-md-8 ">
-                <div className="card-body">
+              <div className="col-sm-8 ">
+                <div className="card-body text-black">
                   <h5 className="card-title">
                     Commande N° : {order.id.substring(0, 5)}
                   </h5>
@@ -73,7 +72,7 @@ function UserOrders() {
                     Date de la commande : {order.date.toString()}
                   </p>
                   <p className="card-text">
-                    <small className="text-muted">
+                    <small className="text-black">
                       Total de la commande : {order.total} €
                     </small>
                     <br></br>
