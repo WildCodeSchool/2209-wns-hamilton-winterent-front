@@ -77,7 +77,7 @@ function UserOrders() {
                       Total de la commande : {order.total} €
                     </small>
                     <br></br>
-                    <small className="text-muted">Reste à régler : 0</small>
+                    {/* <small className="text-muted">Reste à régler : 0</small> */}
                   </p>
                 </div>
               </div>
