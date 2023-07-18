@@ -66,7 +66,7 @@ function Login() {
 
       <form className="my-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-column align-items-center text-center">
-          <label className="d-flex flex-column" htmlFor="">
+          <label className="d-flex flex-column" htmlFor="email">
             Mail
             <input
               style={{ width: '30rem' }}
@@ -78,7 +78,7 @@ function Login() {
               {...register('user.email')}
             />
           </label>
-          <label className="mt-5" htmlFor="">
+          <label className="mt-5" htmlFor="password">
             Mot de passe
             <input
               style={{ width: '30rem' }}
