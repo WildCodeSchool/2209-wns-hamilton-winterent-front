@@ -17,6 +17,7 @@ import InfosGeneral from "./components/InfosGeneral";
 import ShopContextProvider from "./context/ShopContextProvider";
 import Products from "./pages/page-products/Products";
 import Cart from "./pages/page-cart/Cart";
+import Admin from "./pages/page-admin/Admin";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/destination" element={<Destination />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/admin" element={<Admin />} />
               <Route element={<Auth />}>
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/userconnect" element={<UserConnect />} />
