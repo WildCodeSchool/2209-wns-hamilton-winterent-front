@@ -49,14 +49,12 @@ const Header = () => {
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+              aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
             <div
               className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
+              id="navbarSupportedContent">
               <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
@@ -64,8 +62,7 @@ const Header = () => {
                       location.pathname === "/" ? "active" : ""
                     }`}
                     aria-current="page"
-                    to="/"
-                  >
+                    to="/">
                     Home
                   </Link>
                 </li>
@@ -74,20 +71,17 @@ const Header = () => {
                     className="nav-link dropdown-toggle"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    type="button"
-                  >
+                    type="button">
                     Categories
                   </a>
                   <div
                     className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
+                    aria-labelledby="dropdownMenuButton1">
                     {categories.map((category) => (
                       <Link
                         to={`/destination?idCategory=${category.id}`}
                         key={category.id}
-                        className="dropdown-item"
-                      >
+                        className="dropdown-item">
                         {category.category}
                       </Link>
                     ))}
@@ -102,14 +96,18 @@ const Header = () => {
                     className={`nav-link ${
                       location.pathname === "/destination" ? "active" : ""
                     }`}
-                    to="/destination"
-                  >
+                    to="/destination">
                     Stations
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/category">
                     A propos
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/admin">
+                    Administrateur
                   </Link>
                 </li>
                 <li className=" opacity-30 d-none d-lg-block">|</li>
@@ -121,8 +119,7 @@ const Header = () => {
                         width: "2rem",
                         position: "relative",
                         display: "flex",
-                      }}
-                    >
+                      }}>
                       <i className="bi bi-cart fs-4"> </i>
                       {cartItems.length > 0 && (
                         <div
@@ -133,8 +130,7 @@ const Header = () => {
                             position: "absolute",
                             bottom: 0,
                             right: -4,
-                          }}
-                        >
+                          }}>
                           {cartItems.length}
                         </div>
                       )}
