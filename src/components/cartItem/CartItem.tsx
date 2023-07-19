@@ -2,10 +2,10 @@ import "./CartItem.scss";
 import imgSki from "../../assets/ski_rx.png";
 import { ChangeEvent, useContext, useState } from "react";
 import { ShopContext } from "../../context/ShopContextProvider";
-import { Product } from "../../generated/graphql";
+import { ProductCate } from '../../generated/graphql';
 
 interface ICartItemProps {
-  product: Product;
+  product: ProductCate;
   quantity: number;
   price: number;
 }

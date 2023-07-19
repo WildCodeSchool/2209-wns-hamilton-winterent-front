@@ -8,6 +8,9 @@ export const GET_PRODUCT = gql`
       description
       range
       image
+      category {
+        category
+      }
     }
   }
 `;

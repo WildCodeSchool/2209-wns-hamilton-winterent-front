@@ -1,53 +1,62 @@
-.cardContainer{
-    max-width:70%;
+.cardContainer {
+  max-width: 70%;
 }
 
-.skiInfos{
+.skiInfos {
+  .range {
+    color: rgba(230, 165, 64, 1);
+    margin-bottom: 2px;
+  }
 
-    .range{
-        color : rgba(230, 165, 64, 1);
-        margin-bottom: 2px;
-    }
+  .skiModel {
+    color: rgba(76, 112, 167, 1);
+    margin-bottom: -1px;
+  }
 
-    .skiModel{
-        color : rgba(76, 112, 167, 1);
-        margin-bottom: -1px;
-    }
-
-    p{
-        color : rgba(76, 112, 167, 1);
-    }
-
+  p {
+    color: rgba(76, 112, 167, 1);
+  }
 }
 
 .packageContainer {
+  .accessory h6 {
+    color: rgb(225, 80, 109);
+  }
 
-    .accessory h6{
-        color: rgb(225, 80, 109);
+  .shoes {
+    height: 25rem;
+    width: 18rem;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
-    
-    .skipic img{
-            height:100%;
-            width:100%;
-            object-fit: cover;
+  }
+  .skipic {
+    height: 25rem;
+    width: 8rem;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
+  }
 }
 
 .shoesInfos {
-
-    img{
-        height:90%;
-        width:90%;
-        object-fit: cover;
-    }
+  img {
+    height: 90%;
+    width: 90%;
+    object-fit: cover;
+  }
 }
 
-.helmetInfos img{
-    height:90%;
-    width:90%;
-    object-fit: cover;
+.helmetInfos img {
+  height: 90%;
+  width: 90%;
+  object-fit: cover;
 }
 
 .others {
-    font-size:small;
+  font-size: small;
 }
