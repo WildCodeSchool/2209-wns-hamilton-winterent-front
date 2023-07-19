@@ -3,14 +3,17 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SkiCard from "../../components/skiCard/SkiCard";
 import SearchBar from "../../components/utils/SearchBar";
+import { Category } from "../../generated/graphql";
 import { GET_PRODUCT } from "../../graphql/queries/productQuery";
 import "./Products.scss";
 
 interface Product {
   id: string;
   name: string;
+  image: string;
   description: string;
   range: string;
+  category: Category
 }
 
 const Products = () => {
@@ -54,14 +57,20 @@ const Products = () => {
         <div className="w-75">
           <div className="row mt-4">
             {productlist.map((product: Product) => (
-              <div key={product.id} className={`col-sm-4 mb-3 mt-6 ski-card`}>
+              <div
+                key={product.id}
+                className={`${
+                  product.category?.category === 'ski' ? `col-sm-2` : `col-sm-4`
+                } mb-3 mt-6 ski-card`}
+              >
                 <SkiCard
                   product={{
                     description: product.description,
                     id: product.id,
-                    image: "",
+                    image: product.image,
                     name: product.name,
                     range: product.range,
+                    category: product.category,
                   }}
                   idShop={idShop}
                 />
