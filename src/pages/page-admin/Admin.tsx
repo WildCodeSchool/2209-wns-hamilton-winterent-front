@@ -16,6 +16,17 @@ function Admin() {
           veniam id voluptatem vel soluta, quos incidunt reiciendis culpa.
         </p>
       </div>
+      <div className="cat">
+        <h3 className="text-primary">Choisir par catégorie</h3>
+      </div>
+      <div className="butCat">
+        <button type="button" className="btn btn-primary text-white">
+          Ski
+        </button>
+        <button type="button" className="btn btn-primary text-white">
+          Chaussure
+        </button>
+      </div>
       <table className="table">
         <thead className="bg-primary">
           <tr>
