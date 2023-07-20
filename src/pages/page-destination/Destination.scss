@@ -1,0 +1,64 @@
+.destination {
+  .destination-page-image {
+    height: 30vh;
+    background : linear-gradient(
+      rgba(48, 48, 48, 0.45), 
+      rgba(48, 48, 48, 0.45)
+    ), url('../../assets/header_category.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .well {
+    background-color: #0082FB;
+  }
+
+  .bg-image-1 {
+    height: 15rem;
+    width: 30%;
+    border-radius: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/1.jpg');
+  }
+  .bg-image-2 {
+    height: 15rem;
+    width: 30%;
+    border-radius: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/2.jpg');
+  }
+
+  .bg-image-0 {
+    height: 15rem;
+    width: 30%;
+    border-radius: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/0.jpg');
+  }
+  .google-map {
+    height: 80vh;
+    width: 100vw;
+    .info-google-shop {
+      position: absolute;
+      height: 30%;
+      width: 100%;
+      background-color: rgba(#3F78CD, 0.6);
+      .bandeau {
+        width: 100%;
+        height: 8px;
+        position: absolute;
+        background-color: #9AE6F0;
+        margin-top: 8px;
+        
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

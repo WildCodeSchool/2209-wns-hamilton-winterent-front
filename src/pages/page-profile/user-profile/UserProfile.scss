@@ -1,0 +1,21 @@
+.custom-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font-style: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+.box {
+  cursor: pointer;
+}
+
+.tabSelected {
+  background-color: #0f2641;
+  color: white;
+}
+
+.tab:hover {
+  background-color: #e3e9ef;
+}

@@ -1,40 +1,150 @@
-import { useLogin } from '../../context/LoginProvider';
-import './Header.scss';
+import { useLogin } from "../../context/LoginProvider";
+import { Link, useLocation } from "react-router-dom";
+import logoWinterent from "../../assets/Logo_winterent-ligh-Ht.png";
+import { LIST_CATEGORY } from "../../graphql/queries/categoryQuery";
+import { useQuery } from "@apollo/client";
+import { useContext, useState } from "react";
+import HeaderUserLog from "./HeaderUserLog";
+import HeaderNotUser from "./HeaderNotUser";
+import "./_header.scss";
+import { ShopContext } from "../../context/ShopContextProvider";
+
+interface CategoryName {
+  id: string;
+  category: string;
+}
 
 const Header = () => {
-  const { userLog } = useLogin();
-  const handleDeleteLocalStorage = () => {
-    localStorage.removeItem('userLog');
-  };
+  const { cartItems } = useContext(ShopContext);
+  const [categories, setCategories] = useState<CategoryName[]>([]);
 
-  return userLog ? (
-    <div className="header">
-      <div className="align-text">
-        <a href="/login">
-          <button type="button" onClick={handleDeleteLocalStorage}>
-            deconnexion
-          </button>
-        </a>
-        <a href="/category">
-          <button>home</button>
-        </a>
-        <a href="/login">{userLog.user.firstname}</a>
-      </div>
-    </div>
-  ) : (
-    <div className="header">
-      <div className="align-text">
-        <a href="/register">
-          <button>Créer un compte</button>
-        </a>
+  let location = useLocation();
+  const { userLog } = useLogin();
+
+  //Récupérer les catégories
+  const { loading, error } = useQuery(LIST_CATEGORY, {
+    onCompleted(data) {
+      setCategories(data.listCategory);
+    },
+  });
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
+
+  return (
+    <>
+      <div className="nav-container">
         <a href="/">
-          <button>home</button>
+          <img
+            className="m-3 logo-w"
+            src={logoWinterent}
+            alt="logo-winterent"
+          />
         </a>
-        <a href="/login">
-          <button>Se connecter</button>
-        </a>
+        <nav className="navbar navbar-expand-lg navbar-dark ">
+          <div className="container-fluid">
+            <button
+              className="navbar-toggler ms-auto"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent">
+              <ul className="nav navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/" ? "active" : ""
+                    }`}
+                    aria-current="page"
+                    to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    type="button">
+                    Categories
+                  </a>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1">
+                    {categories.map((category) => (
+                      <Link
+                        to={`/destination?idCategory=${category.id}`}
+                        key={category.id}
+                        className="dropdown-item">
+                        {category.category}
+                      </Link>
+                    ))}
+                    <div className="hr dropdown-divider"></div>
+                    <a className="dropdown-item" href="#">
+                      Toutes les catégories
+                    </a>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/destination" ? "active" : ""
+                    }`}
+                    to="/destination">
+                    Stations
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/category">
+                    A propos
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/admin">
+                    Administrateur
+                  </Link>
+                </li>
+                <li className=" opacity-30 d-none d-lg-block">|</li>
+                <li>
+                  <Link className="text-light m-2" to="/cart">
+                    <div
+                      className="m-2"
+                      style={{
+                        width: "2rem",
+                        position: "relative",
+                        display: "flex",
+                      }}>
+                      <i className="bi bi-cart fs-4"> </i>
+                      {cartItems.length > 0 && (
+                        <div
+                          className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                          style={{
+                            width: "1.2rem",
+                            height: "1.2rem",
+                            position: "absolute",
+                            bottom: 0,
+                            right: -4,
+                          }}>
+                          {cartItems.length}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                </li>
+                <li className="opacity-30 d-none d-lg-block">|</li>
+                {userLog ? <HeaderUserLog /> : <HeaderNotUser />}
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
-    </div>
+    </>
   );
 };
 

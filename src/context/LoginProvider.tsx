@@ -7,7 +7,7 @@ interface LoginInterface {
 interface UserInfoInterface {
   email: String;
   firstname: String;
-  id: Number;
+  id: String;
 }
 
 interface UserContextInterface {

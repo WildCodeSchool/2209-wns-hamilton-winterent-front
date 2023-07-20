@@ -1,51 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
-import Auth from './components/Auth';
-import Login from './components/Login';
-import Register from './components/Register';
-import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import UserConnect from './components/UserConnect';
-import LoginProvider from './context/LoginProvider';
-import Header from './components/header/Header';
-import Home from './components/Home';
-import Footer from "./components/Footer";
-import Category from './components/category/Category';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import App from "./App";
 
+const httpLink = createHttpLink({
+  uri: "http://localhost:8000/graphql",
+  credentials: "include",
+});
+const authLink = setContext((_, { headers }) => {
+  console.log(localStorage.getItem("userLog"));
+  const token = JSON.parse(`${localStorage.getItem('userLog')}`)?.token;
+console.log("TOKEN", token);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql',
-  credentials: 'include',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache({
     addTypename: false, //permet d'éviter d'avoir __typename dans nos retours
   }),
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <LoginProvider>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Category />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route element={<Auth />}>
-              <Route path="/userconnect" element={<UserConnect />} />
-            </Route>
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </LoginProvider>
-    </ApolloProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+  // </React.StrictMode>
 );
 
 reportWebVitals();
