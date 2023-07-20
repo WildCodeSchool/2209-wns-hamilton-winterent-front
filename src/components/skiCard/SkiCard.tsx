@@ -32,7 +32,7 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
     quantity: 0,
     price: 0,
   });
-  console.log(product.category?.category, 'console product');
+  //console.log(product.category?.category, 'console product');
   const { loading, error } = useQuery(GET_PRODUCT_INFOS, {
     variables: { idShop: idShop, idProduct: product.id },
     onCompleted(data) {

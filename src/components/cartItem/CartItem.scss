@@ -2,9 +2,27 @@
   border: 1px solid #dee2e7;
   margin-top: 1rem;
 }
+.cartitem {
+ // background-color: yellow;
+      width: 100%;
+  .test {
+    //background-color: blue;
+    width: 100%;
+  }
+  .container-infos {
+    width: 45%;
+    .description {
+      margin-left: 50px;
+    }
+  }
+.container-price{
+  //background-color: red;
+      width: 35%;
+}
+  img {
+    width: 15%;
 
-img {
-  width: 20px;
+  }
 }
 button {
   width: 8rem;
