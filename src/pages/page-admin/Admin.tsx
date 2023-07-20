@@ -1,22 +1,44 @@
 import "./Admin.scss";
-import shoe from "../../assets/shoe.png";
+import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { LIST_PRODUCT } from "../../graphql/queries/productQuery";
+import ProductRow from "./ProductRow";
+
+interface IAdminProducts {
+  id: string;
+  name: string;
+  image: string;
+  range: string;
+  description: string;
+}
 
 function Admin() {
+  const [productList, setProductList] = useState([]);
+  const { loading, error } = useQuery(LIST_PRODUCT, {
+    onCompleted(data) {
+      setProductList(data.products);
+    },
+  });
+
+  console.log("productList", productList);
+
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
+
   return (
     <div>
       <div className="admin">
         <div className="admin-page-image d-flex justify-content-center flex-column align-items-center"></div>
       </div>
       <div className="titleAdmin1">
-        <h1 className="text-primary">Binvenue sur le panel d'Admin</h1>
-
+        <h1 className="text-primary">Bienvenue sur le panel d'Admin</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
           aliquid qui at, earum explicabo, nisi ab odio corporis illo nihil iste
           veniam id voluptatem vel soluta, quos incidunt reiciendis culpa.
         </p>
       </div>
-      <div className="cat">
+      {/* <div className="cat">
         <h3 className="text-primary">Choisir par catégorie</h3>
       </div>
       <div className="butCat">
@@ -26,7 +48,13 @@ function Admin() {
         <button type="button" className="btn btn-primary text-white">
           Chaussure
         </button>
+      </div> */}
+      {/* <div className="cat">
+        <h3 className="text-primary">Choisir son magasin</h3>
       </div>
+      <div className="d-flex justify-content-center">
+        <input type="" placeholder="Choisir son magasin" />
+      </div> */}
       <table className="table">
         <thead className="bg-primary">
           <tr>
@@ -40,51 +68,27 @@ function Admin() {
               Référence
             </th>
             <th className=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-              Prix
+              Marque
             </th>
-            <th className=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            {/* <th className=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
               Stock
-            </th>
+            </th> */}
             <th className="action text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>banane</td>
-            <td>
-              <img src={shoe} alt="" />
-            </td>
-            <td>banane</td>
-            <td>21%</td>
-            <td>1200</td>
-            <td>
-              <button type="button" className="btn btn-success">
-                Modifier
-              </button>
-              <button type="button" className="btn btn-danger">
-                Supprimer
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>toto</td>
-            <td>
-              <img src={shoe} alt="" />
-            </td>
-            <td>toto</td>
-            <td>2%</td>
-            <td>12</td>
-            <td>
-              <button type="button" className="btn btn-success">
-                Modifier
-              </button>
-              <button type="button" className="btn btn-danger">
-                Supprimer
-              </button>
-            </td>
-          </tr>
+          {productList.map((product: IAdminProducts, index) => (
+            <ProductRow
+              key={index}
+              id={product.id}
+              name={product.name}
+              image={product.image}
+              range={product.range}
+              description={product.description}
+            />
+          ))}
         </tbody>
       </table>
     </div>

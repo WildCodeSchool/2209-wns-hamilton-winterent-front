@@ -1,0 +1,33 @@
+import shoe from "../../assets/shoe.png";
+
+interface IProductRowsProps {
+  id: string;
+  name: string;
+  image: string;
+  range: string;
+  description: string;
+}
+
+function ProductRow({ name, description, range, image }: IProductRowsProps) {
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>
+        <img src={shoe} alt="" />
+      </td>
+      <td>{description}</td>
+      <td>{range}</td>
+      {/* <td>1200</td> */}
+      <td>
+        <button type="button" className="btn btn-success">
+          Modifier
+        </button>
+        <button type="button" className="btn btn-danger">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  );
+}
+
+export default ProductRow;

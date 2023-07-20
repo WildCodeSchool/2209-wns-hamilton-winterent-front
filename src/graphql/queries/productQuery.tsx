@@ -15,6 +15,18 @@ export const GET_PRODUCT = gql`
   }
 `;
 
+export const LIST_PRODUCT = gql`
+  query Products {
+    products {
+      description
+      id
+      image
+      name
+      range
+    }
+  }
+`;
+
 export const GET_PRODUCT_INFOS = gql`
   query getProductInfos($idShop: UUID, $idProduct: UUID) {
     productInfos(idShop: $idShop, idProduct: $idProduct) {
