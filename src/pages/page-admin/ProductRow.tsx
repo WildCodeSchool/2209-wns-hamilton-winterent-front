@@ -1,5 +1,3 @@
-import shoe from "../../assets/shoe.png";
-
 interface IProductRowsProps {
   id: string;
   name: string;
@@ -22,7 +20,7 @@ function ProductRow({
     <tr>
       <td>{name}</td>
       <td>
-        <img src={shoe} alt="" />
+        <img src={image} alt="" />
       </td>
       <td>{description}</td>
       <td>{range}</td>
