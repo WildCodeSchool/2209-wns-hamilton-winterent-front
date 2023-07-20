@@ -1,14 +1,11 @@
-import "./Admin.scss";
-import { useState } from "react";
-import { useLazyQuery, useQuery } from "@apollo/client";
-import {
-  GET_FILTER_ADMIN,
-  LIST_PRODUCT,
-} from "../../graphql/queries/productQuery";
-import ProductRow from "./ProductRow";
-import { SHOPS } from "../../graphql/queries/shopQuery";
-import { LIST_CATEGORY } from "../../graphql/queries/categoryQuery";
-import { Category, Shop } from "../../generated/graphql";
+import './Admin.scss';
+import { useState } from 'react';
+import { useLazyQuery, useQuery } from '@apollo/client';
+import { GET_FILTER_ADMIN } from '../../graphql/queries/productQuery';
+import ProductRow from './ProductRow';
+import { SHOPS } from '../../graphql/queries/shopQuery';
+import { LIST_CATEGORY } from '../../graphql/queries/categoryQuery';
+import { Category, Shop } from '../../generated/graphql';
 
 interface IAdminProducts {
   id: string;
@@ -23,39 +20,35 @@ interface IAdminProducts {
 function Admin() {
   const [productList, setProductList] = useState([]);
   const [shopList, setShopList] = useState([]);
-  const [selectedShopList, setSelectedShopList] = useState("");
-  const [selectedCategoryList, setSelectedCategoryList] = useState("");
-  console.log("selectedShopList", selectedShopList);
+  const [selectedShopList, setSelectedShopList] = useState('');
+  const [selectedCategoryList, setSelectedCategoryList] = useState('');
   const [categoryList, setCategoryList] = useState([]);
-  const { loading: loadingCategories, error: errorCategories } = useQuery(
-    LIST_CATEGORY,
-    {
-      onCompleted(data) {
-        setCategoryList(data.listCategory);
-      },
-    }
-  );
-  const { loading: loadingShops, error: errorShops } = useQuery(SHOPS, {
+  const { error: errorCategories } = useQuery(LIST_CATEGORY, {
+    onCompleted(data) {
+      setCategoryList(data.listCategory);
+    },
+  });
+  const { error: errorShops } = useQuery(SHOPS, {
     onCompleted(data) {
       setShopList(data.shops);
     },
   });
 
-  const [getProducts, { loading, error, data }] =
-    useLazyQuery(GET_FILTER_ADMIN);
+  const [getProducts, { loading, error }] = useLazyQuery(GET_FILTER_ADMIN);
 
   const handleClick = () => {
     getProducts({
       variables: { idCategory: selectedCategoryList, idShop: selectedShopList },
       onCompleted(data) {
-        console.log("data", data);
+        console.log('data', data);
         setProductList(data.productsAdmin);
       },
     });
   };
 
-  // if (loadingProduct) return <div>Chargement en cours</div>;
-  // if (errorProduct) return <div>Une erreur s'est produite</div>;
+  if (loading) return <div>Chargement en cours</div>;
+  if (error || errorShops || errorCategories)
+    return <div>Une erreur s'est produite</div>;
 
   return (
     <div>
@@ -83,7 +76,8 @@ function Admin() {
             required
             onChange={(event) => {
               setSelectedShopList(event.target.value);
-            }}>
+            }}
+          >
             <option value="" defaultValue="">
               Choisi ton magasin
             </option>
@@ -102,7 +96,8 @@ function Admin() {
             required
             onChange={(event) => {
               setSelectedCategoryList(event.target.value);
-            }}>
+            }}
+          >
             <option value="" defaultValue="">
               Choisi ta catégorie
             </option>
@@ -117,7 +112,8 @@ function Admin() {
           onClick={handleClick}
           type="button"
           value="Afficher ma sélection"
-          className="btn btn-primary text-white mt-2 p-3 w-25">
+          className="btn btn-primary text-white mt-2 p-3 w-25"
+        >
           Afficher ma sélection
         </button>
       </form>

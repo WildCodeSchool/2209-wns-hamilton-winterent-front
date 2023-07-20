@@ -1,10 +1,10 @@
-import './Cart.scss';
 import CartItem from '../../components/cartItem/CartItem';
 import CartPayment from '../../components/cartPayment/CartPayment';
 import { useContext } from 'react';
 import { ShopContext } from '../../context/ShopContextProvider';
 import EmptyCart from '../../components/emptyCart/EmptyCart';
 import { useNavigate } from 'react-router-dom';
+import './Cart.scss';
 
 const Cart = () => {
   const { cartItems } = useContext(ShopContext);
@@ -48,9 +48,6 @@ const Cart = () => {
                 >
                   Retour à l'accueil
                 </button>
-                {/* <button className="butBack btn btn-primary" type="submit">
-                  Tout supprimer
-                </button> */}
               </div>
             </div>
             <CartPayment />

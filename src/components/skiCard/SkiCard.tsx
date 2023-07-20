@@ -1,7 +1,5 @@
 import './SkiCard.scss';
 import ski from '../../assets/ski_rx.png';
-import shoe from '../../assets/shoe.png';
-import helmet from '../../assets/helmet.png';
 import { useContext, useState } from 'react';
 import { ShopContext } from '../../context/ShopContextProvider';
 import { ProductCate } from '../../generated/graphql';
@@ -32,7 +30,6 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
     quantity: 0,
     price: 0,
   });
-  //console.log(product.category?.category, 'console product');
   const { loading, error } = useQuery(GET_PRODUCT_INFOS, {
     variables: { idShop: idShop, idProduct: product.id },
     onCompleted(data) {
@@ -66,6 +63,9 @@ function SkiCard({ product, idShop }: ISkiCardProps) {
       type: 'success',
     });
   }
+
+  if (loading) return <div>Chargement en cours</div>;
+  if (error) return <div>Une erreur s'est produite</div>;
 
   return (
     <>
