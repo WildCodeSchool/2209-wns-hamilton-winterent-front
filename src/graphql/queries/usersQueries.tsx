@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const LIST_USERS = gql`
   query Users {
@@ -63,5 +63,11 @@ export const USER_ORDERS = gql`
         price
       }
     }
+  }
+`;
+
+export const CHECK_USER_IS_ADMIN = gql`
+  query Query {
+    checkUserIsAdmin
   }
 `;
