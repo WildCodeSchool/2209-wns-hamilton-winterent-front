@@ -36,3 +36,20 @@ export const GET_PRODUCT_INFOS = gql`
     }
   }
 `;
+
+export const GET_FILTER_ADMIN = gql`
+  query ProductsAdmin($idCategory: UUID, $idShop: UUID) {
+    productsAdmin(idCategory: $idCategory, idShop: $idShop) {
+      id
+      quantity
+      priceHT
+      name
+      description
+      range
+      image
+      category {
+        category
+      }
+    }
+  }
+`;

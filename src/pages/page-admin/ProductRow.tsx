@@ -6,9 +6,18 @@ interface IProductRowsProps {
   image: string;
   range: string;
   description: string;
+  priceHT: number;
+  quantity: number;
 }
 
-function ProductRow({ name, description, range, image }: IProductRowsProps) {
+function ProductRow({
+  name,
+  description,
+  range,
+  image,
+  priceHT,
+  quantity,
+}: IProductRowsProps) {
   return (
     <tr>
       <td>{name}</td>
@@ -17,7 +26,8 @@ function ProductRow({ name, description, range, image }: IProductRowsProps) {
       </td>
       <td>{description}</td>
       <td>{range}</td>
-      {/* <td>1200</td> */}
+      <td>{priceHT}</td>
+      <td>{quantity}</td>
       <td>
         <button type="button" className="btn btn-success">
           Modifier

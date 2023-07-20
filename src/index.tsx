@@ -16,9 +16,8 @@ const httpLink = createHttpLink({
   credentials: "include",
 });
 const authLink = setContext((_, { headers }) => {
-  console.log(localStorage.getItem("userLog"));
-  const token = JSON.parse(`${localStorage.getItem('userLog')}`)?.token;
-console.log("TOKEN", token);
+  const token = JSON.parse(`${localStorage.getItem("userLog")}`)?.token;
+
   return {
     headers: {
       ...headers,
