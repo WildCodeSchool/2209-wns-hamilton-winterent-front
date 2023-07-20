@@ -71,3 +71,9 @@ export const CHECK_USER_IS_ADMIN = gql`
     checkUserIsAdmin
   }
 `;
+
+export const CHECK_USER_CONNECT = gql`
+  query Connect {
+    checkUser
+  }
+`;
