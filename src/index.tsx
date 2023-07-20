@@ -2,12 +2,32 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import App from "./App";
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: "http://localhost:8000/graphql",
   credentials: "include",
+});
+const authLink = setContext((_, { headers }) => {
+  console.log(localStorage.getItem("userLog"));
+  const token = JSON.parse(`${localStorage.getItem('userLog')}`)?.token;
+console.log("TOKEN", token);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache({
     addTypename: false, //permet d'éviter d'avoir __typename dans nos retours
   }),

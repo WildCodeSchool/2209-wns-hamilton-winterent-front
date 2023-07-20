@@ -1,23 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./index.css";
-import Auth from "./components/utils/Auth";
-import Login from "./pages/page-authentification/Login";
-import Register from "./pages/page-authentification/Register";
-import UserConnect from "./components/utils/UserConnect";
-import LoginProvider from "./context/LoginProvider";
-import Header from "./components/header/Header";
-import Home from "./components/Home";
-import Footer from "./components/footer/Footer";
-import UserProfile from "./pages/page-profile/user-profile/UserProfile";
-import Category from "./pages/page-category/Category";
-import Destination from "./pages/page-destination/Destination";
-import Shop from "./pages/page-shop/Shop";
-import "./App.css";
-import InfosGeneral from "./components/InfosGeneral";
-import ShopContextProvider from "./context/ShopContextProvider";
-import Products from "./pages/page-products/Products";
-import Cart from "./pages/page-cart/Cart";
-import Admin from "./pages/page-admin/Admin";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './index.css';
+import Auth from './components/utils/Auth';
+import Login from './pages/page-authentification/Login';
+import Register from './pages/page-authentification/Register';
+import UserConnect from './components/utils/UserConnect';
+import LoginProvider from './context/LoginProvider';
+import Header from './components/header/Header';
+import Home from './components/Home';
+import Footer from './components/footer/Footer';
+import UserProfile from './pages/page-profile/user-profile/UserProfile';
+import Category from './pages/page-category/Category';
+import Destination from './pages/page-destination/Destination';
+import Shop from './pages/page-shop/Shop';
+import './App.css';
+import InfosGeneral from './components/InfosGeneral';
+import ShopContextProvider from './context/ShopContextProvider';
+import Products from './pages/page-products/Products';
+import Cart from './pages/page-cart/Cart';
+import Admin from './pages/page-admin/Admin';
+import AuthAdmin from './components/utils/AuthAdmin';
 
 function App() {
   return (
@@ -35,7 +36,9 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/destination" element={<Destination />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/admin" element={<Admin />} />
+              <Route element={<AuthAdmin />}>
+                <Route path="/admin" element={<Admin />} />
+              </Route>
               <Route element={<Auth />}>
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/userconnect" element={<UserConnect />} />
