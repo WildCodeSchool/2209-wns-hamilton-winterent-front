@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useLogin } from '../../context/LoginProvider';
+import { ShopContext } from '../../context/ShopContextProvider';
 
 const HeaderUserLog = () => {
   const { userLog, setUserLog } = useLogin();
+  const { clearCart } = useContext(ShopContext);
 
   const handleDeleteLocalStorage = () => {
+    clearCart();
     setUserLog(null);
   };
 
