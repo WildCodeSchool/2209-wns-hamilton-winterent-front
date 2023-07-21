@@ -36,12 +36,11 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/destination" element={<Destination />} />
               <Route path="/cart" element={<Cart />} />
-              <Route element={<AuthAdmin />}>
-                <Route path="/admin" element={<Admin />} />
+              <Route path="/admin" element={<AuthAdmin />}>
+                <Route index element={<Admin />} />
               </Route>
-              <Route element={<Auth />}>
-                <Route path="/profile" element={<UserProfile />} />
-                <Route path="/userconnect" element={<UserConnect />} />
+              <Route path='/profile' element={<Auth />}>
+                <Route index element={<UserProfile />} />
               </Route>
             </Routes>
             <InfosGeneral />

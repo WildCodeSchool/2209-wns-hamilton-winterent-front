@@ -1,6 +1,6 @@
-import React, { createContext } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { IItemInfos } from "../components/skiCard/SkiCard";
+import React, { createContext } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { IItemInfos } from '../components/skiCard/SkiCard';
 
 interface ICartContext {
   cartItems: IItemInfos[];
@@ -18,7 +18,7 @@ const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cartItems, setCartItems] = useLocalStorage<IItemInfos[]>(
-    "shopping-cart",
+    'shopping-cart',
     []
   );
 
@@ -57,7 +57,11 @@ const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
-  console.log("TEST CART", cartItems);
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  console.log('TEST CART', cartItems);
   return (
     <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
