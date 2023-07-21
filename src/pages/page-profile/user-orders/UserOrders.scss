@@ -1,0 +1,17 @@
+.cardStyle {
+  max-width: 540px;
+}
+.box {
+  background-color: rgb(227, 233, 239);
+  border-radius: 1.5rem;
+}
+.ski {
+  width: 5rem;
+}
+//media xl
+@media (min-width: 992px) {
+  .cardStyle {
+    min-width: 600px;
+    max-width: 800px;
+  }
+}
