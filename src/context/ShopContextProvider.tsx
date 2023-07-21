@@ -6,12 +6,14 @@ interface ICartContext {
   cartItems: IItemInfos[];
   addToCart: (item: IItemInfos) => void;
   removeFromCart: (itemId: string) => void;
+  clearCart: () => void;
 }
 
 export const ShopContext = createContext<ICartContext>({
   cartItems: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  clearCart: () => {},
 });
 
 const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -63,7 +65,9 @@ const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   console.log('TEST CART', cartItems);
   return (
-    <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <ShopContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </ShopContext.Provider>
   );
