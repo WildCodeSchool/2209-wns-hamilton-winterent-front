@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import "./CartPayment.scss";
-import { ShopContext } from "../../context/ShopContextProvider";
-import { useMutation } from "@apollo/client";
-import { ADD_ORDER } from "../../graphql/mutations/orderMutations";
-import { useLogin } from "../../context/LoginProvider";
-import { OrderInput } from "../../generated/graphql";
-import { ToastContainer, toast } from "react-toastify";
-import useNotification from "../../notifications/useNotification";
+import { useContext, useEffect, useState } from 'react';
+import './CartPayment.scss';
+import { ShopContext } from '../../context/ShopContextProvider';
+import { useMutation } from '@apollo/client';
+import { ADD_ORDER } from '../../graphql/mutations/orderMutations';
+import { useLogin } from '../../context/LoginProvider';
+import { OrderInput } from '../../generated/graphql';
+import { ToastContainer, toast } from 'react-toastify';
+import useNotification from '../../notifications/useNotification';
 
 const CartPayment = () => {
-  const { cartItems } = useContext(ShopContext);
+  const { cartItems, clearCart } = useContext(ShopContext);
   const { order } = useNotification();
   const [waiting, setWaiting] = useState<boolean>(false);
   const [err, setErr] = useState<String | null>(null);
@@ -17,7 +17,7 @@ const CartPayment = () => {
   const [addOrder] = useMutation(ADD_ORDER);
   const { userLog, setUserLog } = useLogin();
   const [orderInfos, setOrderInfos] = useState<OrderInput>({
-    userId: userLog != null ? userLog.user.id : "",
+    userId: userLog != null ? userLog.user.id : '',
     bookings: [],
   });
 
@@ -45,8 +45,8 @@ const CartPayment = () => {
             {
               shopId: element.shopId,
               productId: element.product.id,
-              endDate: "2023-01-20",
-              startDate: "2023-01-12",
+              endDate: '2023-01-20',
+              startDate: '2023-01-12',
             },
           ],
         }));
@@ -58,7 +58,7 @@ const CartPayment = () => {
           orderInfos: orderInfos,
         },
         onCompleted() {
-          localStorage.removeItem("shopping-cart");
+          clearCart();
           toast(order.createOrderSuccess, {
             onClose() {
               setWaiting(false);
@@ -67,7 +67,7 @@ const CartPayment = () => {
             onOpen() {
               setWaiting(true);
             },
-            type: "success",
+            type: 'success',
           });
         },
         onError(error) {
@@ -75,7 +75,7 @@ const CartPayment = () => {
         },
       });
     } else {
-      alert("please create a profile or login");
+      alert('please create a profile or login');
     }
   };
 

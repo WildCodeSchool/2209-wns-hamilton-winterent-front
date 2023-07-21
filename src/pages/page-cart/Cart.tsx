@@ -1,10 +1,10 @@
-import "./Cart.scss";
-import CartItem from "../../components/cartItem/CartItem";
-import CartPayment from "../../components/cartPayment/CartPayment";
-import { useContext } from "react";
-import { ShopContext } from "../../context/ShopContextProvider";
-import EmptyCart from "../../components/emptyCart/EmptyCart";
-import { useNavigate } from "react-router-dom";
+import CartItem from '../../components/cartItem/CartItem';
+import CartPayment from '../../components/cartPayment/CartPayment';
+import { useContext } from 'react';
+import { ShopContext } from '../../context/ShopContextProvider';
+import EmptyCart from '../../components/emptyCart/EmptyCart';
+import { useNavigate } from 'react-router-dom';
+import './Cart.scss';
 
 const Cart = () => {
   const { cartItems } = useContext(ShopContext);
@@ -22,36 +22,32 @@ const Cart = () => {
           </h3>
           <div className="d-flex justify-content-around ">
             <div className="components mb-4 article mt-5 p-4">
-              <div>
-                {cartItems.length > 0 ? (
-                  cartItems.map((item, index) => {
-                    return (
-                      <div key={index}>
-                        <CartItem
-                          product={item.product}
-                          quantity={item.quantity}
-                          price={item.price}
-                        />
-                      </div>
-                    );
-                  })
-                ) : (
-                  <EmptyCart />
-                )}
-              </div>
+              {cartItems.length > 0 ? (
+                cartItems.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <CartItem
+                        product={item.product}
+                        quantity={item.quantity}
+                        price={item.price}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <EmptyCart />
+              )}
+
               <div className="d-flex justify-content-between">
                 <button
                   className="butBack btn btn-primary"
                   type="button"
                   onClick={() => {
-                    navigate("/");
+                    navigate('/');
                   }}
                 >
                   Retour à l'accueil
                 </button>
-                {/* <button className="butBack btn btn-primary" type="submit">
-                  Tout supprimer
-                </button> */}
               </div>
             </div>
             <CartPayment />

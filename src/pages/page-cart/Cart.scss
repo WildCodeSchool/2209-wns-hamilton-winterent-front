@@ -1,7 +1,7 @@
 .cart {
   .cart-page-image {
     height: 40vh;
-    background-image: url("../../assets/bg_cart.png");
+    background-image: url('../../assets/bg_cart.png');
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -12,7 +12,8 @@
 
 .article {
   border: 1px solid #dee2e7;
-  width: 40rem;
+  width: 60vw;
+  margin: 0 8vw;
 }
 
 .butBack {

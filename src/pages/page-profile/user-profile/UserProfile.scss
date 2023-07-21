@@ -6,6 +6,11 @@
   font-style: inherit;
   cursor: pointer;
   outline: inherit;
+  .logout {
+    text-decoration: none;
+    color: black;
+  }
+  text-align: left;
 }
 .box {
   cursor: pointer;
